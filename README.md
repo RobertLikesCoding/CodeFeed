@@ -1,5 +1,8 @@
 # reddit-for-devs
 
+![image](https://github.com/user-attachments/assets/bb3edd86-c69c-4b89-8248-8bdf78a345e1)
+Finished Wireframe, working on Design next
+
 ## Description
 
 This app will allow users to view and explore posts related to web development by fetching and categorizing posts from relevant subreddits and filtering them into Frontend, Backend, and Fullstack sections. It could also have features to save posts, search for specific keywords, and explore posts within each category.
@@ -21,5 +24,3 @@ This app will allow users to view and explore posts related to web development b
 - Git and GitHub
 - Figma
 - [Reddit API](https://www.notion.so/Reddit-Clone-12a44c505715805898dcd2ae258e569d?pvs=21)
-
-- 
