@@ -1,8 +1,11 @@
 # reddit-for-devs
 
 ## Current Status
-![image](https://github.com/user-attachments/assets/cacf8eb6-8eec-42cd-b217-99c8ba1ce981)
-Desing is done now. I will start technical design next.
+![image](https://github.com/user-attachments/assets/246d6cc3-c9ad-4bd3-a22b-10dcbd5ce20e)
+
+<br>
+<br>
+Desing is done now! I will start technical design next.
 
 ## Description
 
