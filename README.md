@@ -1,7 +1,8 @@
 # reddit-for-devs
 
-![image](https://github.com/user-attachments/assets/bb3edd86-c69c-4b89-8248-8bdf78a345e1)
-Finished Wireframe, working on Design next
+## Current Status
+![image](https://github.com/user-attachments/assets/cacf8eb6-8eec-42cd-b217-99c8ba1ce981)
+Desing is done now. I will start technical design next.
 
 ## Description
 
