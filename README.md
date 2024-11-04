@@ -6,15 +6,14 @@ This app will allow users to view and explore posts related to web development b
 
 ## Progress
 
+
 ### Wireframe
 
-
+<img src="https://github.com/user-attachments/assets/e45ea684-ea73-4224-919e-b359b7f4438f" alt="Image Description" height="300"><br>
 
 ### Design Prototype
 
-![image](https://github.com/user-attachments/assets/246d6cc3-c9ad-4bd3-a22b-10dcbd5ce20e)
-
-
+<img src="https://github.com/user-attachments/assets/246d6cc3-c9ad-4bd3-a22b-10dcbd5ce20e" alt="Image Description" height="300">
 
 ### Technical Design
 
@@ -24,6 +23,7 @@ Technical design documentation [📁 here](https://github.com/RobertLikesCoding/
 ## Features
 - search for relevant keywords
 - filter categories for frontend, backend, fullstack etc.
+- open a post and view comments
 - select a subreddit and view the comments
 - mobile first design
 
