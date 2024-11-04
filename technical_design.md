@@ -8,19 +8,33 @@
 ### 2. Component Structure
 
 - App (main component)
-- SearchBar (search for keywords)
-- PostList (list of posts)
-- PostItem (individual post)
-- SubredditList (list of subreddits)
-- Subreddit (image and link to subreddit)
-- CategoryFilter (filtering by Frontend, Backend, Fullstack)
-- OPTIONAL: SavedPosts (saved posts)
+  - Navbar
+    - Categories
+      - Category
+    - SearchBar (search for keywords)
+
+  - Sidebar
+    - Subreddit Lists (list of subreddits)
+      - Subreddits
+
+  - PostList (list of posts)
+    - PostItem (individual post)
+      - UserData (Name, and time since post)
+
+  - CommentsList
+    - Comment
+      - UserData (Name, and time since post)
+
+  - InfoBox (information about current Filter or Reddit)
+
+  - OPTIONAL: SavedPosts (saved posts)
 
 ### 3. Data Flow
 
 - Redux Store for global state
 - Actions for API calls and state updates
 - Reducers for state manipulation
+- Routes for Main Page and Article Page
 
 ### 4. API Integration
 
@@ -29,7 +43,7 @@
 
 ### 5. Responsive Design
 
-- Use of CSS Flexbox and media queries
+- Use of Flexbox and media queries
 - Mobile-first approach
 
 ### 6. Performance Optimization
