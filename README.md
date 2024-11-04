@@ -17,7 +17,7 @@ This app will allow users to view and explore posts related to web development b
 
 ### Technical Design
 
-Technical design documentation [📁 here](https://github.com/RobertLikesCoding/CodeFeed/blob/main/technical_design.md).
+Technical design documentation [📁 here](./public/Documentation/technical_design.md).
 
 
 ## Features
