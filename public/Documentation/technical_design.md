@@ -29,6 +29,7 @@
 
   - OPTIONAL: SavedPosts (saved posts)
 
+
 ### 3. Data Flow
 
 - Redux Store for global state
@@ -56,7 +57,10 @@
 - React Testing Library for component tests
 - Selenium for end-to-end tests
 
+### 8. Redux Store Documentation
+
 ### 9. Deployment
 
 - CI/CD pipeline with GitHub Actions
 - Hosting on Netlify
+
