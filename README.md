@@ -1,5 +1,7 @@
 # CodeFeed
 
+Status: `in progress` 🏗️
+
 ## Description
 
 This app will allow users to view and explore posts related to web development by fetching and categorizing posts from relevant subreddits and filtering them into Frontend, Backend, and Fullstack categories. It will also have features to save posts, search for specific keywords, and explore posts within each category.
