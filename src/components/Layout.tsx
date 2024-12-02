@@ -10,7 +10,7 @@ const Layout = () => {
               <Link to="/">Latest</Link>
             </li>
             <li className="">
-              <Link to="frontend">Frontender</Link>
+              <Link to="frontend">Frontend</Link>
             </li>
             <li className="">
               <Link to="backend">Backend</Link>
