@@ -1,5 +1,4 @@
 import { Link, Outlet } from "react-router-dom";
-import HelloWorld from "./HelloWorld";
 
 const Layout = () => {
   return (
@@ -23,7 +22,6 @@ const Layout = () => {
         </nav>
       </header>
       <main>
-        <HelloWorld />
         <Outlet />
       </main>
       <footer></footer>

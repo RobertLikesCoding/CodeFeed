@@ -1,27 +1,36 @@
-import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
-import { MemoryRouter, Route, Routes } from "react-router-dom";
-import Layout from "../components/Layout";
-import "@testing-library/jest-dom";
+import { screen, render, fireEvent } from "@testing-library/react";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
+import '@testing-library/jest-dom';
+import Layout from "./Layout";
+import Frontend from "../pages/FrontendPage";
+import Backend from "../pages/BackendPage";
+import FullStack from "../pages/FullstackPage";
+import Latest from "../pages/LatestPage";
 
 describe("Layout", () => {
   test("should render Frontend heading when clicking frontend tab", () => {
     render(
-      <MemoryRouter initialEntries={["/"]}>
+      <MemoryRouter initialEntries={['/']}>
         <Routes>
           <Route path="/" element={<Layout />}>
-            <Route path="frontend" element={<h1>Frontend</h1>} />
+            <Route index element={<Latest />} />
+            <Route path="frontend" element={<Frontend />} />
+            <Route path="backend" element={<Backend />} />
+            <Route path="fullstack" element={<FullStack />} />
           </Route>
         </Routes>
       </MemoryRouter>
     );
 
-    // Find and click the Frontend link
-    const frontendTab = screen.getByText("Frontend");
-    fireEvent.click(frontendTab);
+    expect(screen.getByRole('heading', { name: /Latest/ })).toBeInTheDocument();
 
-    // Check that the Frontend heading is rendered
-    const heading = screen.getByRole("heading", { name: /Frontend/i });
-    expect(heading).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/Frontend/));
+    expect(screen.getByRole('heading', { name: /Frontend/ })).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText(/Backend/));
+    expect(screen.getByRole('heading', { name: /Backend/ })).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText(/FullStack/));
+    expect(screen.getByRole('heading', { name: /FullStack/ })).toBeInTheDocument();
   });
 });
