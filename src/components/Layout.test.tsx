@@ -22,15 +22,15 @@ describe("Layout", () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByRole('heading', { name: /Latest/ })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: "Latest" })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText(/Frontend/));
-    expect(screen.getByRole('heading', { name: /Frontend/ })).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Frontend"));
+    expect(screen.getByRole('heading', { name: "Frontend" })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText(/Backend/));
-    expect(screen.getByRole('heading', { name: /Backend/ })).toBeInTheDocument();
+    fireEvent.click(screen.getByText("Backend"));
+    expect(screen.getByRole('heading', { name: "Backend" })).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText(/FullStack/));
-    expect(screen.getByRole('heading', { name: /FullStack/ })).toBeInTheDocument();
+    fireEvent.click(screen.getByText("FullStack"));
+    expect(screen.getByRole('heading', { name: "FullStack" })).toBeInTheDocument();
   });
 });
