@@ -1,13 +1,14 @@
 interface UserInfoProps {
-  userInfo: any;
+  author: string;
+  created: number;
 }
 
-const UserInfo = ({user: UserInfoProps}) => {
+const UserInfo: React.FC<UserInfoProps> = ({author, created}) => {
   return (
     <div>
       <img src="" alt="" />
-      <p>User Name</p>
-      <p>Time since Post</p>
+      <p>{author}</p>
+      <p>Time since Post: {created}</p>
     </div>
   )
 }
