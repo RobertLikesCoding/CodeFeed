@@ -1,25 +1,11 @@
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import NavBar from "./NavBar/NavBar";
 
 const Layout = () => {
   return (
     <>
       <header>
-        <nav>
-          <ul>
-            <li className="">
-              <Link to="/">Latest</Link>
-            </li>
-            <li className="">
-              <Link to="frontend">Frontend</Link>
-            </li>
-            <li className="">
-              <Link to="backend">Backend</Link>
-            </li>
-            <li className="">
-              <Link to="fullstack">FullStack</Link>
-            </li>
-          </ul>
-        </nav>
+        <NavBar />
       </header>
       <main>
         <Outlet />

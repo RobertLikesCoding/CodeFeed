@@ -1,0 +1,8 @@
+.logo {
+  font-size: 3rem;
+  font-weight: bolder;
+  background: var(--clr-highlight-gradient);
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
