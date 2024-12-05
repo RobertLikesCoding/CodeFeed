@@ -1,8 +1,4 @@
-// import { render, screen } from "@testing-library/react"
 import { fetchSearchQuery } from "./redditAPI";
-
-// test if the api is fetching correccctly
-// test if the list is being displayed
 
 const mockPostsArray = {
   kind: "t3",
@@ -39,4 +35,17 @@ describe("Fetch from Reddit", () => {
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 
+  test("handles exceptions with console.error", async () => {
+    (fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.reject("API failure")
+    );
+    const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
+    const posts = await fetchSearchQuery("test");
+
+    expect(posts).toEqual([]);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      "The following error has occured: ",
+      "API failure"
+    );
+  });
 });
