@@ -6,3 +6,17 @@
   color: transparent;
   display: inline-block;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--clr-primary);
+
+  ul {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+  }
+}
