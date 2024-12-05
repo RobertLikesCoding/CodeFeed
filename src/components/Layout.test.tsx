@@ -6,6 +6,29 @@ import Frontend from "../pages/FrontendPage";
 import Backend from "../pages/BackendPage";
 import FullStack from "../pages/FullstackPage";
 import Latest from "../pages/LatestPage";
+import { Post } from "./services/api/redditAPI";
+
+const mockPost: Post = {
+  data: {
+    id: "1",
+    author: "test_author",
+    created: 1620000000,
+    num_comments: 10,
+    url: "https://www.example.com",
+    subreddit_name_prefixed: "r/test",
+    title: "Test Post",
+    ups: 100,
+    public_description: "This is a test post description",
+  },
+};
+
+global.fetch = jest.fn(() =>
+  Promise.resolve({
+    ok: true,
+    status: 200,
+    json: () => Promise.resolve(mockPost), // Mock the response data as needed
+  })
+) as jest.Mock;
 
 describe("Layout", () => {
   test("should render Frontend heading when clicking frontend tab", () => {

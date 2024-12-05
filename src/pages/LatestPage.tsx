@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PostsList from "../components/Posts/PostsList";
-import { fetchSearchQuery } from "../utils/redditAPI";
-import { Post } from "../utils/redditAPI";
+import { fetchSearchQuery } from "../components/services/api/redditAPI";
+import { Post } from "../components/services/api/redditAPI";
 
 const Latest = () => {
   const [posts, setPosts] = useState<Post[] | null>(null);
@@ -10,7 +10,6 @@ const Latest = () => {
     const fetchPosts = async () => {
       const data = await fetchSearchQuery("web+development");
       setPosts(data);
-      console.log(data)
     }
 
     fetchPosts();

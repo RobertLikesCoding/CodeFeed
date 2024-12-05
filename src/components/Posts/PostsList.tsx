@@ -1,5 +1,5 @@
 import PostItem from "./PostItem";
-import { Post } from "../../utils/redditAPI";
+import { Post } from "../services/api/redditAPI";
 
 interface Props {
   posts: Post[] | null;
