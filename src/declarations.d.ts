@@ -5,7 +5,7 @@
 // where keys are class names (strings) and values are the corresponding generated class names (also strings).
 // This allows us to use CSS Modules with proper type checking and autocomplete in TypeScript.
 
-declare module '*.module.css' {
-  const classNames: { [key: string]: string };
-  export default classNames;
-}
+// declare module '*.module.css' {
+//   const classNames: { [key: string]: string };
+//   export default classNames;
+// }
