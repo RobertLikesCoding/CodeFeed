@@ -6,6 +6,6 @@
 // This allows us to use CSS Modules with proper type checking and autocomplete in TypeScript.
 
 declare module '*.module.css' {
-  const classes: { [key: string]: string };
-  export default classes;
+  const classNames: { [key: string]: string };
+  export default classNames;
 }
