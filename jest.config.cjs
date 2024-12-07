@@ -14,5 +14,6 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleDirectories: ['node_modules', 'bower_components', 'shared'],
+  setupFilesAfterEnv: ['<rootDir>/setup.jest.ts'],
 };
 
