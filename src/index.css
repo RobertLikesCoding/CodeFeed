@@ -2,6 +2,8 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+
+  --clr-highlight-gradient: linear-gradient(90deg, #FFD344, #FFFFFF);
 }
 
 /* @media (prefers-color-scheme: light) {
