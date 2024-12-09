@@ -1,4 +1,4 @@
-const FullStack: React.FC = () => {
+const FullStackPage: React.FC = () => {
   return (
     <>
       <h1>FullStack</h1>
@@ -6,4 +6,4 @@ const FullStack: React.FC = () => {
   )
 }
 
-export default FullStack;
+export default FullStackPage;

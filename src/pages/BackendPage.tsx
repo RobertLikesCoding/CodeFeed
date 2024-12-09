@@ -1,4 +1,4 @@
-const Backend: React.FC = () => {
+const BackendPage: React.FC = () => {
   return (
     <>
       <h1>Backend</h1>
@@ -6,4 +6,4 @@ const Backend: React.FC = () => {
   )
 }
 
-export default Backend;
+export default BackendPage;
