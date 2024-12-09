@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
 import PostsList from "../components/Posts/PostsList";
-import { fetchSearchQuery } from "../components/services/api/redditAPI";
-import { Post } from "../components/services/api/redditAPI";
+import { fetchSearchQuery, Post } from "../components/services/api/redditAPI";
 
-const Latest = () => {
+const LatestPage = () => {
   const [posts, setPosts] = useState<Post[] | null>(null);
 
   useEffect(() => {
@@ -20,9 +19,9 @@ const Latest = () => {
     <>
       <h1>Latest</h1>
       <p>Sort by</p>
-      <PostsList posts={posts && posts} />
+      {posts ? <PostsList posts={posts} /> : <p>No results found</p>}
     </>
   )
 }
 
-export default Latest;
+export default LatestPage;

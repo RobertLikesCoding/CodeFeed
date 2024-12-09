@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import App from './App'
-import Latest from "./pages/LatestPage";
-import Frontend from "./pages/FrontendPage";
-import Backend from "./pages/BackendPage";
-import Fullstack from "./pages/FullstackPage";
+import LatestPage from "./pages/LatestPage";
+import FrontendPage from "./pages/FrontendPage";
+import BackendPage from "./pages/BackendPage";
+import FullstackPage from "./pages/FullstackPage";
+import SearchPage from './pages/SearchPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 const router = createBrowserRouter([
@@ -15,19 +16,23 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Latest />,
+        element: <LatestPage />,
       },
       {
         path: "frontend",
-        element: <Frontend />,
+        element: <FrontendPage />,
       },
       {
         path: "backend",
-        element: <Backend />,
+        element: <BackendPage />,
       },
       {
         path: "fullstack",
-        element: <Fullstack />,
+        element: <FullstackPage />,
+      },
+      {
+        path: "search",
+        element: <SearchPage />,
       },
     ]
   },

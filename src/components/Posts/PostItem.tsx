@@ -14,7 +14,7 @@ interface PostProps {
 const PostItem: React.FC<PostProps> = ({ post: { title, ups, num_comments, author, created } }) => {
   return (
     <div>
-      <img src="" alt="" />
+      {/* <img src="" alt="" /> */}
       <div>
         <UserInfo author={author} created={created}/>
         <h3>{title}</h3>

@@ -1,4 +1,4 @@
-const Frontend: React.FC = () => {
+const FrontendPage: React.FC = () => {
   return (
     <>
       <h1>Frontend</h1>
@@ -6,4 +6,4 @@ const Frontend: React.FC = () => {
   )
 }
 
-export default Frontend;
+export default FrontendPage;
