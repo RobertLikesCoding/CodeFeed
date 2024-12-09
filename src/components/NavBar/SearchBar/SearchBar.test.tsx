@@ -1,5 +1,4 @@
 import { screen, render, fireEvent } from "@testing-library/react";
-import { expect, jest, test } from "@jest/globals";
 import { MemoryRouter } from "react-router-dom";
 import SearchBar from "./SearchBar";
 
@@ -35,7 +34,6 @@ describe("Searchbar", () => {
     fireEvent.change(searchInput, { target: { value: "React" } });
     fireEvent.keyUp(searchInput, { key: "Enter", code: "Enter" });
 
-    // Check that the input field is empty after searching
     expect(searchInput.value).toBe("");
   });
 });
