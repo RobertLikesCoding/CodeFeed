@@ -1,5 +1,4 @@
 import { screen, render } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import { MemoryRouter } from "react-router-dom";
 import NavBar from "./NavBar";
 
