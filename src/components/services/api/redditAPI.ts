@@ -24,6 +24,7 @@ export async function fetchSearchQuery(query: string): Promise<Post[]> {
     );
     if (response.ok) {
       const data = await response.json();
+      console.log(data.data.children);
       return data.data.children;
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
