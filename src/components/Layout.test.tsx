@@ -2,10 +2,10 @@ import { screen, render, fireEvent } from "@testing-library/react";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import '@testing-library/jest-dom';
 import Layout from "./Layout";
-import Frontend from "../pages/FrontendPage";
-import Backend from "../pages/BackendPage";
-import FullStack from "../pages/FullstackPage";
-import Latest from "../pages/LatestPage";
+import Frontend from "../pages/SubredditPage";
+import Backend from "../pages/PostDetailsPage";
+import FullStack from "../pages/MainPage";
+import Latest from "../pages/MainPage";
 import { Post } from "./services/api/redditAPI";
 
 const mockPost: Post = {

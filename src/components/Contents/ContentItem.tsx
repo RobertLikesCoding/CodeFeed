@@ -1,6 +1,6 @@
 // Needs to display a list of relevant subreddits.
 
-const SubRedditsList = () => {
+const ContentsList = () => {
   return (
     <>
 
@@ -8,4 +8,4 @@ const SubRedditsList = () => {
   )
 }
 
-export default SubRedditsList;
+export default ContentsList;

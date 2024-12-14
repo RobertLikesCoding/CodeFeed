@@ -2,12 +2,16 @@ import { useState, useEffect } from "react";
 import PostsList from "../components/Posts/PostsList";
 import { fetchSearchQuery, Post } from "../components/services/api/redditAPI";
 
-const LatestPage = () => {
+interface MainPageProps {
+  topic: string | null;
+}
+
+const MainPage = ({ topic }: MainPageProps) => {
   const [posts, setPosts] = useState<Post[] | null>(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const data = await fetchSearchQuery("web+development");
+      const data = await fetchSearchQuery("");
       setPosts(data);
     }
 
@@ -17,11 +21,11 @@ const LatestPage = () => {
 
   return (
     <>
-      <h1>Latest</h1>
+      <h1>Main</h1>
       <p>Sort by</p>
-      {posts ? <PostsList posts={posts} /> : <p>No results found</p>}
+      {posts?.length !== 0 ? <PostsList posts={posts} /> : <p>No results found</p>}
     </>
   )
 }
 
-export default LatestPage;
+export default MainPage;
