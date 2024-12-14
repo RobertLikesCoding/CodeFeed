@@ -11,7 +11,7 @@ const MainPage = ({ topic }: MainPageProps) => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const data = await fetchSearchQuery("");
+      const data = topic ? await fetchSearchQuery(topic) : null;
       setPosts(data);
     }
 
