@@ -1,14 +1,21 @@
+import { useState, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
 import "./App.css";
+import NavBar from "./components/NavBar/NavBar";
+import ContentsList from "./components/Contents/ContentList";
 
 const App: React.FC = () => {
+
   return (
     <>
       <header>
         <NavBar />
       </header>
       <main>
+        <div className="sidemenu">
+          <ContentsList title="Popular" topic="development" />
+          <ContentsList title="Other" topic="game+development" />
+        </div>
         <Outlet />
       </main>
       <footer></footer>
