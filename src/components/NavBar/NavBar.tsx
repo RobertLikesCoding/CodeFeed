@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import SearchBar from "./SearchBar/SearchBar";
 
-
 const NavBar = () => {
   return (
     <>
@@ -16,10 +15,10 @@ const NavBar = () => {
             <Link to="/topics/frontend">Frontend</Link>
           </li>
           <li className="">
-            <Link to="backend">Backend</Link>
+            <Link to="/topics/backend">Backend</Link>
           </li>
           <li className="">
-            <Link to="fullstack">FullStack</Link>
+            <Link to="/topics/fullstack">FullStack</Link>
           </li>
         </ul>
         <SearchBar />

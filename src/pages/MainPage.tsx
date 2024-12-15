@@ -8,6 +8,8 @@ const MainPage = () => {
   const { topic } = useParams();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  console.log(topic);
+
   useEffect(() => {
     const fetchPosts = async () => {
       setIsLoading(true);
@@ -25,7 +27,7 @@ const MainPage = () => {
     };
 
     fetchPosts();
-  }, []);
+  }, [topic]);
 
   return (
     <>
