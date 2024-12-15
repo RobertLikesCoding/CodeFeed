@@ -1,11 +1,21 @@
-// Needs to display a list of relevant subreddits.
+import { Subreddit } from "../services/api/redditAPI";
 
-const ContentsList = () => {
+interface Props {
+  item: Subreddit;
+}
+
+const ContentItem = ({ item }: Props) => {
+
   return (
     <>
-
+      <div data-testid="subreddit">
+        {item.data.icon_img ? (
+          <img src={item.data.icon_img} alt={`subreddit icon of ${item.data.display_name_prefixed}`} />
+        ) : null}
+        <p>{item.data.display_name_prefixed}</p>
+      </div>
     </>
   )
 }
 
-export default ContentsList;
+export default ContentItem;
