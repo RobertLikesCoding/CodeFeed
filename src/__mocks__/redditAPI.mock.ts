@@ -1,12 +1,12 @@
-import { Post } from "../components/services/api/redditAPI";
+import { Post, Subreddit } from "../components/services/api/redditAPI";
 
 interface FetchResponse {
   data: {
-    children: Post[]
-  }
+    children: Post[] | Subreddit[];
+  };
 }
 
-export const mockPostsArray: FetchResponse = {
+export const mockPosts: FetchResponse = {
   data: {
     children: [
       {
@@ -33,6 +33,21 @@ export const mockPostsArray: FetchResponse = {
           url: "https://www.example2.com",
           subreddit_name_prefixed: "r/test2",
           public_description: "This is a test post description 2",
+        },
+      },
+    ],
+  },
+};
+
+export const mockSubreddits: FetchResponse = {
+  data: {
+    children: [
+      {
+        data: {
+          id: "1",
+          display_name_prefixed: "test name",
+          icon_img: "/url/to/image.png",
+          primary_color: "#FFFFFF",
         },
       },
     ],

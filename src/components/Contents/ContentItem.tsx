@@ -8,7 +8,7 @@ const ContentItem = ({ item }: Props) => {
 
   return (
     <>
-      <div>
+      <div data-testid="subreddit">
         {item.data.icon_img ? (
           <img src={item.data.icon_img} alt={`subreddit icon of ${item.data.display_name_prefixed}`} />
         ) : null}
