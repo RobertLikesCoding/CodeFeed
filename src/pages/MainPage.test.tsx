@@ -3,33 +3,12 @@ import { MemoryRouter, Routes, Route } from "react-router-dom";
 import "@testing-library/jest-dom";
 import MainPage from "./MainPage";
 import NavBar from "../components/NavBar/NavBar";
-import { Post } from "../components/services/api/redditAPI";
-
-const mockPost = {
-  data: {
-    children: [
-      {
-        data: {
-          id: "1",
-          author: "test_author",
-          created: 1620000000,
-          num_comments: 10,
-          url: "https://www.example.com",
-          subreddit_name_prefixed: "r/test",
-          title: "Test Post",
-          ups: 100,
-          public_description: "This is a test post description",
-        },
-      },
-    ],
-  },
-};
+import { mockPostsArray } from "../__mocks__/redditAPI.mock";
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
     ok: true,
-    status: 200,
-    json: () => Promise.resolve(mockPost), // Mock the response data as needed
+    json: () => Promise.resolve(mockPostsArray),
   })
 ) as jest.Mock;
 
@@ -62,4 +41,16 @@ describe("MainPage", () => {
       await screen.findByRole("heading", { name: "fullstack" })
     ).toBeInTheDocument();
   });
+
+  test("displays posts fetched from API", async () => {
+    render (
+      <MemoryRouter>
+        <MainPage />
+      </MemoryRouter>
+    )
+
+    const posts = await screen.findAllByTestId("post")
+
+    expect(posts.length).toBeGreaterThan(0);
+  })
 });

@@ -2,7 +2,7 @@ import PostItem from "./PostItem";
 import { Post } from "../services/api/redditAPI";
 
 interface Props {
-  posts: Post[] | null;
+  posts: Post[];
 }
 
 const PostsList: React.FC<Props>= ({posts}) => {
