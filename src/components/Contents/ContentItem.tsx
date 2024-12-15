@@ -5,13 +5,12 @@ interface Props {
 }
 
 const ContentItem = ({ item }: Props) => {
-  console.log(item.data.community_icon)
 
   return (
     <>
       <div>
-        {item.data.community_icon ? (
-          <img src={item.data.community_icon} alt={`subreddit icon of ${item.data.display_name_prefixed}`} />
+        {item.data.icon_img ? (
+          <img src={item.data.icon_img} alt={`subreddit icon of ${item.data.display_name_prefixed}`} />
         ) : null}
         <p>{item.data.display_name_prefixed}</p>
       </div>

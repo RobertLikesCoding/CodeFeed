@@ -10,19 +10,21 @@ interface Props {
 
 const ContentsList = ({ topic, title }: Props) => {
   const [content, setContent] = useState<Subreddit[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     //fetch subreddits with topic as query
     const fetchTopics = async () => {
       try {
+        setIsLoading(true);
         if (topic) {
           const data = await querySubreddits(topic);
           setContent(data);
-        } else {
-          return;
         }
       } catch (error) {
         console.error("Failed to fetch topics: ", error);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -32,9 +34,14 @@ const ContentsList = ({ topic, title }: Props) => {
   return (
     <>
       <h3>{ title }</h3>
-      {content?.map((item, index) => {
-        return <ContentItem key={index} item={item} />
-      })}
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        content?.map((item, index) => {
+          return <ContentItem key={index} item={item} />
+        })
+      )
+    }
     </>
   )
 }

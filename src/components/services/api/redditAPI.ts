@@ -15,7 +15,6 @@ export interface Post {
 }
 
 export async function fetchSearchQuery(query: string): Promise<Post[]> {
-
   try {
     if (query === null || query === "") {
       return [];
@@ -42,7 +41,8 @@ export interface Subreddit{
   data: {
     id: string;
     display_name_prefixed: string;
-    community_icon: string;
+    icon_img: string;
+    primary_color: string;
   }
 }
 
@@ -59,7 +59,6 @@ export async function querySubreddits(query: string): Promise<Subreddit[]> {
     );
     if (response.ok) {
       const data = await response.json();
-      console.log("Subreddits", data)
       return data.data.children;
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
