@@ -1,3 +1,5 @@
+const baseUrl = "https://www.reddit.com/";
+
 export interface Post {
   data: {
     id: string;
@@ -13,14 +15,13 @@ export interface Post {
 }
 
 export async function fetchSearchQuery(query: string): Promise<Post[]> {
-  const baseUrl = "https://www.reddit.com/search.json";
 
   try {
     if (query === null || query === "") {
       return [];
     }
     const response: Response = await fetch(
-      `${baseUrl}?q=${encodeURI(query)}&limit=10&sort=relevance`,
+      `${baseUrl}search.json?q=${encodeURI(query)}&limit=10&sort=relevance`,
       {
         method: "GET",
       }
@@ -37,3 +38,34 @@ export async function fetchSearchQuery(query: string): Promise<Post[]> {
   }
 }
 
+export interface Subreddit{
+  data: {
+    id: string;
+    display_name_prefixed: string;
+    community_icon: string;
+  }
+}
+
+export async function querySubreddits(query: string): Promise<Subreddit[]> {
+  try {
+    if (query === null || query === "") {
+      return [];
+    }
+    const response: Response = await fetch(
+      `${baseUrl}subreddits/search.json?q=${encodeURI(query)}&limit=5&sort=activity`,
+      {
+        method: "GET",
+      }
+    );
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Subreddits", data)
+      return data.data.children;
+    } else {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("The following error has occured: ", error);
+    return [];
+  }
+}
