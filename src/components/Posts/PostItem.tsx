@@ -1,14 +1,8 @@
 import UserInfo from "../UserInfo/UserInfo";
-// import { Post } from "../../utils/redditAPI";
+import { Post } from "../services/api/redditAPI";
 
 interface PostProps {
-  post: {
-    title: string;
-    num_comments: number;
-    ups: number;
-    author: string;
-    created: number;
-  }
+  post: Post['data'];
 }
 
 const PostItem: React.FC<PostProps> = ({ post: { title, ups, num_comments, author, created } }) => {

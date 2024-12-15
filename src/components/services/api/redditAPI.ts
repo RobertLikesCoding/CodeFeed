@@ -9,7 +9,7 @@ export interface Post {
     title: string;
     ups: number;
     public_description: string;
-  } | null;
+  };
 }
 
 export async function fetchSearchQuery(query: string): Promise<Post[]> {
