@@ -52,17 +52,17 @@ describe("Fetch Subreddits", () => {
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 
-  // test("handles exceptions with console.error", async () => {
-  //   (fetch as jest.Mock).mockImplementationOnce(() =>
-  //     Promise.reject("API failure")
-  //   );
-  //   const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
-  //   const posts = await fetchSearchQuery("test");
+  test("handles exceptions with console.error", async () => {
+    (fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.reject("API failure")
+    );
+    const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
+    const posts = await fetchSearchQuery("test");
 
-  //   expect(posts).toEqual([]);
-  //   expect(consoleErrorSpy).toHaveBeenCalledWith(
-  //     "The following error has occured: ",
-  //     "API failure"
-  //   );
-  // });
+    expect(posts).toEqual([]);
+    expect(consoleErrorSpy).toHaveBeenCalledWith(
+      "The following error has occured: ",
+      "API failure"
+    );
+  });
 });

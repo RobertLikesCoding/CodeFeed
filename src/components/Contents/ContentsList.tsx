@@ -13,7 +13,6 @@ const ContentsList = ({ topic, title }: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
-    //fetch subreddits with topic as query
     const fetchTopics = async () => {
       try {
         setIsLoading(true);

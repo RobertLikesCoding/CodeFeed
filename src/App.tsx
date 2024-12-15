@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
-import ContentsList from "./components/Contents/ContentList";
+import ContentsList from "./components/Contents/ContentsList";
 
 const App: React.FC = () => {
 
