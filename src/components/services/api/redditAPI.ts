@@ -16,6 +16,9 @@ export async function fetchSearchQuery(query: string): Promise<Post[]> {
   const baseUrl = "https://www.reddit.com/search.json";
 
   try {
+    if (query === null || query === "") {
+      return [];
+    }
     const response: Response = await fetch(
       `${baseUrl}?q=${encodeURI(query)}&limit=10&sort=relevance`,
       {

@@ -1,23 +1,5 @@
 import { fetchSearchQuery } from "./redditAPI";
-
-const mockPostsArray = {
-  kind: "t3",
-  data: {
-    children: [
-      {
-        id: "1",
-        author: "test_author",
-        created: 1620000000,
-        num_comments: 10,
-        url: "https://www.example.com",
-        subreddit_name_prefixed: "r/test",
-        title: "Test Post",
-        ups: 100,
-        public_description: "This is a test post description",
-      },
-    ],
-  },
-};
+import { mockPostsArray } from "../../../__mocks__/redditAPI.mock";
 
 global.fetch = jest.fn(() =>
   Promise.resolve({

@@ -1,10 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import App from './App'
-import LatestPage from "./pages/LatestPage";
-import FrontendPage from "./pages/FrontendPage";
-import BackendPage from "./pages/BackendPage";
-import FullstackPage from "./pages/FullstackPage";
+import MainPage from "./pages/MainPage";
+import SubredditPage from './pages/SubredditPage';
+import PostDetailsPage from "./pages/PostDetailsPage";
 import SearchPage from './pages/SearchPage';
 import NotFoundPage from './pages/NotFoundPage';
 
@@ -16,23 +15,23 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <LatestPage />,
+        element: <MainPage />,
       },
       {
-        path: "frontend",
-        element: <FrontendPage />,
+        path: "/topics/:topic",
+        element: <MainPage />,
       },
       {
-        path: "backend",
-        element: <BackendPage />,
-      },
-      {
-        path: "fullstack",
-        element: <FullstackPage />,
+        path: "/subreddits/:subreddit",
+        element: <SubredditPage />,
       },
       {
         path: "search",
         element: <SearchPage />,
+      },
+      {
+        path: "post",
+        element: <PostDetailsPage />,
       },
     ]
   },
