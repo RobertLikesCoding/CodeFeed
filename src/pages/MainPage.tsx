@@ -1,31 +1,45 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import PostsList from "../components/Posts/PostsList";
 import { fetchSearchQuery, Post } from "../components/services/api/redditAPI";
 
-interface MainPageProps {
-  topic: string | null;
-}
-
-const MainPage = ({ topic }: MainPageProps) => {
-  const [posts, setPosts] = useState<Post[] | null>(null);
+const MainPage = () => {
+  const [posts, setPosts] = useState<Post[]>([]);
+  const { topic } = useParams();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const data = topic ? await fetchSearchQuery(topic) : null;
-      setPosts(data);
-    }
+      setIsLoading(true);
+      try {
+        const data = topic
+          ? await fetchSearchQuery(topic)
+          : await fetchSearchQuery("web+development");
+        setPosts(data);
+      } catch (error) {
+        console.error("Error fetching posts: ", error);
+        setPosts([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
     fetchPosts();
-  }, [])
-
+  }, []);
 
   return (
     <>
-      <h1>Main</h1>
+      <h1>Posts</h1>
       <p>Sort by</p>
-      {posts?.length !== 0 ? <PostsList posts={posts} /> : <p>No results found</p>}
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : posts?.length !== 0 ? (
+          <PostsList posts={posts} />
+        ) : (
+          <p>No results found</p>
+        )}
     </>
-  )
-}
+  );
+};
 
 export default MainPage;

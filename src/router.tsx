@@ -15,11 +15,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <MainPage topic={"web+development"} />,
+        element: <MainPage />,
       },
       {
         path: "/topics/:topic",
-        element: <MainPage topic={null} />,
+        element: <MainPage />,
       },
       {
         path: "/subreddits/:subreddit",
