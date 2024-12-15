@@ -8,8 +8,6 @@ const MainPage = () => {
   const { topic } = useParams();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  console.log(topic);
-
   useEffect(() => {
     const fetchPosts = async () => {
       setIsLoading(true);
@@ -31,7 +29,7 @@ const MainPage = () => {
 
   return (
     <>
-      <h1>Posts</h1>
+      <h1>{topic ? topic : "Latest"}</h1>
       <p>Sort by</p>
       {isLoading ? (
         <p>Loading...</p>
