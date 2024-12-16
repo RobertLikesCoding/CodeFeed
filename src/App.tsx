@@ -4,7 +4,6 @@ import NavBar from "./components/NavBar/NavBar";
 import ContentsList from "./components/Contents/ContentsList";
 
 const App: React.FC = () => {
-
   return (
     <>
       <header>

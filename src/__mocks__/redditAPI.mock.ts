@@ -45,9 +45,46 @@ export const mockSubreddits: FetchResponse = {
       {
         data: {
           id: "1",
-          display_name_prefixed: "test name",
-          icon_img: "/url/to/image.png",
-          primary_color: "#FFFFFF",
+          display_name_prefixed: "r/frontend",
+          icon_img: "https://www.example.com/icon1.png",
+          primary_color: "#FF4500",
+          description: "Frontend development subreddit",
+        },
+      },
+      {
+        data: {
+          id: "2",
+          display_name_prefixed: "r/reactjs",
+          icon_img: "https://www.example.com/icon2.png",
+          primary_color: "#61DAFB",
+          description: "React.js subreddit",
+        },
+      },
+      {
+        data: {
+          id: "3",
+          display_name_prefixed: "r/javascript",
+          icon_img: "https://www.example.com/icon3.png",
+          primary_color: "#F7DF1E",
+          description: "JavaScript subreddit",
+        },
+      },
+      {
+        data: {
+          id: "4",
+          display_name_prefixed: "r/webdev",
+          icon_img: "https://www.example.com/icon4.png",
+          primary_color: "#00A1F1",
+          description: "Web development subreddit",
+        },
+      },
+      {
+        data: {
+          id: "5",
+          display_name_prefixed: "r/css",
+          icon_img: "https://www.example.com/icon5.png",
+          primary_color: "#264DE4",
+          description: "CSS subreddit",
         },
       },
     ],
