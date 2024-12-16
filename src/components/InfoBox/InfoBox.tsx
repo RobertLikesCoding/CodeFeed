@@ -5,7 +5,7 @@ interface Props {
 }
 
 const InfoBox: React.FC<Props> = ({ topic }) => {
-  const [ subreddits, setSubreddits ] = useState<Subreddit[]>([]);
+  const [subreddits, setSubreddits] = useState<Subreddit[]>([]);
 
   useEffect(() => {
     const fetchSubreddits = async () => {
@@ -16,12 +16,12 @@ const InfoBox: React.FC<Props> = ({ topic }) => {
         const data = await querySubreddits(topic);
         setSubreddits(data);
       } catch (error) {
-        console.error("Error fetching info box: ",error)
+        console.error("Error fetching info box: ", error);
       }
-    }
+    };
 
     fetchSubreddits();
-  }, [topic])
+  }, [topic]);
 
   return (
     <aside>
@@ -29,21 +29,24 @@ const InfoBox: React.FC<Props> = ({ topic }) => {
       <p>Most popular {topic} subreddits</p>
 
       {/*
-        if topic show reddits
-        if subreddit show users
+        - if topic show subreddits
+        - if subreddit show users
       */}
-      {subreddits.map((subreddit) => {
-        return (
-          <li>
-            <a
-              key={subreddit.data.id}
-              href={`https://reddit.com/${subreddit.data.display_name_prefixed}`}
-            >
-              {subreddit.data.display_name_prefixed}
-            </a>
-          </li>
-        );
-      })}
+      {subreddits.length === 0 ? (
+        <p>No subreddits found.</p>
+      ) : (
+        subreddits.map((subreddit) => {
+          return (
+            <li key={subreddit.data.id}>
+              <a
+                href={`https://reddit.com/${subreddit.data.display_name_prefixed}`}
+              >
+                {subreddit.data.display_name_prefixed}
+              </a>
+            </li>
+          );
+        })
+      )}
     </aside>
   );
 };
