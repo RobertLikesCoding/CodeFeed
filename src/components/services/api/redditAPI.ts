@@ -43,6 +43,7 @@ export interface Subreddit{
     display_name_prefixed: string;
     icon_img: string;
     primary_color: string;
+    description: string;
   }
 }
 
