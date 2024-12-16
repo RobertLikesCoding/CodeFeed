@@ -40,8 +40,8 @@ const querySearchSlice = createSlice({
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
-    setHasError: (state) => {
-      state.hasError = !state.hasError;
+    setHasError: (state, action: PayloadAction<boolean>) => {
+      state.hasError = action.payload;
     }
   },
   extraReducers: (builder) => {
