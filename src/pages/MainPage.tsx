@@ -28,7 +28,7 @@ const MainPage = () => {
   }, [topic]);
 
   return (
-    <>
+    <section>
       <h1>{topic ? topic : "Latest"}</h1>
       <p>Sort by</p>
       {isLoading ? (
@@ -38,7 +38,7 @@ const MainPage = () => {
         ) : (
           <p>No results found</p>
         )}
-    </>
+    </section>
   );
 };
 

@@ -4,7 +4,7 @@
 
 const InfoBox: React.FC = () => {
   return (
-    <div>
+    <aside>
       <h3>Topic/Subreddit</h3>
       <p>Information about this page</p>
 
@@ -15,7 +15,7 @@ const InfoBox: React.FC = () => {
       <ul>
         <li>related reddits</li>
       </ul>
-    </div>
+    </aside>
   )
 }
 
