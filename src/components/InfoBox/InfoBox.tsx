@@ -1,15 +1,11 @@
 import { useState, useEffect } from "react";
 import { Subreddit, querySubreddits } from "../services/api/redditAPI";
-// should recieve informations to display through props
-// should display information about the current topic or subreddit
-// needs to access fetch data through redux store
 interface Props {
   topic: string | undefined;
 }
 
 const InfoBox: React.FC<Props> = ({ topic }) => {
   const [ subreddits, setSubreddits ] = useState<Subreddit[]>([]);
-  console.log(subreddits)
 
   useEffect(() => {
     const fetchSubreddits = async () => {
