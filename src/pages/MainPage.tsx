@@ -3,6 +3,7 @@ import { AppDispatch, RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import PostsList from "../components/Posts/PostsList";
+import InfoBox from "../components/InfoBox/InfoBox";
 import { fetchPostsThunk } from "../redux/querySearch/querySearchSlice";
 
 // Validating topics to prevent injection
@@ -21,21 +22,23 @@ const MainPage = () => {
     dispatch(fetchPostsThunk(topic));
   }, [dispatch, topic]);
 
-
   return (
-    <section>
-      <h1>{isValidTopic ? topic : "Latest"}</h1>
-      <p>Sort by</p>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : hasError ? (
-        <p>Error loading posts. Please try again.</p>
-      ) : posts?.length !== 0 ? (
-          <PostsList posts={posts} />
-        ) : (
-          <p>No results found</p>
-        )}
-    </section>
+    <>
+      <section>
+        <h1>{isValidTopic ? topic : "Latest"}</h1>
+        <p>Sort by</p>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : hasError ? (
+          <p>Error loading posts. Please try again.</p>
+        ) : posts?.length !== 0 ? (
+            <PostsList posts={posts} />
+          ) : (
+            <p>No results found</p>
+          )}
+      </section>
+      <InfoBox topic={topic} />
+    </>
   );
 };
 

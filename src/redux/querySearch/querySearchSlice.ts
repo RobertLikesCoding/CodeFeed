@@ -1,8 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  Post,
-  fetchSearchQuery,
-} from "../../components/services/api/redditAPI";
+import { Post, fetchSearchQuery } from "../../components/services/api/redditAPI";
 
 interface querySearchState {
   posts: Post[];

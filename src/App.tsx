@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
 import ContentsList from "./components/Contents/ContentsList";
-import InfoBox from "./components/InfoBox/InfoBox";
 
 const App: React.FC = () => {
   return (
@@ -16,7 +15,6 @@ const App: React.FC = () => {
           <ContentsList title="Other" topic="game+development" />
         </div>
         <Outlet />
-        <InfoBox />
       </main>
       <footer></footer>
     </>
