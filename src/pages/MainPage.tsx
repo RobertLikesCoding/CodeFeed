@@ -1,26 +1,30 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { AppDispatch, RootState } from "../redux/store";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import PostsList from "../components/Posts/PostsList";
-import { fetchSearchQuery, Post } from "../components/services/api/redditAPI";
+import { fetchSearchQuery } from "../components/services/api/redditAPI";
+import { setPosts, setIsLoading } from "../redux/querySearch/querySearchSlice";
 
 const MainPage = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
   const { topic } = useParams();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const posts = useSelector((state: RootState) => state.searchResult.value)
+  const isLoading = useSelector((state: RootState) => state.searchResult.isLoading)
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const fetchPosts = async () => {
-      setIsLoading(true);
+      dispatch(setIsLoading(true));
       try {
         const data = topic
           ? await fetchSearchQuery(topic)
           : await fetchSearchQuery("web+development");
-        setPosts(data);
+        dispatch(setPosts(data));
       } catch (error) {
         console.error("Error fetching posts: ", error);
-        setPosts([]);
+        dispatch(setPosts([]));
       } finally {
-        setIsLoading(false);
+        dispatch(setIsLoading(false));
       }
     };
 
