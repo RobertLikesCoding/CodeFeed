@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Post, fetchSearchQuery } from "../../components/services/api/redditAPI";
+import { Post, fetchSearchQuery, fetchSubredditPosts } from "../../components/services/api/redditAPI";
 
 interface querySearchState {
   posts: Post[];
@@ -20,6 +20,19 @@ export const fetchPostsThunk = createAsyncThunk(
       const data = topic
         ? await fetchSearchQuery(topic)
         : await fetchSearchQuery("web+development");
+      return data;
+    } catch {
+      return rejectWithValue("Failed to fetch posts");
+    }
+  }
+);
+
+export const fetchSubredditPostsThunk = createAsyncThunk(
+  "searchResult/fetchSubredditPosts",
+  async (subredditURL: string | undefined, { rejectWithValue }) => {
+    try {
+      if (!subredditURL) return [];
+      const data = await fetchSubredditPosts(subredditURL);
       return data;
     } catch {
       return rejectWithValue("Failed to fetch posts");
@@ -53,7 +66,19 @@ const querySearchSlice = createSlice({
       .addCase(fetchPostsThunk.rejected, (state) => {
         state.isLoading = false;
         state.hasError = true;
+      });
+      builder
+      .addCase(fetchSubredditPostsThunk.pending, (state) => {
+        state.isLoading = true;
       })
+      .addCase(fetchSubredditPostsThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.posts = action.payload;
+      })
+      .addCase(fetchSubredditPostsThunk.rejected, (state) => {
+        state.isLoading = false;
+        state.hasError = true;
+      });
   }
 });
 

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-// import { fetchPostsThunk } from "../../redux/querySearch/querySearchSlice";
+import { fetchSubredditPostsThunk } from "../../redux/querySearch/querySearchSlice";
 import { Subreddit } from "../services/api/redditAPI";
 
 interface Props {
@@ -10,11 +10,17 @@ interface Props {
 const ContentItem = ({ item }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
 
+  async function handleClickSubreddit() {
+    await dispatch(
+      fetchSubredditPostsThunk(item.data.display_name_prefixed)
+    )
+  }
+
   return (
     <>
       <div
         data-testid="subreddit"
-        // onClick={dispatch(fetchPostsThunk(item.data.display_name_prefixed))}
+        onClick={handleClickSubreddit}
       >
         {item.data.icon_img ? (
           <img
