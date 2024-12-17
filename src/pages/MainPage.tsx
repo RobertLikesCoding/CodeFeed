@@ -37,7 +37,7 @@ const MainPage = () => {
             <p>No results found</p>
           )}
       </section>
-      <InfoBox topic={topic} />
+      <InfoBox topic={topic ? topic : "web development"} />
     </>
   );
 };

@@ -26,7 +26,7 @@ const InfoBox: React.FC<Props> = ({ topic }) => {
   return (
     <aside>
       <h3>{topic}</h3>
-      <p>Most popular {topic} subreddits</p>
+      <p>Most popular {topic} subreddits:</p>
 
       {/*
         - if topic show subreddits
