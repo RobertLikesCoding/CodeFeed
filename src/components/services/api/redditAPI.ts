@@ -40,7 +40,7 @@ export async function fetchSearchQuery(query: string): Promise<Post[]> {
 export interface Subreddit{
   data: {
     id: string;
-    display_name_prefixed: string;
+    display_name: string;
     icon_img: string;
     primary_color: string;
     description: string;
@@ -76,7 +76,7 @@ export async function fetchSubredditPosts(query: string): Promise<Post[]> {
       return [];
     }
     const response: Response = await fetch(
-      `${baseUrl}${encodeURI(query)}.json`,
+      `${baseUrl}r/${encodeURI(query)}.json`,
       {
         method: "GET",
       }

@@ -33,6 +33,7 @@ export const fetchSubredditPostsThunk = createAsyncThunk(
     try {
       if (!subredditURL) return [];
       const data = await fetchSubredditPosts(subredditURL);
+      console.log("Thunk: ", data)
       return data;
     } catch {
       return rejectWithValue("Failed to fetch posts");

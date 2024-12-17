@@ -39,9 +39,9 @@ const InfoBox: React.FC<Props> = ({ topic }) => {
           return (
             <li key={subreddit.data.id}>
               <a
-                href={`https://reddit.com/${subreddit.data.display_name_prefixed}`}
+                href={`https://reddit.com/${subreddit.data.display_name}`}
               >
-                {subreddit.data.display_name_prefixed}
+                r/{subreddit.data.display_name}
               </a>
             </li>
           );
