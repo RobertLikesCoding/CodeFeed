@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Subreddit } from "../services/api/redditAPI";
 
 interface Props {
@@ -5,17 +6,22 @@ interface Props {
 }
 
 const ContentItem = ({ item }: Props) => {
-
   return (
     <>
-      <div data-testid="subreddit">
+      <Link
+        data-testid="subreddit"
+        to={`subreddits/${item.data.display_name_prefixed}`}
+      >
         {item.data.icon_img ? (
-          <img src={item.data.icon_img} alt={`subreddit icon of ${item.data.display_name_prefixed}`} />
+          <img
+            src={item.data.icon_img}
+            alt={`subreddit icon of ${item.data.display_name_prefixed}`}
+          />
         ) : null}
         <p>{item.data.display_name_prefixed}</p>
-      </div>
+      </Link>
     </>
-  )
-}
+  );
+};
 
 export default ContentItem;
