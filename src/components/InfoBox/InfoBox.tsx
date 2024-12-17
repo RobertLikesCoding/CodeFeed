@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Subreddit, querySubreddits } from "../services/api/redditAPI";
+import { Subreddit, fetchSubreddits } from "../services/api/redditAPI";
 interface Props {
   topic: string | undefined;
 }
@@ -8,19 +8,19 @@ const InfoBox: React.FC<Props> = ({ topic }) => {
   const [subreddits, setSubreddits] = useState<Subreddit[]>([]);
 
   useEffect(() => {
-    const fetchSubreddits = async () => {
+    const fetchSubredditsData = async () => {
       try {
         if (!topic) {
           return;
         }
-        const data = await querySubreddits(topic);
+        const data = await fetchSubreddits(topic);
         setSubreddits(data);
       } catch (error) {
         console.error("Error fetching info box: ", error);
       }
     };
 
-    fetchSubreddits();
+    fetchSubredditsData();
   }, [topic]);
 
   return (

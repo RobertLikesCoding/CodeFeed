@@ -1,4 +1,6 @@
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store";
+// import { fetchPostsThunk } from "../../redux/querySearch/querySearchSlice";
 import { Subreddit } from "../services/api/redditAPI";
 
 interface Props {
@@ -6,11 +8,13 @@ interface Props {
 }
 
 const ContentItem = ({ item }: Props) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
     <>
-      <Link
+      <div
         data-testid="subreddit"
-        to={`subreddits/${item.data.display_name_prefixed}`}
+        // onClick={dispatch(fetchPostsThunk(item.data.display_name_prefixed))}
       >
         {item.data.icon_img ? (
           <img
@@ -19,7 +23,7 @@ const ContentItem = ({ item }: Props) => {
           />
         ) : null}
         <p>{item.data.display_name_prefixed}</p>
-      </Link>
+      </div>
     </>
   );
 };

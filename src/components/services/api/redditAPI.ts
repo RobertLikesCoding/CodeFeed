@@ -47,7 +47,7 @@ export interface Subreddit{
   }
 }
 
-export async function querySubreddits(query: string): Promise<Subreddit[]> {
+export async function fetchSubreddits(query: string): Promise<Subreddit[]> {
   try {
     if (query === null || query === "") {
       return [];

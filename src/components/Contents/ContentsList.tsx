@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ContentItem from "./ContentItem";
-import { querySubreddits } from "../services/api/redditAPI";
+import { fetchSubreddits } from "../services/api/redditAPI";
 import { Subreddit } from "../services/api/redditAPI";
 
 interface Props {
@@ -17,7 +17,7 @@ const ContentsList = ({ topic, title }: Props) => {
       try {
         setIsLoading(true);
         if (topic) {
-          const data = await querySubreddits(topic);
+          const data = await fetchSubreddits(topic);
           setContent(data);
         }
       } catch (error) {

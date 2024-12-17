@@ -1,4 +1,4 @@
-import { fetchSearchQuery, querySubreddits } from "./redditAPI";
+import { fetchSearchQuery, fetchSubreddits } from "./redditAPI";
 import { mockPosts, mockSubreddits } from "../../../__mocks__/redditAPI.mock";
 
 describe("Fetch Posts", () => {
@@ -46,7 +46,7 @@ describe("Fetch Subreddits", () => {
   })
 
   test("should return a listing of subreddits", async () => {
-    const subreddits = await querySubreddits("test");
+    const subreddits = await fetchSubreddits("test");
 
     expect(subreddits).toEqual(mockSubreddits.data.children);
     expect(fetch).toHaveBeenCalledTimes(1);
