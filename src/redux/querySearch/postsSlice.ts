@@ -1,20 +1,20 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Post, fetchSearchQuery, fetchSubredditPosts } from "../../components/services/api/redditAPI";
 
-interface querySearchState {
+interface postsState {
   posts: Post[];
   isLoading: boolean;
   hasError: boolean;
 }
 
-const initialState: querySearchState = {
+const initialState: postsState = {
   posts: [],
   isLoading: false,
   hasError: false,
 };
 
 export const fetchPostsThunk = createAsyncThunk(
-  "searchResult/fetchPosts",
+  "fetchPosts/fetchPosts",
   async (topic: string | undefined, { rejectWithValue }) => {
     try {
       const data = topic
@@ -28,12 +28,11 @@ export const fetchPostsThunk = createAsyncThunk(
 );
 
 export const fetchSubredditPostsThunk = createAsyncThunk(
-  "searchResult/fetchSubredditPosts",
+  "fetchPosts/fetchSubredditPosts",
   async (subredditURL: string | undefined, { rejectWithValue }) => {
     try {
       if (!subredditURL) return [];
       const data = await fetchSubredditPosts(subredditURL);
-      console.log("Thunk: ", data)
       return data;
     } catch {
       return rejectWithValue("Failed to fetch posts");
@@ -41,8 +40,8 @@ export const fetchSubredditPostsThunk = createAsyncThunk(
   }
 );
 
-const querySearchSlice = createSlice({
-  name: "searchResult",
+const postsSlice = createSlice({
+  name: "fetchPosts",
   initialState,
   reducers: {
     setPosts: (state, action) => {
@@ -83,4 +82,4 @@ const querySearchSlice = createSlice({
   }
 });
 
-export default querySearchSlice.reducer;
+export default postsSlice.reducer;

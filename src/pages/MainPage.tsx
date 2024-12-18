@@ -4,16 +4,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import PostsList from "../components/Posts/PostsList";
 import InfoBox from "../components/InfoBox/InfoBox";
-import { fetchPostsThunk } from "../redux/querySearch/querySearchSlice";
+import { fetchPostsThunk } from "../redux/querySearch/postsSlice";
 
 // Validating topics to prevent injection
 const allowedTopics = ["frontend", "backend", "fullstack"];
 
 const MainPage = () => {
   const { topic } = useParams();
-  const posts = useSelector((state: RootState) => state.searchResult.posts)
-  const isLoading = useSelector((state: RootState) => state.searchResult.isLoading)
-  const hasError = useSelector((state: RootState) => state.searchResult.hasError)
+  const posts = useSelector((state: RootState) => state.fetchPosts.posts)
+  const isLoading = useSelector((state: RootState) => state.fetchPosts.isLoading)
+  const hasError = useSelector((state: RootState) => state.fetchPosts.hasError)
   const dispatch = useDispatch<AppDispatch>();
 
   const isValidTopic = topic && allowedTopics.includes(topic);

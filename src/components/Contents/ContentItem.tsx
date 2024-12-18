@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import { fetchSubredditPostsThunk } from "../../redux/querySearch/querySearchSlice";
+import { fetchSubredditPostsThunk } from "../../redux/querySearch/postsSlice";
 import { Subreddit } from "../services/api/redditAPI";
 import { useNavigate } from "react-router-dom";
 
