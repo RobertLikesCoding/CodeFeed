@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Subreddit, fetchSubreddits } from "../services/api/redditAPI";
 interface Props {
-  topic: string | undefined;
+  topic?: string | undefined;
+  subreddit?: string | undefined;
 }
 
 const InfoBox: React.FC<Props> = ({ topic }) => {
