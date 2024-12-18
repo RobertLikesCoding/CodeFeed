@@ -93,14 +93,12 @@ export async function fetchSubredditPosts(query: string): Promise<Post[]> {
   }
 }
 
-interface SubredditAbout {
-  data: {
-    display_name: string;
-    title: string;
-    public_description: string;
-    active_user_count: number;
-    subscribers: number;
-  }
+export interface SubredditAbout {
+  display_name: string;
+  title: string;
+  public_description: string;
+  active_user_count: number;
+  subscribers: number;
 }
 
 export async function fetchSubredditInfo(query: string): Promise<SubredditAbout | null> {
