@@ -28,7 +28,7 @@ describe("Fetch Posts", () => {
 
     expect(posts).toEqual([]);
     expect(consoleErrorSpy).toHaveBeenCalledWith(
-      "The following error has occured: ",
+      "Failed to search for posts: ",
       "API failure"
     );
   });
@@ -57,11 +57,11 @@ describe("Fetch Subreddits", () => {
       Promise.reject("API failure")
     );
     const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
-    const posts = await fetchSearchQuery("test");
+    const posts = await fetchSubreddits("test");
 
     expect(posts).toEqual([]);
     expect(consoleErrorSpy).toHaveBeenCalledWith(
-      "The following error has occured: ",
+      "Couldn't fetch Subreddits: ",
       "API failure"
     );
   });
