@@ -4,7 +4,7 @@ import {
   fetchSubredditPosts,
   fetchSubredditInfo,
 } from "./redditAPI";
-import { mockPosts, mockSubreddits } from "../../../__mocks__/redditAPI.mock";
+import { mockPosts, mockSubreddits, mockSubredditAbout } from "../../../__mocks__/redditAPI.mock";
 
 describe("Fetch Posts", () => {
   beforeEach(() => {
@@ -83,7 +83,7 @@ describe("Fetch Subreddits", () => {
     });
 
     test("should return a listing of posts for a subreddit", async () => {
-      const posts = await fetchSubreddits("test");
+      const posts = await fetchSubredditPosts("test");
 
       expect(posts).toEqual(mockPosts.data.children);
       expect(fetch).toHaveBeenCalledTimes(1);
@@ -99,6 +99,43 @@ describe("Fetch Subreddits", () => {
       expect(posts).toEqual([]);
       expect(consoleErrorSpy).toHaveBeenCalledWith(
         "Couldn't fetch Subreddit Posts: ",
+        "API failure"
+      );
+    });
+  });
+
+  describe("Fetch Subreddit Info", () => {
+    beforeEach(() => {
+      global.fetch = jest.fn();
+    });
+
+    test("should return an info object for a subreddit", async () => {
+      (fetch as jest.Mock).mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          data: mockSubredditAbout,
+        }),
+      });
+      const subreddit = await fetchSubredditInfo("test");
+
+      expect(subreddit).toEqual(mockSubredditAbout);
+      expect(fetch).toHaveBeenCalledTimes(1);
+      expect(fetch).toHaveBeenCalledWith(
+        'https://www.reddit.com/r/test/about.json',
+        { method: 'GET' }
+      );
+    });
+
+    test("handles exceptions with console.error", async () => {
+      (fetch as jest.Mock).mockImplementationOnce(() =>
+        Promise.reject("API failure")
+      );
+      const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
+      const subreddit = await fetchSubredditInfo("test");
+
+      expect(subreddit).toEqual(null);
+      expect(consoleErrorSpy).toHaveBeenCalledWith(
+        "Couldn't fetch Subreddit Info: ",
         "API failure"
       );
     });

@@ -114,7 +114,7 @@ export async function fetchSubredditInfo(query: string): Promise<SubredditAbout 
     );
     if (response.ok) {
       const result = await response.json();
-      return result.data;
+      return result.data as SubredditAbout;
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
