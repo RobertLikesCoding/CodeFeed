@@ -26,13 +26,13 @@ export async function fetchSearchQuery(query: string): Promise<Post[]> {
       }
     );
     if (response.ok) {
-      const data = await response.json();
-      return data.data.children;
+      const result = await response.json();
+      return result.data.children;
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   } catch (error) {
-    console.error("The following error has occured: ", error);
+    console.error("Failed to search for posts: ", error);
     return [];
   }
 }
@@ -59,13 +59,13 @@ export async function fetchSubreddits(query: string): Promise<Subreddit[]> {
       }
     );
     if (response.ok) {
-      const data = await response.json();
-      return data.data.children;
+      const result = await response.json();
+      return result.data.children;
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   } catch (error) {
-    console.error("The following error has occured: ", error);
+    console.error("Couldn't fetch Subreddits: ", error);
     return [];
   }
 }
@@ -82,13 +82,46 @@ export async function fetchSubredditPosts(query: string): Promise<Post[]> {
       }
     );
     if (response.ok) {
-      const data = await response.json();
-      return data.data.children;
+      const result = await response.json();
+      return result.data.children;
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   } catch (error) {
-    console.error("The following error has occured: ", error);
+    console.error("Couldn't fetch Subreddit Posts: ", error);
     return [];
+  }
+}
+
+interface SubredditAbout {
+  data: {
+    display_name: string;
+    title: string;
+    public_description: string;
+    active_user_count: number;
+    subscribers: number;
+  }
+}
+
+export async function fetchSubredditInfo(query: string): Promise<SubredditAbout | null> {
+  try {
+    if (query === null || query === "") {
+      return null;
+    }
+    const response: Response = await fetch(
+      `${baseUrl}r/${encodeURI(query)}/about.json`,
+      {
+        method: "GET",
+      }
+    );
+    if (response.ok) {
+      const result = await response.json();
+      return result.data;
+    } else {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Couldn't fetch Subreddit Info: ", error);
+    return null;
   }
 }
