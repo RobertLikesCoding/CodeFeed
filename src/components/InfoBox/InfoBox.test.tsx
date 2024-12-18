@@ -29,7 +29,7 @@ describe("InfoBox", () => {
 
     render(<InfoBox topic={"frontend"} />);
 
-    const notice = await screen.findByText("No subreddits found.");
+    const notice = await screen.findByText("No subreddits found for this topic.");
 
     expect(notice).toBeInTheDocument();
   });

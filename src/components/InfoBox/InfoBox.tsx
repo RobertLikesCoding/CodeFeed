@@ -13,7 +13,6 @@ interface Props {
 const InfoBox: React.FC<Props> = ({ topic, subreddit }) => {
   const [popularSubreddits, setPopularSubreddits] = useState<Subreddit[]>([]);
   const [aboutSubreddit, setAboutSubreddit] = useState<SubredditAbout | null>(null);
-  console.log(aboutSubreddit)
 
   useEffect(() => {
     const fetchInfoBoxData = async () => {
