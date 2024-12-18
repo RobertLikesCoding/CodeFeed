@@ -5,29 +5,32 @@ interface Props {
   subreddit?: string | undefined;
 }
 
-const InfoBox: React.FC<Props> = ({ topic }) => {
+const InfoBox: React.FC<Props> = ({ topic, subreddit }) => {
   const [subreddits, setSubreddits] = useState<Subreddit[]>([]);
+  const [activeUsers, setActiveUsers] = useState<Users[]>([])
 
   useEffect(() => {
-    const fetchSubredditsData = async () => {
+    const fetchInfoBoxData = async () => {
       try {
-        if (!topic) {
-          return;
+        if (topic) {
+          const data = await fetchSubreddits(topic);
+          setSubreddits(data);
+        } else if (subreddit) {
+          const data = await fetchSubreddits(subreddit);
+          setActiveUsers(data);
         }
-        const data = await fetchSubreddits(topic);
-        setSubreddits(data);
       } catch (error) {
         console.error("Error fetching info box: ", error);
       }
     };
 
-    fetchSubredditsData();
-  }, [topic]);
+    fetchInfoBoxData();
+  }, [topic, subreddit]);
 
   return (
     <aside>
-      <h3>{topic}</h3>
-      <p>Most popular {topic} subreddits:</p>
+      <h3>{topic || subreddit}</h3>
+      <p>Most popular related subreddits:</p>
 
       {/*
         - if topic show subreddits
