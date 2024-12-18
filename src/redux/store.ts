@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import querySearchReducer from "./querySearch/querySearchSlice";
+import querySearchReducer from "./querySearch/postsSlice";
 
 export const store = configureStore({
   reducer: {
-    searchResult: querySearchReducer,
+    fetchPosts: querySearchReducer,
   },
 });
 

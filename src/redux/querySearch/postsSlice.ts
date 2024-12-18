@@ -1,20 +1,20 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Post, fetchSearchQuery } from "../../components/services/api/redditAPI";
+import { Post, fetchSearchQuery, fetchSubredditPosts } from "../../components/services/api/redditAPI";
 
-interface querySearchState {
+interface postsState {
   posts: Post[];
   isLoading: boolean;
   hasError: boolean;
 }
 
-const initialState: querySearchState = {
+const initialState: postsState = {
   posts: [],
   isLoading: false,
   hasError: false,
 };
 
 export const fetchPostsThunk = createAsyncThunk(
-  "searchResult/fetchPosts",
+  "fetchPosts/fetchPosts",
   async (topic: string | undefined, { rejectWithValue }) => {
     try {
       const data = topic
@@ -27,8 +27,21 @@ export const fetchPostsThunk = createAsyncThunk(
   }
 );
 
-const querySearchSlice = createSlice({
-  name: "searchResult",
+export const fetchSubredditPostsThunk = createAsyncThunk(
+  "fetchPosts/fetchSubredditPosts",
+  async (subredditURL: string | undefined, { rejectWithValue }) => {
+    try {
+      if (!subredditURL) return [];
+      const data = await fetchSubredditPosts(subredditURL);
+      return data;
+    } catch {
+      return rejectWithValue("Failed to fetch posts");
+    }
+  }
+);
+
+const postsSlice = createSlice({
+  name: "fetchPosts",
   initialState,
   reducers: {
     setPosts: (state, action) => {
@@ -53,8 +66,20 @@ const querySearchSlice = createSlice({
       .addCase(fetchPostsThunk.rejected, (state) => {
         state.isLoading = false;
         state.hasError = true;
+      });
+      builder
+      .addCase(fetchSubredditPostsThunk.pending, (state) => {
+        state.isLoading = true;
       })
+      .addCase(fetchSubredditPostsThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.posts = action.payload;
+      })
+      .addCase(fetchSubredditPostsThunk.rejected, (state) => {
+        state.isLoading = false;
+        state.hasError = true;
+      });
   }
 });
 
-export default querySearchSlice.reducer;
+export default postsSlice.reducer;

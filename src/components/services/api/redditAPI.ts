@@ -26,28 +26,28 @@ export async function fetchSearchQuery(query: string): Promise<Post[]> {
       }
     );
     if (response.ok) {
-      const data = await response.json();
-      return data.data.children;
+      const result = await response.json();
+      return result.data.children;
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   } catch (error) {
-    console.error("The following error has occured: ", error);
-    return []; // Promise Type throws an error if I remove this
+    console.error("Failed to search for posts: ", error);
+    return [];
   }
 }
 
 export interface Subreddit{
   data: {
     id: string;
-    display_name_prefixed: string;
+    display_name: string;
     icon_img: string;
     primary_color: string;
     description: string;
   }
 }
 
-export async function querySubreddits(query: string): Promise<Subreddit[]> {
+export async function fetchSubreddits(query: string): Promise<Subreddit[]> {
   try {
     if (query === null || query === "") {
       return [];
@@ -59,13 +59,67 @@ export async function querySubreddits(query: string): Promise<Subreddit[]> {
       }
     );
     if (response.ok) {
-      const data = await response.json();
-      return data.data.children;
+      const result = await response.json();
+      return result.data.children;
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   } catch (error) {
-    console.error("The following error has occured: ", error);
+    console.error("Couldn't fetch Subreddits: ", error);
     return [];
+  }
+}
+
+export async function fetchSubredditPosts(query: string): Promise<Post[]> {
+  try {
+    if (query === null || query === "") {
+      return [];
+    }
+    const response: Response = await fetch(
+      `${baseUrl}r/${encodeURI(query)}.json`,
+      {
+        method: "GET",
+      }
+    );
+    if (response.ok) {
+      const result = await response.json();
+      return result.data.children;
+    } else {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Couldn't fetch Subreddit Posts: ", error);
+    return [];
+  }
+}
+
+export interface SubredditAbout {
+  display_name: string;
+  title: string;
+  public_description: string;
+  active_user_count: number;
+  subscribers: number;
+}
+
+export async function fetchSubredditInfo(query: string): Promise<SubredditAbout | null> {
+  try {
+    if (query === null || query === "") {
+      return null;
+    }
+    const response: Response = await fetch(
+      `${baseUrl}r/${encodeURI(query)}/about.json`,
+      {
+        method: "GET",
+      }
+    );
+    if (response.ok) {
+      const result = await response.json();
+      return result.data as SubredditAbout;
+    } else {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Couldn't fetch Subreddit Info: ", error);
+    return null;
   }
 }

@@ -1,4 +1,4 @@
-import { Post, Subreddit } from "../components/services/api/redditAPI";
+import { Post, Subreddit, SubredditAbout } from "../components/services/api/redditAPI";
 
 interface FetchResponse {
   data: {
@@ -45,7 +45,7 @@ export const mockSubreddits: FetchResponse = {
       {
         data: {
           id: "1",
-          display_name_prefixed: "r/frontend",
+          display_name: "r/frontend",
           icon_img: "https://www.example.com/icon1.png",
           primary_color: "#FF4500",
           description: "Frontend development subreddit",
@@ -54,7 +54,7 @@ export const mockSubreddits: FetchResponse = {
       {
         data: {
           id: "2",
-          display_name_prefixed: "r/reactjs",
+          display_name: "r/reactjs",
           icon_img: "https://www.example.com/icon2.png",
           primary_color: "#61DAFB",
           description: "React.js subreddit",
@@ -63,7 +63,7 @@ export const mockSubreddits: FetchResponse = {
       {
         data: {
           id: "3",
-          display_name_prefixed: "r/javascript",
+          display_name: "r/javascript",
           icon_img: "https://www.example.com/icon3.png",
           primary_color: "#F7DF1E",
           description: "JavaScript subreddit",
@@ -72,7 +72,7 @@ export const mockSubreddits: FetchResponse = {
       {
         data: {
           id: "4",
-          display_name_prefixed: "r/webdev",
+          display_name: "r/webdev",
           icon_img: "https://www.example.com/icon4.png",
           primary_color: "#00A1F1",
           description: "Web development subreddit",
@@ -81,7 +81,7 @@ export const mockSubreddits: FetchResponse = {
       {
         data: {
           id: "5",
-          display_name_prefixed: "r/css",
+          display_name: "r/css",
           icon_img: "https://www.example.com/icon5.png",
           primary_color: "#264DE4",
           description: "CSS subreddit",
@@ -89,4 +89,12 @@ export const mockSubreddits: FetchResponse = {
       },
     ],
   },
+};
+
+export const mockSubredditAbout: SubredditAbout = {
+  display_name: "test_subreddit",
+  title: "Test Subreddit",
+  public_description: "This is a test subreddit for testing purposes.",
+  active_user_count: 1234,
+  subscribers: 5678,
 };
