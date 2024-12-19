@@ -1,10 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/store";
 import UserInfo from "../UserInfo/UserInfo";
 import { Post } from "../services/api/redditAPI";
 import placeHolderImage from "../../assets/placeholder_thumbnail.jpg";
-import { fetchPostDetailsThunk } from "../../redux/querySearch/postDetailsSlice";
 
 interface PostProps {
   post: Post['data'];
@@ -12,12 +9,10 @@ interface PostProps {
 
 const PostItem: React.FC<PostProps> = ({ post: { id, title, ups, num_comments, author, created, thumbnail } }) => {
   const { subreddit } = useParams();
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   async function handleClickPost() {
     if (subreddit && id) {
-      dispatch(fetchPostDetailsThunk({ subreddit, postId: id }));
       navigate(`/subreddits/${subreddit}/${id}`);
     }
   }
