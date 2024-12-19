@@ -38,14 +38,14 @@ export async function fetchSearchQuery(query: string): Promise<Post[]> {
   }
 }
 
-export interface Subreddit{
+export interface Subreddit {
   data: {
     id: string;
     display_name: string;
     icon_img: string;
     primary_color: string;
     description: string;
-  }
+  };
 }
 
 export async function fetchSubreddits(query: string): Promise<Subreddit[]> {
@@ -54,7 +54,9 @@ export async function fetchSubreddits(query: string): Promise<Subreddit[]> {
       return [];
     }
     const response: Response = await fetch(
-      `${baseUrl}subreddits/search.json?q=${encodeURI(query)}&limit=5&sort=activity`,
+      `${baseUrl}subreddits/search.json?q=${encodeURI(
+        query
+      )}&limit=5&sort=activity`,
       {
         method: "GET",
       }
@@ -102,7 +104,9 @@ export interface SubredditAbout {
   subscribers: number;
 }
 
-export async function fetchSubredditInfo(query: string): Promise<SubredditAbout | null> {
+export async function fetchSubredditInfo(
+  query: string
+): Promise<SubredditAbout | null> {
   try {
     if (query === null || query === "") {
       return null;
@@ -125,7 +129,30 @@ export async function fetchSubredditInfo(query: string): Promise<SubredditAbout 
   }
 }
 
-export async function fetchPostDetails(subreddit: string, postId: string): Promise<Post | null> {
+interface Comment {
+  data: {
+    id: string;
+    author: string;
+    body: string;
+    ups: number;
+    created: number;
+  };
+}
+
+interface PostDetails {
+  data: {
+    id: string;
+    selftext: string;
+    title: string;
+    ups: number;
+    created: number;
+  };
+}
+
+export async function fetchPostDetails(
+  subreddit: string,
+  postId: string
+): Promise<[PostDetails, Comment[]] | null> {
   try {
     if (subreddit === null || subreddit === "") {
       return null;
@@ -138,7 +165,9 @@ export async function fetchPostDetails(subreddit: string, postId: string): Promi
     );
     if (response.ok) {
       const result = await response.json();
-      return result;
+      const postDetails = result[0].data.children[0];
+      const comments = result[1].data.children;
+      return [postDetails, comments];
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
