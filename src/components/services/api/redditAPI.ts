@@ -129,7 +129,7 @@ export async function fetchSubredditInfo(
   }
 }
 
-interface Comment {
+export interface Comment {
   data: {
     id: string;
     author: string;
@@ -139,7 +139,7 @@ interface Comment {
   };
 }
 
-interface PostDetails {
+export interface PostDetails {
   data: {
     id: string;
     selftext: string;
