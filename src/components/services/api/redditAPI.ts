@@ -11,6 +11,7 @@ export interface Post {
     title: string;
     ups: number;
     public_description: string;
+    thumbnail?: string;
   };
 }
 
@@ -120,6 +121,29 @@ export async function fetchSubredditInfo(query: string): Promise<SubredditAbout 
     }
   } catch (error) {
     console.error("Couldn't fetch Subreddit Info: ", error);
+    return null;
+  }
+}
+
+export async function fetchPostDetails(subreddit: string, postId: string): Promise<Post | null> {
+  try {
+    if (subreddit === null || subreddit === "") {
+      return null;
+    }
+    const response: Response = await fetch(
+      `${baseUrl}r/${subreddit}/comments/${encodeURI(postId)}.json`,
+      {
+        method: "GET",
+      }
+    );
+    if (response.ok) {
+      const result = await response.json();
+      return result;
+    } else {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error("Couldn't fetch Post Details: ", error);
     return null;
   }
 }
