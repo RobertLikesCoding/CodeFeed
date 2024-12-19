@@ -25,8 +25,8 @@ export const fetchPostDetailsThunk = createAsyncThunk(
     try {
       const result = await fetchPostDetails(args.subreddit, args.postId);
       if (result) {
-        const [postDetails, comments] = result;
-        return { postDetails, comments };
+        const [details, comments] = result;
+        return { details, comments };
       } else {
         throw new Error("Failed to fetch posts");
       }
@@ -61,7 +61,7 @@ const postDetailsSlice = createSlice({
       .addCase(fetchPostDetailsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         if (action.payload) {
-          state.details = action.payload.postDetails;
+          state.details = action.payload.details;
           state.comments = action.payload.comments;
         }
       })

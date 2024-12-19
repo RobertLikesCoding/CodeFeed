@@ -16,7 +16,6 @@ const PostItem: React.FC<PostProps> = ({ post: { id, title, ups, num_comments, a
   const navigate = useNavigate();
 
   async function handleClickPost() {
-    console.log("Hello from PostItem");
     if (subreddit && id) {
       dispatch(fetchPostDetailsThunk({ subreddit, postId: id }));
       navigate(`/subreddits/${subreddit}/${id}`);

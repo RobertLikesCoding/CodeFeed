@@ -1,6 +1,11 @@
 main {
-    display: flex;
-    justify-content: space-around;
-    color: #333;
-    background-color: #f4f4f4;
+  display: flex;
+  justify-content: space-around;
+  color: #333;
+  background-color: #f4f4f4;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
 }

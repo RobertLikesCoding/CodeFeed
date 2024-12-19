@@ -12,7 +12,6 @@ const SubredditPage: React.FC = () => {
   const isLoading = useSelector((state: RootState) => state.fetchPosts.isLoading)
   const hasError = useSelector((state: RootState) => state.fetchPosts.hasError)
   const dispatch = useDispatch<AppDispatch>();
-  console.log(posts);
 
   useEffect(() => {
     dispatch(fetchSubredditPostsThunk(subreddit));

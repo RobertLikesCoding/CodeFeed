@@ -1,15 +1,22 @@
-import { useSelector, useDispatch } from "react-redux";
-import { AppDispatch, RootState } from "../redux/store";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
 
 const PostDetailsPage: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
   const postDetails = useSelector((state: RootState) => state.post.details);
-  const comments = useSelector((state: RootState) => state.post.comments);
+  console.log(postDetails);
 
   return (
-    <>
-      <h1>PostDetails</h1>
-    </>
+    <div className="flex-column">
+    {postDetails === null ? (<p>Loading...</p>)
+    : (
+      <>
+        <h1>PostDetails</h1>
+        <p>{postDetails.data.title}</p>
+        <p>{postDetails.data.selftext}</p>
+      </>
+    )}
+
+    </div>
   )
 }
 
