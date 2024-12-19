@@ -5,7 +5,7 @@ import postDetailsReducer from "./querySearch/postDetailsSlice";
 export const store = configureStore({
   reducer: {
     fetchPosts: querySearchReducer,
-    postDetails: postDetailsReducer,
+    post: postDetailsReducer,
   },
 });
 

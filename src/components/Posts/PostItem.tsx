@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import UserInfo from "../UserInfo/UserInfo";
@@ -13,11 +13,13 @@ interface PostProps {
 const PostItem: React.FC<PostProps> = ({ post: { id, title, ups, num_comments, author, created, thumbnail } }) => {
   const { subreddit } = useParams();
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   async function handleClickPost() {
     console.log("Hello from PostItem");
     if (subreddit && id) {
       dispatch(fetchPostDetailsThunk({ subreddit, postId: id }));
+      navigate(`/subreddits/${subreddit}/${id}`);
     }
   }
 

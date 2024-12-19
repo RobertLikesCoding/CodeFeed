@@ -6,21 +6,21 @@ import {
 } from "../../components/services/api/redditAPI";
 
 interface postDetailsState {
-  postDetails: PostDetails | null;
+  details: PostDetails | null;
   comments: Comment[];
   isLoading: boolean;
   hasError: boolean;
 }
 
 const initialState: postDetailsState = {
-  postDetails: null,
+  details: null,
   comments: [],
   isLoading: false,
   hasError: false,
 };
 
 export const fetchPostDetailsThunk = createAsyncThunk(
-  "postDetails/fetchPostDetails",
+  "post/fetchPostDetails",
   async (args: { subreddit: string; postId: string }, { rejectWithValue }) => {
     try {
       const result = await fetchPostDetails(args.subreddit, args.postId);
@@ -37,11 +37,11 @@ export const fetchPostDetailsThunk = createAsyncThunk(
 );
 
 const postDetailsSlice = createSlice({
-  name: "postDetails",
+  name: "post",
   initialState,
   reducers: {
     setDetails: (state, action: PayloadAction<PostDetails>) => {
-      state.postDetails = action.payload;
+      state.details = action.payload;
     },
     setComments: (state, action: PayloadAction<Comment[]>) => {
       state.comments = action.payload;
@@ -61,7 +61,7 @@ const postDetailsSlice = createSlice({
       .addCase(fetchPostDetailsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         if (action.payload) {
-          state.postDetails = action.payload.postDetails;
+          state.details = action.payload.postDetails;
           state.comments = action.payload.comments;
         }
       })
