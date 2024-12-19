@@ -1,3 +1,6 @@
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../redux/store";
 import UserInfo from "../UserInfo/UserInfo";
 import { Post } from "../services/api/redditAPI";
 import placeHolderImage from "../../assets/placeholder_thumbnail.jpg";
@@ -7,12 +10,17 @@ interface PostProps {
   post: Post['data'];
 }
 
-async function handleClickPost() {
+const PostItem: React.FC<PostProps> = ({ post: { id, title, ups, num_comments, author, created, thumbnail } }) => {
+  const { subreddit } = useParams();
+  const dispatch = useDispatch<AppDispatch>();
 
-  // dispatch(fetchPostDetailsThunk({ subreddit: post.subreddit, postId: post.id }));
-}
+  async function handleClickPost() {
+    console.log("Hello from PostItem");
+    if (subreddit && id) {
+      dispatch(fetchPostDetailsThunk({ subreddit, postId: id }));
+    }
+  }
 
-const PostItem: React.FC<PostProps> = ({ post: { title, ups, num_comments, author, created, thumbnail } }) => {
   return (
     <div data-testid="post" onClick={handleClickPost}>
       <img src={ thumbnail === "" ? placeHolderImage : thumbnail } alt="thumbnail of post." />

@@ -61,8 +61,8 @@ const postDetailsSlice = createSlice({
       .addCase(fetchPostDetailsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         if (action.payload) {
-          state.postDetails = action.payload;
-          state.comments = action.payload;
+          state.postDetails = action.payload.postDetails;
+          state.comments = action.payload.comments;
         }
       })
       .addCase(fetchPostDetailsThunk.rejected, (state) => {
