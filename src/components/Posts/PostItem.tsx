@@ -1,15 +1,15 @@
 import UserInfo from "../UserInfo/UserInfo";
 import { Post } from "../services/api/redditAPI";
 import placeHolderImage from "../../assets/placeholder_thumbnail.jpg";
-import { fetchPostDetails } from "../services/api/redditAPI";
+import { fetchPostDetailsThunk } from "../../redux/querySearch/postDetailsSlice";
 
 interface PostProps {
   post: Post['data'];
 }
 
 async function handleClickPost() {
-  const postDetails = await fetchPostDetails("Frontend", "1hhpgaj");
-  console.log(postDetails);
+
+  // dispatch(fetchPostDetailsThunk({ subreddit: post.subreddit, postId: post.id }));
 }
 
 const PostItem: React.FC<PostProps> = ({ post: { title, ups, num_comments, author, created, thumbnail } }) => {

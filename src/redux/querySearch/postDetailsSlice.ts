@@ -23,10 +23,15 @@ export const fetchPostDetailsThunk = createAsyncThunk(
   "postDetails/fetchPostDetails",
   async (args: { subreddit: string; postId: string }, { rejectWithValue }) => {
     try {
-      const response = await fetchPostDetails(args.subreddit, args.postId);
-      return response;
-    } catch {
-      return rejectWithValue("Failed to fetch posts");
+      const result = await fetchPostDetails(args.subreddit, args.postId);
+      if (result) {
+        const [postDetails, comments] = result;
+        return { postDetails, comments };
+      } else {
+        throw new Error("Failed to fetch posts");
+      }
+    } catch (error) {
+      return rejectWithValue(error);
     }
   }
 );
@@ -35,11 +40,11 @@ const postDetailsSlice = createSlice({
   name: "postDetails",
   initialState,
   reducers: {
-    setPosts: (state, action) => {
-      state.postDetails = action.payload[0];
+    setDetails: (state, action: PayloadAction<PostDetails>) => {
+      state.postDetails = action.payload;
     },
-    setComments: (state, action) => {
-      state.comments = action.payload[1];
+    setComments: (state, action: PayloadAction<Comment[]>) => {
+      state.comments = action.payload;
     },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
@@ -56,10 +61,9 @@ const postDetailsSlice = createSlice({
       .addCase(fetchPostDetailsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         if (action.payload) {
-          state.postDetails = action.payload[0];
-          state.comments = action.payload[1];
+          state.postDetails = action.payload;
+          state.comments = action.payload;
         }
-
       })
       .addCase(fetchPostDetailsThunk.rejected, (state) => {
         state.isLoading = false;
