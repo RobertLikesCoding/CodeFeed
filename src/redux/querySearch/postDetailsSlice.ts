@@ -61,6 +61,8 @@ const postDetailsSlice = createSlice({
         if (action.payload) {
           state.details = action.payload.details;
           state.comments = action.payload.comments;
+        } else {
+          state.hasError = true;
         }
       })
       .addCase(fetchPostDetailsThunk.rejected, (state) => {

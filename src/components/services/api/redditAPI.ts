@@ -156,7 +156,7 @@ export async function fetchPostDetails(
 ): Promise<[PostDetails, Comment[]] | null> {
   try {
     if (subreddit === null || subreddit === "") {
-      return null;
+      throw new Error("Invalid subreddit or post ID");
     }
     const response: Response = await fetch(
       `${baseUrl}r/${subreddit}/comments/${encodeURI(postId)}.json`,
@@ -173,7 +173,7 @@ export async function fetchPostDetails(
       throw new Error(`HTTP error! status: ${response.status}`);
     }
   } catch (error) {
-    console.error("Couldn't fetch Post Details: ", error);
+    console.error(error);
     return null;
   }
 }
