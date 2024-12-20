@@ -15,7 +15,7 @@ interface postDetailsState {
 const initialState: postDetailsState = {
   details: null,
   comments: [],
-  isLoading: false,
+  isLoading: true,
   hasError: false,
 };
 
@@ -27,11 +27,9 @@ export const fetchPostDetailsThunk = createAsyncThunk(
       if (result) {
         const [details, comments] = result;
         return { details, comments };
-      } else {
-        throw new Error("Failed to fetch posts");
       }
-    } catch (error) {
-      return rejectWithValue(error);
+    } catch  {
+      return rejectWithValue("Failed to fetch posts");
     }
   }
 );

@@ -146,6 +146,7 @@ export interface PostDetails {
     title: string;
     ups: number;
     created: number;
+    author: string;
   };
 }
 

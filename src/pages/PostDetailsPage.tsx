@@ -20,11 +20,11 @@ const PostDetailsPage: React.FC = () => {
   return (
     <>
       {isLoading ? (
-        <p>Loading...</p>
+        <p data-testid="loadingState">Loading...</p>
       ) : hasError ? (
-        <p>Error loading post details. Please try again.</p>
+        <p data-testid="errorState">Error loading post details. Please try again.</p>
       ) : postDetails ? (
-        <div className="flex-column">
+        <div data-testid="detailsState" className="flex-column">
           <h1>PostDetails</h1>
           <p>{postDetails.data.title}</p>
           <p>{postDetails.data.selftext}</p>
