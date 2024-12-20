@@ -11,6 +11,7 @@ export interface Post {
     title: string;
     ups: number;
     public_description: string;
+    thumbnail?: string;
   };
 }
 
@@ -37,14 +38,14 @@ export async function fetchSearchQuery(query: string): Promise<Post[]> {
   }
 }
 
-export interface Subreddit{
+export interface Subreddit {
   data: {
     id: string;
     display_name: string;
     icon_img: string;
     primary_color: string;
     description: string;
-  }
+  };
 }
 
 export async function fetchSubreddits(query: string): Promise<Subreddit[]> {
@@ -53,7 +54,9 @@ export async function fetchSubreddits(query: string): Promise<Subreddit[]> {
       return [];
     }
     const response: Response = await fetch(
-      `${baseUrl}subreddits/search.json?q=${encodeURI(query)}&limit=5&sort=activity`,
+      `${baseUrl}subreddits/search.json?q=${encodeURI(
+        query
+      )}&limit=5&sort=activity`,
       {
         method: "GET",
       }
@@ -101,7 +104,9 @@ export interface SubredditAbout {
   subscribers: number;
 }
 
-export async function fetchSubredditInfo(query: string): Promise<SubredditAbout | null> {
+export async function fetchSubredditInfo(
+  query: string
+): Promise<SubredditAbout | null> {
   try {
     if (query === null || query === "") {
       return null;
@@ -120,6 +125,55 @@ export async function fetchSubredditInfo(query: string): Promise<SubredditAbout 
     }
   } catch (error) {
     console.error("Couldn't fetch Subreddit Info: ", error);
+    return null;
+  }
+}
+
+export interface Comment {
+  data: {
+    id: string;
+    author: string;
+    body: string;
+    ups: number;
+    created: number;
+  };
+}
+
+export interface PostDetails {
+  data: {
+    id: string;
+    selftext: string;
+    title: string;
+    ups: number;
+    created: number;
+    author: string;
+  };
+}
+
+export async function fetchPostDetails(
+  subreddit: string,
+  postId: string
+): Promise<[PostDetails, Comment[]] | null> {
+  try {
+    if (subreddit === null || subreddit === "") {
+      throw new Error("Invalid subreddit or post ID");
+    }
+    const response: Response = await fetch(
+      `${baseUrl}r/${subreddit}/comments/${encodeURI(postId)}.json`,
+      {
+        method: "GET",
+      }
+    );
+    if (response.ok) {
+      const result = await response.json();
+      const postDetails = result[0].data.children[0];
+      const comments = result[1].data.children;
+      return [postDetails, comments];
+    } else {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error(error);
     return null;
   }
 }

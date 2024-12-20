@@ -1,4 +1,4 @@
-import { Post, Subreddit, SubredditAbout } from "../components/services/api/redditAPI";
+import { Post, Subreddit, SubredditAbout, PostDetails } from "../components/services/api/redditAPI";
 
 interface FetchResponse {
   data: {
@@ -97,4 +97,15 @@ export const mockSubredditAbout: SubredditAbout = {
   public_description: "This is a test subreddit for testing purposes.",
   active_user_count: 1234,
   subscribers: 5678,
+};
+
+export const mockPostDetails: PostDetails = {
+  data: {
+    id: "123",
+    title: "Test Post",
+    selftext: "This is a test post.",
+    ups: 100,
+    created: 1620000000,
+    author: "test_author",
+  },
 };

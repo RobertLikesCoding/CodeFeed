@@ -30,7 +30,7 @@ const router = createBrowserRouter([
         element: <SearchPage />,
       },
       {
-        path: "post",
+        path: "/subreddits/:subreddit/:postId",
         element: <PostDetailsPage />,
       },
     ]
