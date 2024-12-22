@@ -1,15 +1,14 @@
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 import CommentItem from "./CommentItem";
+import { Comment } from "../services/api/redditAPI";
 
+interface Props {
+  comments: Comment[]
+}
 
-const CommentsList = () => {
-  const comments = useSelector((state: RootState) => state.post.comments)
-
+const CommentsList: React.FC<Props> = ({comments}) => {
   return (
     <>
       {comments.map((comment) => {
-        console.log(comment)
         return <CommentItem key={comment.data.id} comment={comment} />
       })}
     </>

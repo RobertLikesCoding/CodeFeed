@@ -136,6 +136,7 @@ export interface Comment {
     body: string;
     ups: number;
     created: number;
+    replies: { data: { children: Comment[] } };
   };
 }
 
