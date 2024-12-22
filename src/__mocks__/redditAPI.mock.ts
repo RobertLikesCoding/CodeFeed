@@ -91,6 +91,24 @@ export const mockSubreddits: FetchResponse = {
   },
 };
 
+export const mockComments = [
+  {
+    kind: "t1",
+    data: {
+      id: "1",
+      author: "comment_author",
+      body: "This is a test comment.",
+      ups: 10,
+      created: 1620000000,
+      replies: {
+        data: {
+          children: [],
+        },
+      },
+    },
+  },
+];
+
 export const mockSubredditAbout: SubredditAbout = {
   display_name: "test_subreddit",
   title: "Test Subreddit",

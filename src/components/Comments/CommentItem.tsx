@@ -12,7 +12,7 @@ const CommentItem = ({ comment }: Props) => {
   console.log(replies);
 
   return (
-    <div className="comment">
+    <div className="comment" data-testid="comment" >
       <UserInfo author={comment.data.author} created={comment.data.created} />
       <p>{comment.data.body}</p>
       <p>{comment.data.ups}</p>

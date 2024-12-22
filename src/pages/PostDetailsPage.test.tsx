@@ -4,7 +4,7 @@ import { store } from "../redux/store";
 import PostDetailsPage from "./PostDetailsPage";
 import { configureStore } from "@reduxjs/toolkit";
 import postDetailsReducer from "../redux/querySearch/postDetailsSlice";
-import { mockPostDetails } from "../__mocks__/redditAPI.mock";
+import { mockPostDetails, mockComments } from "../__mocks__/redditAPI.mock";
 
 describe("PostDetailsPage", () => {
   test("should render initially as Loading", () => {
@@ -23,13 +23,13 @@ describe("PostDetailsPage", () => {
         comments: [],
         isLoading: false,
         hasError: false,
-      }
+      },
     };
     const storeWithDetails = configureStore({
       reducer: {
         post: postDetailsReducer,
       },
-      preloadedState
+      preloadedState,
     });
 
     render(
@@ -38,7 +38,6 @@ describe("PostDetailsPage", () => {
       </Provider>
     );
 
-    // Check that post details are displayed
     expect(screen.getByTestId("detailsState")).toBeInTheDocument();
     expect(screen.getByText(mockPostDetails.data.title)).toBeInTheDocument();
   });
@@ -50,13 +49,13 @@ describe("PostDetailsPage", () => {
         comments: [],
         isLoading: false,
         hasError: true,
-      }
+      },
     };
     const storeWithError = configureStore({
       reducer: {
         post: postDetailsReducer,
       },
-      preloadedState
+      preloadedState,
     });
 
     render(
@@ -65,8 +64,34 @@ describe("PostDetailsPage", () => {
       </Provider>
     );
 
-    // Check that error message is displayed
     expect(screen.getByTestId("errorState")).toBeInTheDocument();
-    expect(screen.getByText("Error loading post details. Please try again.")).toBeInTheDocument();
+    expect(
+      screen.getByText("Error loading post details. Please try again.")
+    ).toBeInTheDocument();
+  });
+
+  test("should render comments when provided", async () => {
+    const preloadedState = {
+      post: {
+        details: mockPostDetails,
+        comments: mockComments,
+        isLoading: false,
+        hasError: false,
+      },
+    };
+    const storeWithError = configureStore({
+      reducer: {
+        post: postDetailsReducer,
+      },
+      preloadedState,
+    });
+
+    render(
+      <Provider store={storeWithError}>
+        <PostDetailsPage />
+      </Provider>
+    );
+
+    expect(screen.getByTestId("comment")).toBeInTheDocument();
   });
 });
