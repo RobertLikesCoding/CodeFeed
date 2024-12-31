@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import UserInfo from "../UserInfo/UserInfo";
 import { Post } from "../services/api/redditAPI";
 import placeHolderImage from "../../assets/placeholder_thumbnail.jpg";
@@ -7,13 +7,14 @@ interface PostProps {
   post: Post['data'];
 }
 
-const PostItem: React.FC<PostProps> = ({ post: { id, title, ups, num_comments, author, created, thumbnail } }) => {
-  const { subreddit } = useParams();
+const PostItem: React.FC<PostProps> = ({ post: { id, title, ups, num_comments, author, created, thumbnail, subreddit } }) => {
   const navigate = useNavigate();
 
   async function handleClickPost() {
     if (subreddit && id) {
       navigate(`/subreddits/${subreddit}/${id}`);
+    } else {
+      navigate(`/subreddit/${subreddit}/${id}`)
     }
   }
 

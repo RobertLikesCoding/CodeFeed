@@ -8,6 +8,7 @@ export interface Post {
     num_comments: number;
     url: string;
     subreddit_name_prefixed: string;
+    subreddit: string;
     title: string;
     ups: number;
     public_description: string;
