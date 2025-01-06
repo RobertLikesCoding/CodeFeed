@@ -1,0 +1,22 @@
+@use "../../../assets/styles/variables" as *;
+
+.searchBar {
+  height: 2rem;
+  position: relative;
+
+  input {
+    border-radius: 4rem;
+    font-size: 1.15rem;
+    height: 100%;
+    width: 100%;
+    padding: 0 1rem 0 2.5rem;
+    background-color: transparent;
+    color: $font-clr
+  }
+
+  .icon {
+    position: absolute;
+    left: 1rem;
+    color: $font-clr;
+  }
+}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import styles from "./SearchBar.module.scss";
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -19,7 +20,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div>
+    <div className={`${styles.searchBar} flex-center`}>
       <input
         type="text"
         name="query"
@@ -30,7 +31,7 @@ const SearchBar = () => {
         onChange={handleChange}
         onKeyUp={handleKeyUp}
       />
-      <FontAwesomeIcon icon={faMagnifyingGlass} />
+      <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon}/>
     </div>
   );
 };
