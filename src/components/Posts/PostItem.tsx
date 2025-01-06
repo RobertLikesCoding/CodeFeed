@@ -12,9 +12,9 @@ const PostItem: React.FC<PostProps> = ({ post: { id, title, ups, num_comments, a
 
   async function handleClickPost() {
     if (subreddit && id) {
-      navigate(`/subreddits/${subreddit}/${id}`);
+      navigate(`/r/${subreddit}/${id}`);
     } else {
-      navigate(`/subreddit/${subreddit}/${id}`)
+      navigate(`/r/${subreddit}/${id}`)
     }
   }
 
