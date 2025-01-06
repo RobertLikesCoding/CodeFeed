@@ -6,13 +6,13 @@ export interface Post {
     author: string;
     created: number;
     num_comments: number;
-    url: string;
     subreddit_name_prefixed: string;
     subreddit: string;
     title: string;
     ups: number;
     public_description: string;
     thumbnail?: string;
+    url?: string;
   };
 }
 
@@ -144,11 +144,12 @@ export interface Comment {
 export interface PostDetails {
   data: {
     id: string;
-    selftext: string;
     title: string;
     ups: number;
     created: number;
     author: string;
+    selftext_html?: string;
+    url?: string;
   };
 }
 

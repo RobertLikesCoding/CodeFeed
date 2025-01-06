@@ -7,26 +7,26 @@ interface PostProps {
   post: Post['data'];
 }
 
-const PostItem: React.FC<PostProps> = ({ post: { id, title, ups, num_comments, author, created, thumbnail, subreddit } }) => {
+const PostItem: React.FC<PostProps> = ({post}) => {
   const navigate = useNavigate();
 
   async function handleClickPost() {
-    if (subreddit && id) {
-      navigate(`/r/${subreddit}/${id}`);
+    if (post.subreddit && post.id) {
+      navigate(`/r/${post.subreddit}/${post.id}`);
     } else {
-      navigate(`/r/${subreddit}/${id}`)
+      navigate(`/r/${post.subreddit}/${post.id}`)
     }
   }
 
   return (
     <div data-testid="post" onClick={handleClickPost}>
-      <img src={ thumbnail === "" ? placeHolderImage : thumbnail } alt="thumbnail of post." />
+      <img src={ post.thumbnail === "" ? placeHolderImage : post.thumbnail } alt="thumbnail of post." />
       <div>
-        <UserInfo author={author} created={created}/>
-        <h3>{title}</h3>
+        <UserInfo author={post.author} created={post.created}/>
+        <h3>{post.title}</h3>
         <div>
-          <i>{ups} upvotes</i>
-          <i>{num_comments} comments</i>
+          <i>{post.ups} upvotes</i>
+          <i>{post.num_comments} comments</i>
         </div>
       </div>
     </div>

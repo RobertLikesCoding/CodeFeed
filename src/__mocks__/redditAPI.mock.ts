@@ -123,7 +123,7 @@ export const mockPostDetails: PostDetails = {
   data: {
     id: "123",
     title: "Test Post",
-    selftext: "This is a test post.",
+    selftext_html: "This is a test post.",
     ups: 100,
     created: 1620000000,
     author: "test_author",

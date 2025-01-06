@@ -1,16 +1,10 @@
 import { Comment } from "../services/api/redditAPI";
 import CommentsList from "./CommentsList";
 import UserInfo from "../UserInfo/UserInfo";
-import DOMPurify from "dompurify";
+import { parseBodyHTML } from "../../helpers/parseHtml";
 
 interface Props {
   comment: Comment;
-}
-
-function parseBodyHTML(bodyHTML: string) {
-  const textarea = document.createElement("textarea");
-  textarea.innerHTML = bodyHTML;
-  return DOMPurify.sanitize(textarea.value);
 }
 
 const CommentItem = ({ comment }: Props) => {
