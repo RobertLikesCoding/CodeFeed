@@ -14,7 +14,7 @@ const ContentItem = ({ item }: Props) => {
 
   async function handleClickSubreddit() {
     await dispatch(fetchSubredditPostsThunk(item.data.display_name));
-    navigate(`/subreddits/${item.data.display_name}`);
+    navigate(`/r/${item.data.display_name}`);
   }
 
   return (

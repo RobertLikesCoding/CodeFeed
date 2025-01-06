@@ -1,5 +1,6 @@
-import { screen, render } from "@testing-library/react";
+import { screen, render, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 import { store } from "../redux/store";
 import PostDetailsPage from "./PostDetailsPage";
 import { configureStore } from "@reduxjs/toolkit";
@@ -9,9 +10,11 @@ import { mockPostDetails, mockComments } from "../__mocks__/redditAPI.mock";
 describe("PostDetailsPage", () => {
   test("should render initially as Loading", () => {
     render(
-      <Provider store={store}>
-        <PostDetailsPage />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={store}>
+          <PostDetailsPage />
+        </Provider>
+      </MemoryRouter>
     );
     expect(screen.getByTestId("loadingState")).toBeInTheDocument();
   });
@@ -33,9 +36,11 @@ describe("PostDetailsPage", () => {
     });
 
     render(
-      <Provider store={storeWithDetails}>
-        <PostDetailsPage />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={storeWithDetails}>
+          <PostDetailsPage />
+        </Provider>
+      </MemoryRouter>
     );
 
     expect(screen.getByTestId("detailsState")).toBeInTheDocument();
@@ -59,9 +64,11 @@ describe("PostDetailsPage", () => {
     });
 
     render(
-      <Provider store={storeWithError}>
-        <PostDetailsPage />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={storeWithError}>
+          <PostDetailsPage />
+        </Provider>
+      </MemoryRouter>
     );
 
     expect(screen.getByTestId("errorState")).toBeInTheDocument();
@@ -87,11 +94,45 @@ describe("PostDetailsPage", () => {
     });
 
     render(
-      <Provider store={storeWithError}>
-        <PostDetailsPage />
-      </Provider>
+      <MemoryRouter>
+        <Provider store={storeWithError}>
+          <PostDetailsPage />
+        </Provider>
+      </MemoryRouter>
     );
 
     expect(screen.getByTestId("comment")).toBeInTheDocument();
+  });
+
+  test("should go to previous page when clicking 'back'", () => {
+    render(
+      <MemoryRouter
+      // This creates a mock browser history stack. Previous-page is the first page and the second argument
+      // is the current page.
+        initialEntries={["/previous-page", "/r/reactjs/comments/123"]}
+        initialIndex={1}
+      >
+        <Provider store={store}>
+          <Routes>
+            <Route
+              path="/r/reactjs/comments/:id"
+              element={<PostDetailsPage />}
+            />
+            <Route
+              // This creates a previous page with a element to target on it
+              path="/previous-page"
+              element={
+                <div data-testid="previous-page-content">Previous Page</div>
+              }
+            />
+          </Routes>
+        </Provider>
+      </MemoryRouter>
+    );
+
+    const backButton = screen.getByText("Back");
+    fireEvent.click(backButton);
+
+    expect(screen.getByText("Previous Page")).toBeInTheDocument();
   });
 });
