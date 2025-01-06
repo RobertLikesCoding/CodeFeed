@@ -99,7 +99,7 @@ export const mockComments = [
     data: {
       id: "1",
       author: "comment_author",
-      body: "This is a test comment.",
+      body_html: "This is a test comment.",
       ups: 10,
       created: 1620000000,
       replies: {
