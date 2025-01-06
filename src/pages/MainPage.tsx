@@ -25,7 +25,7 @@ const MainPage = () => {
   return (
     <>
       <section>
-        <h1>{isValidTopic ? topic : "Latest"}</h1>
+        <h1 className="text-3xl font-bold underline">{isValidTopic ? topic : "Latest"}</h1>
         <p>Sort by</p>
         {isLoading ? (
           <p>Loading...</p>
