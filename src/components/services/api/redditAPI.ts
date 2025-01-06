@@ -134,7 +134,7 @@ export interface Comment {
   data: {
     id: string;
     author: string;
-    body: string;
+    body_html: string;
     ups: number;
     created: number;
     replies: { data: { children: Comment[] } };
