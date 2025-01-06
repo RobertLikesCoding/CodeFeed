@@ -19,17 +19,18 @@ a {
   &:hover {
     cursor: pointer;
   }
-
   &:active {
     color: $secondary-clr;
   }
-
   &:focus {
     text-decoration: underline;
   }
 }
 
-
+ul {
+  list-style: none;
+  padding: 0;
+}
 
 /* @media (prefers-color-scheme: light) {
   :root {
