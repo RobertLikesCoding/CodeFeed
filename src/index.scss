@@ -1,8 +1,35 @@
+@use "./assets/styles/variables.scss" as *;
+
 :root {
   font-family: Roboto, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 }
+
+body {
+  background: $background-clr;
+  color: $font-clr;
+  padding: 1rem 2rem;
+}
+
+a {
+  color: $font-clr;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    color: $secondary-clr;
+  }
+
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+
 
 /* @media (prefers-color-scheme: light) {
   :root {

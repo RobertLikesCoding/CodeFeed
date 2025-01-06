@@ -26,7 +26,7 @@ const ContentItem = ({ item }: Props) => {
             alt={`subreddit icon of ${item.data.display_name}`}
           />
         ) : null}
-        <p>r/{item.data.display_name}</p>
+        <a>r/{item.data.display_name}</a>
       </div>
     </>
   );
