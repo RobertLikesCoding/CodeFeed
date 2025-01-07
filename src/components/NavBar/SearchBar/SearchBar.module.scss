@@ -1,29 +1,57 @@
 @use "../../../assets/styles/variables" as *;
+@use "../../../assets/styles/mixins" as *;
 
 .searchBar {
   height: 2rem;
-  position: relative;
   max-width: 36rem;
+  position: relative;
+  justify-content: end;
 
-  input {
-    border-radius: 4rem;
-    font-size: 1.15rem;
-    height: 100%;
+  .inputContainer {
+    display: flex;
+    align-items: center;
     width: 100%;
-    padding: 0 1rem 0 2.5rem;
-    background-color: transparent;
-    color: $font-clr;
-    border: 2px solid $font-clr;
+    height: 100%;
 
-    &:focus {
-      outline: none;
-      border-color: $secondary-clr;
+    @include media-query($breakpoint-sm) {
+      display: none;
+    }
+
+    &.is-visible {
+      display: flex !important; // Override the media query
+    }
+
+    input {
+      border-radius: 4rem;
+      font-size: 1.15rem;
+      height: 100%;
+      width: 100%;
+      padding: 0 1rem 0 2.5rem;
+      background-color: transparent;
+      color: $font-clr;
+      border: 2px solid $font-clr;
+
+      &:focus {
+        outline: none;
+        border-color: $secondary-clr;
+      }
+    }
+
+    .searchIcon {
+      position: absolute;
+      left: 1rem;
+      color: $font-clr;
+      font-size: 1.5rem;
     }
   }
 
-  .icon {
-    position: absolute;
-    left: 1rem;
-    color: $font-clr;
+  .mobileSearchIcon {
+    display: none;
+    font-size: 1.5rem;
+
+    @include media-query($breakpoint-sm) {
+      display: block;
+    }
   }
 }
+

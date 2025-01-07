@@ -1,4 +1,17 @@
 @use "../../assets/styles/variables" as *;
+@use "../../assets/styles/mixins" as *;
+
+.navbar {
+  display: grid;
+  grid-template-columns: 3fr 6fr 3fr;
+  align-items: center;
+  gap: 1rem;
+
+
+  @include media-query($breakpoint-sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
 
 .logo {
   font-size: 3rem;
@@ -9,9 +22,3 @@
   display: inline-block;
 }
 
-.navbar {
-  display: grid;
-  grid-template-columns: 3fr 6fr 3fr;
-  align-items: center;
-  gap: 1rem;
-}

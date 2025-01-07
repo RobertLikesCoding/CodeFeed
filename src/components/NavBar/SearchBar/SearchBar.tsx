@@ -4,7 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SearchBar.module.scss";
 
-const SearchBar = () => {
+interface PropsType {
+  inputIsVisible: boolean;
+  setInputIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible}) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const navigate = useNavigate();
 
@@ -19,20 +24,45 @@ const SearchBar = () => {
     }
   };
 
+  const toggleInputVisibility = () => {
+    console.log("Hello")
+    setInputIsVisible(!inputIsVisible);
+  };
+
   return (
-    <div className={`${styles.searchBar} flex-center`}>
-      <input
-        type="text"
-        name="query"
-        id="query"
-        placeholder="e.g. 'React'"
-        aria-label="search query"
-        value={searchQuery}
-        onChange={handleChange}
-        onKeyUp={handleKeyUp}
-      />
-      <FontAwesomeIcon icon={faMagnifyingGlass} className={styles.icon}/>
-    </div>
+    <>
+      <div className={`${styles.searchBar} flex-center`}>
+        {inputIsVisible && (
+          <div
+            className={`${styles.inputContainer} ${
+              inputIsVisible ? "is-visible" : ""
+            }`}
+          >
+            <label htmlFor="query" hidden />
+            <input
+              type="text"
+              name="query"
+              id="query"
+              placeholder="e.g. 'React'"
+              aria-label="search query"
+              value={searchQuery}
+              onChange={handleChange}
+              onKeyUp={handleKeyUp}
+            />
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className={styles.searchIcon}
+            />
+          </div>
+        )}
+        {/* Toggle icon for mobile view */}
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className={styles.mobileSearchIcon}
+          onClick={toggleInputVisibility}
+        />
+      </div>
+    </>
   );
 };
 
