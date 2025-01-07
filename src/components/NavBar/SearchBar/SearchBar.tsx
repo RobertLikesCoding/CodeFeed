@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SearchBar.module.scss";
 
 interface PropsType {
@@ -25,7 +25,6 @@ const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible}) => 
   };
 
   const toggleInputVisibility = () => {
-    console.log("Hello")
     setInputIsVisible(!inputIsVisible);
   };
 
@@ -56,11 +55,19 @@ const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible}) => 
           </div>
         )}
         {/* Toggle icon for mobile view */}
-        <FontAwesomeIcon
-          icon={faMagnifyingGlass}
-          className={styles.mobileSearchIcon}
-          onClick={toggleInputVisibility}
-        />
+        {inputIsVisible ? (
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className={styles.mobileSearchIcon}
+            onClick={toggleInputVisibility}
+          />
+        ) : (
+          <FontAwesomeIcon
+            icon={faXmark}
+            className={styles.mobileSearchIcon}
+            onClick={toggleInputVisibility}
+          />
+        )}
       </div>
     </>
   );
