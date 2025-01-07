@@ -3,6 +3,7 @@
 .searchBar {
   height: 2rem;
   position: relative;
+  max-width: 36rem;
 
   input {
     border-radius: 4rem;
@@ -11,7 +12,13 @@
     width: 100%;
     padding: 0 1rem 0 2.5rem;
     background-color: transparent;
-    color: $font-clr
+    color: $font-clr;
+    border: 2px solid $font-clr;
+
+    &:focus {
+      outline: none;
+      border-color: $secondary-clr;
+    }
   }
 
   .icon {
