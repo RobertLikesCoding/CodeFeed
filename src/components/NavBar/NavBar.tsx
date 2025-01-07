@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
 import styles from "./NavBar.module.scss";
 import SearchBar from "./SearchBar/SearchBar";
@@ -8,6 +8,10 @@ import SearchBar from "./SearchBar/SearchBar";
 const NavBar = () => {
   const isMobile = useMediaQuery({ maxWidth: "576px" });
   const [inputIsVisible, setInputIsVisible] = useState<boolean>(isMobile);
+
+  useEffect(() => {
+    setInputIsVisible(true);
+  }, [isMobile]);
 
   return (
     <>
