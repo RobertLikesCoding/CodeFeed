@@ -9,7 +9,10 @@ interface PropsType {
   setInputIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible}) => {
+const SearchBar: React.FC<PropsType> = ({
+  inputIsVisible,
+  setInputIsVisible,
+}) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const navigate = useNavigate();
 
@@ -31,29 +34,24 @@ const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible}) => 
   return (
     <>
       <div className={`${styles.searchBar} flex-center`}>
-        {inputIsVisible && (
-          <div
-            className={`${styles.inputContainer} ${
-              inputIsVisible ? "is-visible" : ""
-            }`}
-          >
-            <label htmlFor="query" hidden />
-            <input
-              type="text"
-              name="query"
-              id="query"
-              placeholder="e.g. 'React'"
-              aria-label="search query"
-              value={searchQuery}
-              onChange={handleChange}
-              onKeyUp={handleKeyUp}
-            />
-            <FontAwesomeIcon
-              icon={faMagnifyingGlass}
-              className={styles.searchIcon}
-            />
-          </div>
-        )}
+        <div className={`${styles.inputContainer}`}>
+          <label htmlFor="query" hidden />
+          <input
+            type="text"
+            name="query"
+            id="query"
+            placeholder="e.g. 'React'"
+            aria-label="search query"
+            value={searchQuery}
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+          />
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className={styles.searchIcon}
+          />
+        </div>
+
         {/* Toggle icon for mobile view */}
         {inputIsVisible ? (
           <FontAwesomeIcon

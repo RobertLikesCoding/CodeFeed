@@ -16,8 +16,9 @@
     @include media-query($breakpoint-sm) {
       display: none;
     }
-
-
+    .isVisible {
+      display: flex !important;
+    }
     input {
       border-radius: 4rem;
       font-size: 1.15rem;
@@ -48,11 +49,6 @@
 
     @include media-query($breakpoint-sm) {
       display: block;
-    }
-
-    &:hover {
-      cursor: pointer;
-      color: $secondary-clr;
     }
   }
 }
