@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import styles from "./NavBar.module.scss";
 import SearchBar from "./SearchBar/SearchBar";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const NavBar = () => {
-  const [inputIsVisible, setInputIsVisible] = useState<boolean>(true);
+  const isMobile = useMediaQuery({ maxWidth: "576px" });
+  const [inputIsVisible, setInputIsVisible] = useState<boolean>(isMobile);
 
   return (
     <>
@@ -14,6 +16,7 @@ const NavBar = () => {
         <SearchBar
           inputIsVisible={inputIsVisible}
           setInputIsVisible={setInputIsVisible}
+          isMobile={isMobile}
         />
         {/* <FontAwesomeIcon icon={faBars} /> */}
       </nav>
