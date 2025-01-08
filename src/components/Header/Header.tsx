@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
-import styles from "./NavBar.module.scss";
+import styles from "./Header.module.scss";
 import SearchBar from "./SearchBar/SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
-const NavBar = () => {
+const Header = () => {
   const isMobile = useMediaQuery({ maxWidth: "576px" });
   const [inputIsVisible, setInputIsVisible] = useState<boolean>(isMobile);
 
@@ -15,7 +15,7 @@ const NavBar = () => {
 
   return (
     <>
-      <nav className={`${styles.navbar}`}>
+      <nav className={`${styles.header}`}>
         {inputIsVisible && <span className={styles.logo}>CodeFeed</span>}
         <SearchBar
           inputIsVisible={inputIsVisible}
@@ -32,4 +32,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Header;

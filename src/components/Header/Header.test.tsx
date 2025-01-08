@@ -1,12 +1,12 @@
 import { screen, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import NavBar from "./NavBar";
+import Header from "./Header";
 
-describe("Navbar", () => {
+describe("Header", () => {
   test("should show logo, links and searchbar", () => {
     render(
       <MemoryRouter>
-        <NavBar />
+        <Header />
       </MemoryRouter>
     );
 

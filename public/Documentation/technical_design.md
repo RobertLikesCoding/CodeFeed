@@ -8,7 +8,7 @@
 ### 2. Component Structure
 
 - App (main component)
-  - Navbar
+  - Header
     - Categories
       - Category
     - SearchBar (search for keywords)

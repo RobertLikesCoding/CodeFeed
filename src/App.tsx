@@ -1,13 +1,13 @@
 import { Outlet, Link } from "react-router-dom";
 import "./App.scss";
-import NavBar from "./components/NavBar/NavBar";
+import Header from "./components/Header/Header";
 import ContentsList from "./components/Contents/ContentsList";
 
 const App: React.FC = () => {
   return (
     <>
       <header>
-        <NavBar />
+        <Header />
       </header>
       <main>
         <div className="sidenav">
