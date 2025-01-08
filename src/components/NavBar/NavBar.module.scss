@@ -8,7 +8,6 @@
   align-items: center;
   gap: 1rem;
 
-
   @include media-query($breakpoint-sm) {
     display: flex;
     justify-content: space-between;
@@ -25,3 +24,11 @@
   display: inline-block;
 }
 
+.burgerIcon {
+  display: none;
+  font-size: 1.5rem;
+
+  @include media-query($breakpoint-sm) {
+    display: block;
+  }
+}
