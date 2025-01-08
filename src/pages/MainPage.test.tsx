@@ -2,8 +2,6 @@ import { screen, render, fireEvent } from "@testing-library/react";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import "@testing-library/jest-dom";
 import MainPage from "./MainPage";
-// import Header from "../components/Header/Header";
-import ContentsList from "../components/Contents/ContentsList";
 import { mockPosts } from "../__mocks__/redditAPI.mock";
 import { Provider } from "react-redux";
 import { store } from "../redux/store";
@@ -20,8 +18,6 @@ describe("MainPage", () => {
     render(
       <Provider store={store}>
         <MemoryRouter initialEntries={["/"]}>
-        <ContentsList title="Popular" topic="development" />
-          {/* <Header /> */}
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="/topics/:topic" element={<MainPage />} />
