@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 import "./App.scss";
 import NavBar from "./components/NavBar/NavBar";
 import ContentsList from "./components/Contents/ContentsList";
@@ -10,7 +10,22 @@ const App: React.FC = () => {
         <NavBar />
       </header>
       <main>
-        <div className="sidemenu">
+        <div className="sidenav">
+          <h3>Topics</h3>
+          <ul>
+            <li className="">
+              <Link to="/">Latest</Link>
+            </li>
+            <li className="">
+              <Link to="/topics/frontend">Frontend</Link>
+            </li>
+            <li className="">
+              <Link to="/topics/backend">Backend</Link>
+            </li>
+            <li className="">
+              <Link to="/topics/fullstack">FullStack</Link>
+            </li>
+          </ul>
           <ContentsList title="Popular" topic="development" />
           <ContentsList title="Other" topic="game+development" />
         </div>
