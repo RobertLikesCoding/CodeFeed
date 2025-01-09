@@ -12,7 +12,11 @@ describe("Searchbar", () => {
   test("searching should navigate to SearchPage with query in URL", () => {
     render(
       <MemoryRouter>
-        <SearchBar />
+        <SearchBar
+          inputIsVisible={true}
+          setInputIsVisible={jest.fn()}
+          isMobile={false}
+        />
       </MemoryRouter>
     );
 
@@ -26,7 +30,11 @@ describe("Searchbar", () => {
   test("search field should be empty after searching", () => {
     render(
       <MemoryRouter>
-        <SearchBar />
+        <SearchBar
+          inputIsVisible={true}
+          setInputIsVisible={jest.fn()}
+          isMobile={false}
+        />
       </MemoryRouter>
     );
 
