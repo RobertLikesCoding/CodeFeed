@@ -10,7 +10,11 @@ interface PropsType {
   isMobile: boolean;
 }
 
-const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible, isMobile}) => {
+const SearchBar: React.FC<PropsType> = ({
+  inputIsVisible,
+  setInputIsVisible,
+  isMobile,
+}) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const navigate = useNavigate();
 
@@ -34,7 +38,7 @@ const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible, isMo
       {isMobile ? (
         <div className={`${styles.searchBar} flex-center`}>
           {!inputIsVisible && (
-            <div className={`${styles.inputContainer}`}>
+            <div className={`${styles.inputContainer} ${!inputIsVisible && styles.fade}`}>
               <label htmlFor="query" hidden />
               <input
                 type="text"
@@ -52,7 +56,6 @@ const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible, isMo
               />
             </div>
           )}
-
           {/* Toggle icon for mobile view */}
           {inputIsVisible ? (
             <FontAwesomeIcon
@@ -69,41 +72,41 @@ const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible, isMo
           )}
         </div>
       ) : (
-      <div className={`${styles.searchBar} flex-center`}>
-        <div className={`${styles.inputContainer}`}>
-          <label htmlFor="query" hidden />
-          <input
-            type="text"
-            name="query"
-            id="query"
-            placeholder="e.g. 'React'"
-            aria-label="search query"
-            value={searchQuery}
-            onChange={handleChange}
-            onKeyUp={handleKeyUp}
-          />
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className={styles.searchIcon}
-          />
-        </div>
+        <div className={`${styles.searchBar} flex-center`}>
+          <div className={`${styles.inputContainer}`}>
+            <label htmlFor="query" hidden />
+            <input
+              type="text"
+              name="query"
+              id="query"
+              placeholder="e.g. 'React'"
+              aria-label="search query"
+              value={searchQuery}
+              onChange={handleChange}
+              onKeyUp={handleKeyUp}
+            />
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className={styles.searchIcon}
+            />
+          </div>
 
-        {/* Toggle icon for mobile view */}
-        {inputIsVisible ? (
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className={styles.mobileSearchIcon}
-            onClick={toggleInputVisibility}
-            data-testid="mobile-search-toggle"
-          />
-        ) : (
-          <FontAwesomeIcon
-            icon={faXmark}
-            className={styles.mobileSearchIcon}
-            onClick={toggleInputVisibility}
-          />
-        )}
-      </div>
+          {/* Toggle icon for mobile view */}
+          {inputIsVisible ? (
+            <FontAwesomeIcon
+              icon={faMagnifyingGlass}
+              className={styles.mobileSearchIcon}
+              onClick={toggleInputVisibility}
+              data-testid="mobile-search-toggle"
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faXmark}
+              className={styles.mobileSearchIcon}
+              onClick={toggleInputVisibility}
+            />
+          )}
+        </div>
       )}
     </>
   );
