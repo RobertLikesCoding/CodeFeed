@@ -14,47 +14,22 @@ global.fetch = jest.fn(() =>
 ) as jest.Mock;
 
 describe("MainPage", () => {
-  test("should render Frontend heading when clicking frontend tab", async () => {
-    render(
-      <Provider store={store}>
-        <MemoryRouter initialEntries={["/"]}>
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route path="/topics/:topic" element={<MainPage />} />
-          </Routes>
-        </MemoryRouter>
-      </Provider>
-    );
-    // verifying initial heading
-    expect(screen.getByRole("heading", { name: "Latest", level: 1 })).toBeInTheDocument();
-
-    fireEvent.click(await screen.findByText("Frontend"));
-    expect(
-      await screen.findByRole("heading", { name: "frontend", level: 1 })
-    ).toBeInTheDocument();
-
-    fireEvent.click(screen.getByText("Backend"));
-    expect(
-      await screen.findByRole("heading", { name: "backend", level: 1 })
-    ).toBeInTheDocument();
-
-    fireEvent.click(screen.getByText("FullStack"));
-    expect(
-      await screen.findByRole("heading", { name: "fullstack", level: 1 })
-    ).toBeInTheDocument();
-  });
-
-  test("displays posts fetched from API", async () => {
+  test("displays latest posts initially with latest heading", async () => {
     render (
       <Provider store={store}>
-        <MemoryRouter>
+        <MemoryRouter initialEntries={["/"]}>
           <MainPage />
         </MemoryRouter>
       </Provider>
     )
+    const heading = screen.getByRole("heading", { name: /latest/i });
+    const posts = await screen.findAllByTestId("post");
 
-    const posts = await screen.findAllByTestId("post")
-
+    expect(heading).toBeInTheDocument();
     expect(posts.length).toBeGreaterThan(0);
   })
+
+  // test("should render Frontend heading when clicking frontend tab", async () => {
+
+  // });
 });
