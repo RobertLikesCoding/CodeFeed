@@ -19,15 +19,17 @@ const ContentItem = ({ item }: Props) => {
 
   return (
     <>
-      <div data-testid="subreddit" onClick={handleClickSubreddit}>
-        {item.data.icon_img ? (
-          <img
-            src={item.data.icon_img}
-            alt={`subreddit icon of ${item.data.display_name}`}
-          />
-        ) : null}
-        <p>r/{item.data.display_name}</p>
-      </div>
+      <ul data-testid="subreddit" onClick={handleClickSubreddit}>
+        <li>
+          {item.data.icon_img ? (
+            <img
+              src={item.data.icon_img}
+              alt={`subreddit icon of ${item.data.display_name}`}
+            />
+          ) : null}
+          <a>r/{item.data.display_name}</a>
+        </li>
+      </ul>
     </>
   );
 };

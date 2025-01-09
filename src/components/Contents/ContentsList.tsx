@@ -25,24 +25,23 @@ const ContentsList = ({ topic, title }: Props) => {
       } finally {
         setIsLoading(false);
       }
-    }
+    };
 
     fetchTopics();
-  },[])
+  }, [topic]);
 
   return (
     <>
-      <h3>{ title }</h3>
+      <h3>{title}</h3>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         content?.map((item, index) => {
-          return <ContentItem key={index} item={item} />
+          return <ContentItem key={index} item={item} />;
         })
-      )
-    }
+      )}
     </>
-  )
-}
+  );
+};
 
 export default ContentsList;

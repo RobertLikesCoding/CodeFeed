@@ -1,0 +1,63 @@
+@use "../../../assets/styles/variables" as *;
+@use "../../../assets/styles/mixins" as *;
+@import "../../../assets/styles/animations";
+
+.searchBar {
+  height: 2rem;
+  max-width: 36rem;
+  position: relative;
+  justify-content: end;
+
+  @include media-query($breakpoint-md) {
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: opacity 1s ease-out;
+
+    &.fade {
+      animation: fade 0.3s;
+    }
+
+    input {
+      border-radius: 4rem;
+      font-size: 1.15rem;
+      height: 100%;
+      width: 100%;
+      padding: 0 1rem 0 2.5rem;
+      background-color: transparent;
+      color: $font-clr;
+      border: 2px solid $font-clr;
+
+      &:focus {
+        outline: none;
+        border-color: $secondary-clr;
+      }
+    }
+
+    .searchIcon {
+      position: absolute;
+      left: 1rem;
+      color: $font-clr;
+      font-size: 1.5rem;
+    }
+  }
+
+  .mobileSearchIcon {
+    display: none;
+    font-size: 1.5rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    @include media-query($breakpoint-md) {
+      display: block;
+    }
+  }
+}

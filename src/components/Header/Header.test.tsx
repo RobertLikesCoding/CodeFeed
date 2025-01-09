@@ -1,21 +1,19 @@
 import { screen, render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import NavBar from "./NavBar";
+import Header from "./Header";
 
-describe("Navbar", () => {
-  test("should show logo, links and searchbar", () => {
+describe("Header", () => {
+  test("should render logo and searchbar", () => {
     render(
       <MemoryRouter>
-        <NavBar />
+        <Header />
       </MemoryRouter>
     );
 
     const logo = screen.getByText("CodeFeed");
-    const links = screen.getAllByRole("listitem");
     const searchBar = screen.getByRole("textbox");
 
     expect(logo).toBeInTheDocument();
-    expect(links.length).toBe(4);
     expect(searchBar).toBeInTheDocument();
   });
 });
