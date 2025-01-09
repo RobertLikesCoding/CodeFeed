@@ -26,6 +26,14 @@ describe("App Integration", () => {
     await waitFor(() => {
       const frontendLink = screen.getByRole("link", { name: /frontend/i });
       expect(frontendLink).toBeInTheDocument();
+      fireEvent.click(frontendLink);
+    });
+
+    waitFor(() => {
+      const frontendHeading = screen.getByRole("heading", {
+        name: /frontend/i,
+      });
+      expect(frontendHeading).toBeInTheDocument();
     });
   });
 });
