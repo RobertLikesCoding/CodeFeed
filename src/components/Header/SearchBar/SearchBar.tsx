@@ -94,6 +94,7 @@ const SearchBar: React.FC<PropsType> = ({inputIsVisible, setInputIsVisible, isMo
             icon={faMagnifyingGlass}
             className={styles.mobileSearchIcon}
             onClick={toggleInputVisibility}
+            data-testid="mobile-search-toggle"
           />
         ) : (
           <FontAwesomeIcon
