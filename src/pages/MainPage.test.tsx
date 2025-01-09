@@ -1,4 +1,4 @@
-import { screen, render, fireEvent } from "@testing-library/react";
+import { screen, render } from "@testing-library/react";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import "@testing-library/jest-dom";
 import MainPage from "./MainPage";
@@ -29,7 +29,21 @@ describe("MainPage", () => {
     expect(posts.length).toBeGreaterThan(0);
   })
 
-  // test("should render Frontend heading when clicking frontend tab", async () => {
+  test("renders Frontend content when navigating to /topics/frontend", async () => {
+    render(
+      <Provider store={store}>
+        <MemoryRouter initialEntries={["/topics/frontend"]}>
+          <Routes>
+            <Route path="/topics/:topic" element={<MainPage />} />
+          </Routes>
+        </MemoryRouter>
+      </Provider>
+    );
 
-  // });
+    const heading = screen.getByRole("heading", { name: /frontend/i, level: 1 });
+    expect(heading).toBeInTheDocument();
+
+    const posts = await screen.findAllByTestId("post");
+    expect(posts.length).toBeGreaterThan(0);
+  });
 });
