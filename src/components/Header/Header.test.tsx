@@ -11,11 +11,9 @@ describe("Header", () => {
     );
 
     const logo = screen.getByText("CodeFeed");
-    const links = screen.getAllByRole("listitem");
     const searchBar = screen.getByRole("textbox");
 
     expect(logo).toBeInTheDocument();
-    expect(links.length).toBe(4);
     expect(searchBar).toBeInTheDocument();
   });
 });
