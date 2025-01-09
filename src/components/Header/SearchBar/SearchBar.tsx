@@ -60,13 +60,13 @@ const SearchBar: React.FC<PropsType> = ({
           {inputIsVisible ? (
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
-              className={styles.mobileSearchIcon}
+              className={`${styles.mobileSearchIcon} ${styles.fade}`}
               onClick={toggleInputVisibility}
             />
           ) : (
             <FontAwesomeIcon
               icon={faXmark}
-              className={styles.mobileSearchIcon}
+              className={`${styles.mobileSearchIcon} ${styles.fade}`}
               onClick={toggleInputVisibility}
             />
           )}

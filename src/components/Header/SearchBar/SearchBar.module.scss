@@ -8,7 +8,7 @@
   position: relative;
   justify-content: end;
 
-  @include media-query($breakpoint-sm) {
+  @include media-query($breakpoint-md) {
     width: 100%;
     gap: 1rem;
   }
@@ -21,7 +21,7 @@
     transition: opacity 1s ease-out;
 
     &.fade {
-      animation: fade 0.5s;
+      animation: fade 0.3s;
     }
 
     input {
@@ -56,7 +56,7 @@
       cursor: pointer;
     }
 
-    @include media-query($breakpoint-sm) {
+    @include media-query($breakpoint-md) {
       display: block;
     }
   }

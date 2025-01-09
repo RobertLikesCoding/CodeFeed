@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
-  const isMobile = useMediaQuery({ maxWidth: "576px" });
+  const isMobile = useMediaQuery({ maxWidth: "768px" });
   const [inputIsVisible, setInputIsVisible] = useState<boolean>(isMobile);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <>
       <nav className={`${styles.header}`}>
-        {inputIsVisible && <span className={styles.logo}>CodeFeed</span>}
+        {inputIsVisible && <span className={`${styles.logo} ${styles.fade}`}>CodeFeed</span>}
         <SearchBar
           inputIsVisible={inputIsVisible}
           setInputIsVisible={setInputIsVisible}

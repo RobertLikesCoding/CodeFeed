@@ -1,5 +1,6 @@
 @use "../../assets/styles/variables" as *;
 @use "../../assets/styles/mixins" as *;
+@import "../../assets/styles/animations";
 
 .header {
   display: grid;
@@ -8,7 +9,7 @@
   align-items: center;
   gap: 1rem;
 
-  @include media-query($breakpoint-sm) {
+  @include media-query($breakpoint-md) {
     display: flex;
     justify-content: space-between;
   }
@@ -22,13 +23,22 @@
   background-clip: text;
   color: transparent;
   display: inline-block;
+  transition: 0.5s ease-in;
+
+  &.fade {
+    animation: fade 0.3s;
+  }
 }
 
 .burgerIcon {
   display: none;
   font-size: 1.5rem;
 
-  @include media-query($breakpoint-sm) {
+  &:hover {
+    cursor: pointer;
+  }
+
+  @include media-query($breakpoint-md) {
     display: block;
   }
 }
