@@ -9,25 +9,33 @@
 
 - App (main component)
   - Header
-    - Categories
-      - Category
+    - Logo
     - SearchBar (search for keywords)
 
-  - Sidebar
-    - Subreddit Lists (list of subreddits)
-      - Subreddits
+  - SideNav
+    (Topics section with 4 main navigation links)
+    - SubredditLists (list of subreddits)
+      - SubredditLink
 
-  - PostList (list of posts)
-    - PostItem (individual post)
-      - UserData (Name, and time since post)
+  - Outlet (React-Router component: rendering page components)
+    - MainPage
+      - PostList (list of posts)
+        - PostItem (individual post)
+          - UserData (Name, and time since post)
+      - InfoBox (holds information about current page)
 
-  - CommentsList
-    - Comment
-      - UserData (Name, and time since post)
+    - SearchPage and SubredditPage will be similar to MainPage but need a seperate component structure
 
-  - InfoBox (information about current Filter or Reddit)
+    - PostDetailsPage
+      - Post details section
+      - CommentsList
+        - Comment
+          - UserData (Name, and time since post)
+      - InfoBox
 
-  - OPTIONAL: SavedPosts (saved posts)
+    - NotFoundPage
+      (handling routing or fetch errors)
+
 
 
 ### 3. Data Flow
@@ -44,7 +52,8 @@
 
 ### 5. Responsive Design
 
-- Use of Flexbox and media queries
+- Use of Grid, Flexbox and media queries
+- Use of ``useMediaQuery`` hook from react-responsive library
 - Mobile-first approach
 
 ### 6. Performance Optimization
@@ -53,9 +62,8 @@
 
 ### 7. Testing Strategy
 
-- Jest for unit tests
+- Jest for unit tests and integration tests
 - React Testing Library for component tests
-- Selenium for end-to-end tests
 
 ### 8. Redux Store Documentation
 

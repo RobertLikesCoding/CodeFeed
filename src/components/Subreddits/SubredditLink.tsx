@@ -8,7 +8,7 @@ interface Props {
   item: Subreddit;
 }
 
-const ContentItem = ({ item }: Props) => {
+const SubredditLink = ({ item }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -34,4 +34,4 @@ const ContentItem = ({ item }: Props) => {
   );
 };
 
-export default ContentItem;
+export default SubredditLink;
