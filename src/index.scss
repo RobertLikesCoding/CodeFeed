@@ -17,9 +17,6 @@ a {
   color: $font-clr;
   text-decoration: none;
 
-  &:hover {
-    cursor: pointer;
-  }
   &:active {
     color: $secondary-clr;
   }
@@ -31,6 +28,10 @@ a {
 ul {
   list-style: none;
   padding: 0;
+}
+
+p {
+  margin: 0;
 }
 
 /* @media (prefers-color-scheme: light) {

@@ -13,15 +13,26 @@
   h3 {
     font-family: var.$primary-font;
     color: var.$secondary-clr;
-    margin: 1rem 0;
   }
 
   ul {
-    margin: 0;
-
     li {
-      padding: 0.25rem;
+      height: 1.75rem;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
       gap: 0.5rem;
+      width: 100%;
+      border-radius: 5px;
+
+      &:hover {
+          background-color: rgba(var.$secondary-clr, 0.1);
+          cursor: pointer;
+      }
+
+      &:active {
+        background-color: rgba(var.$secondary-clr, 0.3);
+      }
     }
   }
 
