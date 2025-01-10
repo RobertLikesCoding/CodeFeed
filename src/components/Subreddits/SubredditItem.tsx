@@ -8,10 +8,9 @@ interface Props {
   item: Subreddit;
 }
 
-const SubredditLink = ({ item }: Props) => {
+const SubredditItem = ({ item }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  console.log(item.data.primary_color);
 
   async function handleClickSubreddit() {
     await dispatch(fetchSubredditPostsThunk(item.data.display_name));
@@ -38,4 +37,4 @@ const SubredditLink = ({ item }: Props) => {
   );
 };
 
-export default SubredditLink;
+export default SubredditItem;

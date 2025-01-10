@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import SubredditLink from "./SubredditLink";
+import SubredditItem from "./SubredditItem";
 import { fetchSubreddits } from "../services/api/redditAPI";
 import { Subreddit } from "../services/api/redditAPI";
 
@@ -38,7 +38,7 @@ const SubredditsList = ({ topic, title }: Props) => {
       ) : (
         <ul>
           {content?.map((item, index) => {
-            return <SubredditLink key={index} item={item} />;
+            return <SubredditItem key={index} item={item} />;
           })}
         </ul>
       )}
