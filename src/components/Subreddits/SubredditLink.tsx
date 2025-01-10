@@ -18,19 +18,21 @@ const SubredditLink = ({ item }: Props) => {
   }
 
   return (
-    <>
-      <ul data-testid="subreddit" onClick={handleClickSubreddit}>
-        <li>
-          {item.data.icon_img ? (
-            <img
-              src={item.data.icon_img}
-              alt={`subreddit icon of ${item.data.display_name}`}
-            />
-          ) : null}
-          <a>r/{item.data.display_name}</a>
-        </li>
-      </ul>
-    </>
+    <li
+      data-testid="subreddit"
+      onClick={handleClickSubreddit}
+      className="flex align-center"
+    >
+      {item.data.icon_img ? (
+        <img
+          src={item.data.icon_img}
+          alt={`subreddit icon of ${item.data.display_name}`}
+        />
+      ) :
+      <span className="flex-center">r/</span>
+      }
+      <a>r/{item.data.display_name}</a>
+    </li>
   );
 };
 

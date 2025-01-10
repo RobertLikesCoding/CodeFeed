@@ -4,7 +4,7 @@
 
 .header {
   display: grid;
-  height: 4.5rem;
+  height: 6rem;
   grid-template-columns: 3fr 6fr 3fr;
   align-items: center;
   gap: 1rem;
@@ -23,7 +23,7 @@
   background-clip: text;
   color: transparent;
   display: inline-block;
-  transition: 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
 
   &.fade {
     animation: fade 0.3s;

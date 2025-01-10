@@ -36,9 +36,11 @@ const SubredditsList = ({ topic, title }: Props) => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        content?.map((item, index) => {
-          return <SubredditLink key={index} item={item} />;
-        })
+        <ul>
+          {content?.map((item, index) => {
+            return <SubredditLink key={index} item={item} />;
+          })}
+        </ul>
       )}
     </>
   );
