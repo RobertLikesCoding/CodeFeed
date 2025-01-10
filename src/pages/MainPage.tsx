@@ -38,7 +38,7 @@ const MainPage = () => {
           )}
       </section>
       <InfoBox topic={topic ? topic : "web development"} />
-    </div>
+    </div >
   );
 };
 

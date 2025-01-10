@@ -5,7 +5,7 @@ import { Subreddit } from "../services/api/redditAPI";
 
 interface Props {
   title: string;
-  topic: string;
+  topic: string | null;
 }
 
 const SubredditsList = ({ topic, title }: Props) => {
