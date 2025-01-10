@@ -1,5 +1,5 @@
-@use "../../assets/styles/variables" as *;
-@use "../../assets/styles/mixins" as *;
+@use "../../assets/styles/variables" as var;
+@use "../../assets/styles/mixins" as mixin;
 @use "../../assets/styles/animations";
 
 .header {
@@ -9,7 +9,7 @@
   align-items: center;
   gap: 1rem;
 
-  @include media-query($breakpoint-md) {
+  @include mixin.media-query(var.$breakpoint-md) {
     display: flex;
     justify-content: space-between;
   }
@@ -19,7 +19,7 @@
   font-size: 2.75rem;
   font-weight: bolder;
   font-family: Poppins, sans-serif;
-  background: $highlight-clr;
+  background: var.$highlight-clr;
   background-clip: text;
   color: transparent;
   display: inline-block;
@@ -38,7 +38,7 @@
     cursor: pointer;
   }
 
-  @include media-query($breakpoint-md) {
+  @include mixin.media-query(var.$breakpoint-md) {
     display: block;
   }
 }

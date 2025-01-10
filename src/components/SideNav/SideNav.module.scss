@@ -1,0 +1,14 @@
+@use "../../assets/styles/variables" as var;
+@use "../../assets/styles/mixins" as mixin;
+
+.sidenav {
+  background-color: var.$primary-clr;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: var.$shadow-sm;
+
+  h3 {
+    color: var.$secondary-clr;
+    font-family: var.$secondary-font;
+  }
+}
