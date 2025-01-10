@@ -20,7 +20,7 @@ const SideNav: React.FC = () => {
           <Link to="/topics/fullstack">FullStack</Link>
         </li>
       </ul>
-      <SubredditsList title="Popular" topic="development" />
+      <SubredditsList title="Popular" topic="frontend" />
       <SubredditsList title="Other" topic="game+development" />
     </div>
   );

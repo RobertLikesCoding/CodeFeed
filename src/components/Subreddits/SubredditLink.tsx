@@ -11,6 +11,7 @@ interface Props {
 const SubredditLink = ({ item }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  console.log(item.data.primary_color);
 
   async function handleClickSubreddit() {
     await dispatch(fetchSubredditPostsThunk(item.data.display_name));
@@ -25,7 +26,12 @@ const SubredditLink = ({ item }: Props) => {
           alt={`subreddit icon of ${item.data.display_name}`}
         />
       ) : (
-        <span className="flex-center">r/</span>
+        <span
+          className="flex-center"
+          style={{ backgroundColor: item.data.primary_color || "#FFF" }}
+        >
+          r/
+        </span>
       )}
       <p>r/{item.data.display_name}</p>
     </li>
