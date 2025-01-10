@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ContentsList from "../Contents/ContentsList";
+import SubredditsList from "../Subreddits/SubredditsList";
 
 const SideNav: React.FC = () => {
   return (
@@ -19,8 +19,8 @@ const SideNav: React.FC = () => {
               <Link to="/topics/fullstack">FullStack</Link>
             </li>
           </ul>
-          <ContentsList title="Popular" topic="development" />
-          <ContentsList title="Other" topic="game+development" />
+          <SubredditsList title="Popular" topic="development" />
+          <SubredditsList title="Other" topic="game+development" />
         </div>
   )
 }
