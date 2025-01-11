@@ -28,4 +28,18 @@ describe("SubredditsList", () => {
     expect(header).toBeInTheDocument();
     expect(subredditItems.length).toBeGreaterThan(1);
   });
+
+  test("should render loading message when fetching data", async () => {
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <SubredditsList topic={"games"} title={"Popular"} />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    const loadingMessage = await screen.findByText("Loading...");
+
+    expect(loadingMessage).toBeInTheDocument();
+  });
 });
