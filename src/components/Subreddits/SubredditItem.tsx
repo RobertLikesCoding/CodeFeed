@@ -8,7 +8,7 @@ interface Props {
   item: Subreddit;
 }
 
-const SubredditLink = ({ item }: Props) => {
+const SubredditItem = ({ item }: Props) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -18,20 +18,23 @@ const SubredditLink = ({ item }: Props) => {
   }
 
   return (
-    <>
-      <ul data-testid="subreddit" onClick={handleClickSubreddit}>
-        <li>
-          {item.data.icon_img ? (
-            <img
-              src={item.data.icon_img}
-              alt={`subreddit icon of ${item.data.display_name}`}
-            />
-          ) : null}
-          <a>r/{item.data.display_name}</a>
-        </li>
-      </ul>
-    </>
+    <li data-testid="subreddit" onClick={handleClickSubreddit}>
+      {item.data.icon_img ? (
+        <img
+          src={item.data.icon_img}
+          alt={`subreddit icon of ${item.data.display_name}`}
+        />
+      ) : (
+        <span
+          className="flex-center"
+          style={{ backgroundColor: item.data.primary_color || "#FFF" }}
+        >
+          r/
+        </span>
+      )}
+      <p>r/{item.data.display_name}</p>
+    </li>
   );
 };
 
-export default SubredditLink;
+export default SubredditItem;

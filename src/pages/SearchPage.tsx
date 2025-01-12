@@ -13,25 +13,24 @@ const SearchPage = () => {
     const query = queryParams.get("query");
 
     if (query) {
-      setSearchTerm(query)
+      setSearchTerm(query);
       const fetchPosts = async () => {
         const data = await fetchSearchQuery(query);
         setPosts(data);
-      }
+      };
       fetchPosts();
     }
-  }, [location.search])
-
+  }, [location.search]);
 
   return (
-    <>
-      <h1>Search: { searchTerm }</h1>
-      <p>Sort by</p>
+    <div className="flex">
       <section>
+        <h1>Search: {searchTerm}</h1>
+        <p>Sort by</p>
         {posts ? <PostsList posts={posts} /> : <p>No results found</p>}
       </section>
-    </>
-  )
-}
+    </div>
+  );
+};
 
 export default SearchPage;

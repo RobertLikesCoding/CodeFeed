@@ -1,11 +1,6 @@
-@use "./assets/styles/variables" as *;
-
 main {
-  display: flex;
-  justify-content: space-around;
-}
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  // justify-content: space-around;
+  grid-template-columns: 1fr 4fr;
+  gap: 3rem;
 }

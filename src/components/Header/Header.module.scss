@@ -1,15 +1,15 @@
-@use "../../assets/styles/variables" as *;
-@use "../../assets/styles/mixins" as *;
+@use "../../assets/styles/variables" as var;
+@use "../../assets/styles/mixins" as mixin;
 @use "../../assets/styles/animations";
 
 .header {
   display: grid;
-  height: 4.5rem;
+  height: 6rem;
   grid-template-columns: 3fr 6fr 3fr;
   align-items: center;
   gap: 1rem;
 
-  @include media-query($breakpoint-md) {
+  @include mixin.media-query(var.$breakpoint-md) {
     display: flex;
     justify-content: space-between;
   }
@@ -19,11 +19,11 @@
   font-size: 2.75rem;
   font-weight: bolder;
   font-family: Poppins, sans-serif;
-  background: $highlight-clr;
+  background: var.$highlight-clr;
   background-clip: text;
   color: transparent;
   display: inline-block;
-  transition: 0.5s ease-in;
+  transition: opacity 0.5s ease-in;
 
   &.fade {
     animation: fade 0.3s;
@@ -38,7 +38,7 @@
     cursor: pointer;
   }
 
-  @include media-query($breakpoint-md) {
+  @include mixin.media-query(var.$breakpoint-md) {
     display: block;
   }
 }

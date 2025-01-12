@@ -23,7 +23,7 @@ const MainPage = () => {
   }, [dispatch, topic]);
 
   return (
-    <>
+    <div className="flex">
       <section>
         <h1 className="text-3xl font-bold underline">{isValidTopic ? topic : "Latest"}</h1>
         <p>Sort by</p>
@@ -38,7 +38,7 @@ const MainPage = () => {
           )}
       </section>
       <InfoBox topic={topic ? topic : "web development"} />
-    </>
+    </div >
   );
 };
 

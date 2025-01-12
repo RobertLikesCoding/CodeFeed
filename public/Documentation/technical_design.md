@@ -15,7 +15,7 @@
   - SideNav
     (Topics section with 4 main navigation links)
     - SubredditLists (list of subreddits)
-      - SubredditLink
+      - SubredditItem
 
   - Outlet (React-Router component: rendering page components)
     - MainPage

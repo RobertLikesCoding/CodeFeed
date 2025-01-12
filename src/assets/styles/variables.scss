@@ -5,9 +5,18 @@ $highlight-clr: linear-gradient(90deg, #FFD344 30%, #FFFFFF 55%);
 $background-clr: linear-gradient(22deg, rgba(12,18,59,1) 0%, rgba(30,37,85,1) 75%, rgba(46,55,115,1) 100%);
 $font-clr: #F0F0F0;
 
+// SHADOWS
+
+$shadow-sm: -8px 10px 15px rgba(0, 0, 0, 0.5);
+
 // BREAKPOINTS
 
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
 $breakpoint-lg: 1024px;
 $breakpoint-xl: 1280px;
+
+// TYPOGRAPHY
+
+$primary-font: 'Roboto', sans-serif;
+$secondary-font: 'Roboto Slab', serif;
