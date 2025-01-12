@@ -34,7 +34,7 @@ const MainPage = () => {
       ) : hasError ? (
         <p>Error loading posts. Please try again.</p>
       ) : posts?.length !== 0 ? (
-        <PostsList posts={posts} />
+        <PostsList />
       ) : (
         <p>No results found</p>
       )}
