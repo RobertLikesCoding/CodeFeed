@@ -8,13 +8,15 @@ interface Props {
   topic: string | null;
 }
 
-const SubredditsList = ({ topic, title }: Props) => {
+const SubredditsList: React.FC<Props> = ({ topic, title }) => {
   const [content, setContent] = useState<Subreddit[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchTopics = async () => {
       try {
+        setError(false);
         setIsLoading(true);
         if (topic) {
           const data = await fetchSubreddits(topic);
@@ -22,6 +24,7 @@ const SubredditsList = ({ topic, title }: Props) => {
         }
       } catch (error) {
         console.error("Failed to fetch topics: ", error);
+        setError(true);
       } finally {
         setIsLoading(false);
       }
@@ -30,11 +33,15 @@ const SubredditsList = ({ topic, title }: Props) => {
     fetchTopics();
   }, [topic]);
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <>
       <h3>{title}</h3>
-      {isLoading ? (
-        <p>Loading...</p>
+      {error ? (
+        <p>Couldn't find related subreddits.</p>
       ) : (
         <ul>
           {content?.map((item, index) => {

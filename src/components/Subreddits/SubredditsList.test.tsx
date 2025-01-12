@@ -22,7 +22,7 @@ describe("SubredditsList", () => {
       </Provider>
     );
 
-    const header = screen.getByText("Popular");
+    const header = await screen.findByText("Popular");
     const subredditItems = await screen.findAllByTestId("subreddit");
 
     expect(header).toBeInTheDocument();
