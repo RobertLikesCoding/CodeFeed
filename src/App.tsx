@@ -1,9 +1,29 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
+
 import "./App.scss";
 import Header from "./components/Header/Header";
 import SideNav from "./components/SideNav/SideNav";
+import InfoBox from "./components/InfoBox/InfoBox";
 
 const App: React.FC = () => {
+  const { topic } = useParams();
+  const isMobile = useMediaQuery({ maxWidth: "768px" });
+
+  if (isMobile) {
+    return (
+      <>
+        <header>
+          <Header />
+        </header>
+        <main>
+          <InfoBox topic={topic ? topic : "web development"} />
+          <Outlet />
+        </main>
+        <footer></footer>
+      </>
+    )
+  }
 
   return (
     <>
@@ -13,6 +33,7 @@ const App: React.FC = () => {
       <main>
         <SideNav />
         <Outlet />
+        <InfoBox topic={topic ? topic : "web development"} />
       </main>
       <footer></footer>
     </>
