@@ -1,0 +1,9 @@
+@use "../../assets/styles/variables.scss" as var;
+@use "../../assets/styles/mixins.scss" as mixin;
+
+.userInfo {
+  display: flex;
+  gap: 0.5rem;
+  font-family: var.$secondary-font;
+  color: var.$secondary-clr;
+}

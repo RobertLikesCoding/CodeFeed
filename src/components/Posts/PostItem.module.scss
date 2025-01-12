@@ -1,0 +1,43 @@
+@use "../../assets/styles/variables" as var;
+@use "../../assets/styles/mixins" as mixin;
+
+.postContainer {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  border-top: white 2px solid;
+  max-height: 6rem;
+
+  .imgContainer {
+    width: 9rem;
+    height: 7rem;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .content {
+    flex: 4;
+  }
+
+  .postContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    h3 {
+      margin: 0;
+    }
+  }
+
+  // ::before {
+  //   position:absolute;
+  //   width: 100%;
+  //   background: var.$highlight-clr;
+  //   height: 2px;
+  // }
+}
