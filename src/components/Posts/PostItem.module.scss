@@ -5,13 +5,23 @@
   display: flex;
   gap: 0.5rem;
   padding-bottom: 1rem;
-  border-top: white 1px solid;
+  // border-top: white 1px solid;
   min-height: 6rem;
+  position: relative;
+
+  ::before {
+    position:absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var.$highlight-clr;
+    height: 1px;
+  }
 
   .imgContainer {
     width: 8rem;
-    height: 100%;
-    padding: 0.5rem 0;
+    height: 4.5rem;
+    margin: 0.5rem 0;
     border: var.$primary-clr solid 1px;
     border-radius: 8px;
     margin-top: 0.5rem;
@@ -52,12 +62,6 @@
     }
   }
 
-  // ::before {
-  //   position:absolute;
-  //   width: 100%;
-  //   background: var.$highlight-clr;
-  //   height: 2px;
-  // }
 
   @include mixin.media-query(var.$breakpoint-md) {
     .imgContainer {
