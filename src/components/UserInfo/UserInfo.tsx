@@ -1,15 +1,21 @@
 import styles from "./UserInfo.module.scss";
+import SubredditIcon from "../UI/SubredditIcon";
 
 interface UserInfoProps {
-  author: string;
+  author?: string;
   created: number;
+  subreddit?: string;
+  color: string;
 }
 
-const UserInfo: React.FC<UserInfoProps> = ({author, created}) => {
+const UserInfo: React.FC<UserInfoProps> = ({author, created, subreddit, color}) => {
   return (
     <div className={styles.userInfo}>
-      {/* <img src="" alt="" /> */}
-      <p>{author}</p>
+      {subreddit ? (
+        <p>{subreddit}<SubredditIcon color={color} /></p>
+      ) : (
+        <p>{author}</p>
+      )}
       •
       <p>{created} ago</p>
     </div>

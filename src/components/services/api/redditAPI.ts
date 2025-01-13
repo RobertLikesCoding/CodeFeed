@@ -13,6 +13,7 @@ export interface Post {
     public_description: string;
     thumbnail?: string;
     url?: string;
+    link_flair_background_color: string;
   };
 }
 

@@ -34,7 +34,7 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
           </div>
         )}
         <div className={styles.contentContainer}>
-          <UserInfo author={post.author} created={post.created} />
+          <UserInfo subreddit={post.subreddit} created={post.created} color={post.link_flair_background_color} />
           <div className={`${styles.content}`}>
             <h4>{post.title}</h4>
             <div className="flex gap-1">
