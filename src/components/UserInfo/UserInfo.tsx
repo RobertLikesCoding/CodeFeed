@@ -12,7 +12,7 @@ const UserInfo: React.FC<UserInfoProps> = ({author, created, subreddit, color}) 
   return (
     <div className={styles.userInfo}>
       {subreddit ? (
-        <p>{subreddit}<SubredditIcon color={color} /></p>
+        <p className="flex flex-center gap"><SubredditIcon color={color} small={true}/> {subreddit}</p>
       ) : (
         <p>{author}</p>
       )}
