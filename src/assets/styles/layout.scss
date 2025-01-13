@@ -1,5 +1,11 @@
+@use "./variables.scss" as var;
+
 .flex {
   display: flex;
+}
+
+.gap-1 {
+  gap: 1rem;
 }
 
 .align-center {
@@ -15,4 +21,10 @@
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.gradientBorderLine {
+  width: 100%;
+  background: var.$highlight-clr;
+  height: 1px;
 }

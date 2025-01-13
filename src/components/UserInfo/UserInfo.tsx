@@ -1,3 +1,5 @@
+import styles from "./UserInfo.module.scss";
+
 interface UserInfoProps {
   author: string;
   created: number;
@@ -5,10 +7,11 @@ interface UserInfoProps {
 
 const UserInfo: React.FC<UserInfoProps> = ({author, created}) => {
   return (
-    <div>
+    <div className={styles.userInfo}>
       {/* <img src="" alt="" /> */}
       <p>{author}</p>
-      <p>Time since Post: {created}</p>
+      •
+      <p>{created} ago</p>
     </div>
   )
 }
