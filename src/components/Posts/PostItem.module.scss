@@ -41,6 +41,15 @@
       margin: 0;
       // add ellipsis to text when longer than 2 lines
     }
+
+    span {
+      color: var.$secondary-clr;
+    }
+
+    svg {
+      padding-left: 0.5rem;
+
+    }
   }
 
   // ::before {
@@ -61,3 +70,4 @@
     }
   }
 }
+

@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import UserInfo from "../UserInfo/UserInfo";
 import { Post } from "../services/api/redditAPI";
 import styles from "./PostItem.module.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleChevronUp } from "@fortawesome/free-solid-svg-icons";
 
 interface PostProps {
   post: Post["data"];
@@ -34,9 +36,9 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
         <UserInfo author={post.author} created={post.created} />
         <div className={`${styles.content}`}>
           <h4>{post.title}</h4>
-          <div>
-            <i>{post.ups} upvotes</i>
-            <i>{post.num_comments} comments</i>
+          <div className="flex gap-1">
+            <span className="upvote">{post.ups}<FontAwesomeIcon icon={faCircleChevronUp} /> </span>
+            <span>{post.num_comments} comments</span>
           </div>
         </div>
       </div>
