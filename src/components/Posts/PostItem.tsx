@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import UserInfo from "../UserInfo/UserInfo";
 import { Post } from "../services/api/redditAPI";
-import placeHolderImage from "../../assets/placeholder_thumbnail.jpg";
 import styles from "./PostItem.module.scss";
 
 interface PostProps {
@@ -10,6 +9,7 @@ interface PostProps {
 
 const PostItem: React.FC<PostProps> = ({ post }) => {
   const navigate = useNavigate();
+  console.log(post.thumbnail);
 
   async function handleClickPost() {
     if (post.subreddit && post.id) {
@@ -25,12 +25,11 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
       onClick={handleClickPost}
       className={`${styles.postContainer}`}
     >
-      <div className={styles.imgContainer}>
-        <img
-          src={post.thumbnail === "" ? placeHolderImage : post.thumbnail}
-          alt="thumbnail of post."
-        />
-      </div>
+      {post.thumbnail === "self" ? null : (
+        <div className={styles.imgContainer}>
+          <img src={post.thumbnail} alt="thumbnail of post." />
+        </div>
+      )}
       <div className={styles.contentContainer}>
         <UserInfo author={post.author} created={post.created} />
         <div className={`${styles.content}`}>
