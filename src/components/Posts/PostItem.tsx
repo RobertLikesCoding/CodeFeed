@@ -31,9 +31,9 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
           alt="thumbnail of post."
         />
       </div>
-      <div className={styles.content}>
+      <div className={styles.contentContainer}>
         <UserInfo author={post.author} created={post.created} />
-        <div className={`${styles.postContent}`}>
+        <div className={`${styles.content}`}>
           <h4>{post.title}</h4>
           <div>
             <i>{post.ups} upvotes</i>
