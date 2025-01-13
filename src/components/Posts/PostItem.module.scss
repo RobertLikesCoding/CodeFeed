@@ -5,7 +5,7 @@
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
-  border-top: white 2px solid;
+  border-top: white 1px solid;
   max-height: 6rem;
 
   .imgContainer {
@@ -28,9 +28,16 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 0.5rem;
+    text-overflow: clip;
 
-    h3 {
+    h4 {
       margin: 0;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2; /* Limit to 2 lines */
+      line-clamp: 2;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 
@@ -40,4 +47,15 @@
   //   background: var.$highlight-clr;
   //   height: 2px;
   // }
+
+  @include mixin.media-query(var.$breakpoint-md) {
+    .imgContainer {
+      width: 7rem;
+      height: 7rem;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
 }

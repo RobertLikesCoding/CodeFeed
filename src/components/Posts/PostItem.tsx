@@ -34,7 +34,7 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
       <div className={styles.content}>
         <UserInfo author={post.author} created={post.created} />
         <div className={`${styles.postContent}`}>
-          <h3>{post.title}</h3>
+          <h4>{post.title}</h4>
           <div>
             <i>{post.ups} upvotes</i>
             <i>{post.num_comments} comments</i>

@@ -11,7 +11,7 @@ const UserInfo: React.FC<UserInfoProps> = ({author, created}) => {
       {/* <img src="" alt="" /> */}
       <p>{author}</p>
       •
-      <p>posted {created} days ago</p>
+      <p>{created} ago</p>
     </div>
   )
 }
