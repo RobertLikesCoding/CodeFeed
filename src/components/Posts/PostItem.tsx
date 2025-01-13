@@ -11,7 +11,6 @@ interface PostProps {
 
 const PostItem: React.FC<PostProps> = ({ post }) => {
   const navigate = useNavigate();
-  console.log(post.thumbnail);
 
   async function handleClickPost() {
     if (post.subreddit && post.id) {
