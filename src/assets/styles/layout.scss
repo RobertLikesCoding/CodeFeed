@@ -1,3 +1,5 @@
+@use "./variables.scss" as var;
+
 .flex {
   display: flex;
 }
@@ -19,4 +21,10 @@
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.gradientBorderLine {
+  width: 100%;
+  background: var.$highlight-clr;
+  height: 1px;
 }

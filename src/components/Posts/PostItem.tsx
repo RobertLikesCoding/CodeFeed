@@ -22,27 +22,33 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
   }
 
   return (
-    <div
-      data-testid="post"
-      onClick={handleClickPost}
-      className={`${styles.postContainer}`}
-    >
-      {post.thumbnail === "self" ? null : (
-        <div className={styles.imgContainer}>
-          <img src={post.thumbnail} alt="thumbnail of post." />
-        </div>
-      )}
-      <div className={styles.contentContainer}>
-        <UserInfo author={post.author} created={post.created} />
-        <div className={`${styles.content}`}>
-          <h4>{post.title}</h4>
-          <div className="flex gap-1">
-            <span className="upvote">{post.ups}<FontAwesomeIcon icon={faCircleChevronUp} /> </span>
-            <span>{post.num_comments} comments</span>
+    <>
+      <div className="gradientBorderLine"></div>
+      <div
+        data-testid="post"
+        onClick={handleClickPost}
+        className={`${styles.postContainer}`}
+      >
+        {post.thumbnail === "self" ? null : (
+          <div className={styles.imgContainer}>
+            <img src={post.thumbnail} alt="thumbnail of post." />
+          </div>
+        )}
+        <div className={styles.contentContainer}>
+          <UserInfo author={post.author} created={post.created} />
+          <div className={`${styles.content}`}>
+            <h4>{post.title}</h4>
+            <div className="flex gap-1">
+              <span className="upvote">
+                {post.ups}
+                <FontAwesomeIcon icon={faCircleChevronUp} />{" "}
+              </span>
+              <span>{post.num_comments} comments</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
