@@ -1,6 +1,6 @@
 import { screen, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import InfoBox from "./InfoBox";
+import PageInfo from "./PageInfo";
 import { mockSubreddits } from "../../__mocks__/redditAPI.mock";
 
 global.fetch = jest.fn(() =>
@@ -10,9 +10,9 @@ global.fetch = jest.fn(() =>
   })
 ) as jest.Mock;
 
-describe("InfoBox", () => {
+describe("PageInfo", () => {
   test("should render list of 5 subreddits", async () => {
-    render(<InfoBox topic={"frontend"} />);
+    render(<PageInfo topic={"frontend"} />);
 
     const subreddits = await screen.findAllByRole("listitem");
 
@@ -27,7 +27,7 @@ describe("InfoBox", () => {
       })
     ) as jest.Mock;
 
-    render(<InfoBox topic={"frontend"} />);
+    render(<PageInfo topic={"frontend"} />);
 
     const notice = await screen.findByText("No subreddits found for this topic.");
 

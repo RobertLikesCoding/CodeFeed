@@ -3,7 +3,7 @@ import { AppDispatch, RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import PostsList from "../components/Posts/PostsList";
-import InfoBox from "../components/InfoBox/InfoBox";
+import PageInfo from "../components/PageInfo/PageInfo";
 import { fetchSubredditPostsThunk } from "../redux/querySearch/postsSlice";
 
 const SubredditPage: React.FC = () => {
@@ -32,7 +32,7 @@ const SubredditPage: React.FC = () => {
             <p>No results found</p>
           )}
       </section>
-      <InfoBox subreddit={subreddit} />
+      <PageInfo subreddit={subreddit} />
     </div>
   );
 }

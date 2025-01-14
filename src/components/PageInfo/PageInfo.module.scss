@@ -1,0 +1,42 @@
+@use "../../assets/styles/variables.scss" as var;
+@use "../../assets/styles/mixins.scss" as mixin;
+
+.sidenav {
+  background-color: var.$primary-clr;
+  padding: 0 1rem;
+  border-radius: 5px;
+  box-shadow: var.$shadow-sm;
+  font-family: var.$secondary-font;
+  height: fit-content;
+  padding-bottom: 1rem;
+
+  h3 {
+    font-family: var.$primary-font;
+    color: var.$secondary-clr;
+  }
+
+  ul {
+    li {
+      height: 1.75rem;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      gap: 0.5rem;
+      border-radius: 5px;
+
+      &:hover {
+        background-color: rgba(var.$secondary-clr, 0.1);
+        cursor: pointer;
+      }
+
+      &:active {
+        background-color: rgba(var.$secondary-clr, 0.3);
+      }
+    }
+  }
+
+  img {
+    width: 2rem;
+    border-radius: 1rem;
+  }
+}

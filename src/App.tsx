@@ -4,7 +4,7 @@ import { useMediaQuery } from "react-responsive";
 import "./App.scss";
 import Header from "./components/Header/Header";
 import SideNav from "./components/SideNav/SideNav";
-import InfoBox from "./components/InfoBox/InfoBox";
+import PageInfo from "./components/PageInfo/PageInfo";
 
 const App: React.FC = () => {
   const { topic } = useParams();
@@ -17,7 +17,7 @@ const App: React.FC = () => {
           <Header />
         </header>
         <main>
-          <InfoBox topic={topic ? topic : "web development"} />
+          <PageInfo topic={topic ? topic : "web development"} />
           <Outlet />
         </main>
         <footer></footer>
@@ -33,7 +33,7 @@ const App: React.FC = () => {
       <main>
         <SideNav />
         <Outlet />
-        <InfoBox topic={topic ? topic : "web development"} />
+        <PageInfo topic={topic ? topic : "web development"} />
       </main>
       <footer></footer>
     </>

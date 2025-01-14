@@ -5,17 +5,19 @@ import {
   fetchSubreddits,
   fetchSubredditInfo,
 } from "../services/api/redditAPI";
+import styles from "../SideNav/SideNav.module.scss"
+
 interface Props {
   topic?: string | undefined;
   subreddit?: string | undefined;
 }
 
-const InfoBox: React.FC<Props> = ({ topic, subreddit }) => {
+const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
   const [popularSubreddits, setPopularSubreddits] = useState<Subreddit[]>([]);
   const [aboutSubreddit, setAboutSubreddit] = useState<SubredditAbout | null>(null);
 
   useEffect(() => {
-    const fetchInfoBoxData = async () => {
+    const fetchPageInfo = async () => {
       try {
         if (topic) {
           const data = await fetchSubreddits(topic);
@@ -31,7 +33,7 @@ const InfoBox: React.FC<Props> = ({ topic, subreddit }) => {
       }
     };
 
-    fetchInfoBoxData();
+    fetchPageInfo();
   }, [topic, subreddit]);
 
   if (aboutSubreddit) {
@@ -47,8 +49,8 @@ const InfoBox: React.FC<Props> = ({ topic, subreddit }) => {
 
   if (topic) {
     return (
-      <aside>
-        <h3>{topic}</h3>
+      <aside className={styles.sidenav}>
+        <h3>Communities</h3>
         <p>Most popular related subreddits:</p>
         {popularSubreddits.length === 0 ? (
           <p>No subreddits found for this topic.</p>
@@ -74,4 +76,4 @@ const InfoBox: React.FC<Props> = ({ topic, subreddit }) => {
   );
 };
 
-export default InfoBox;
+export default PageInfo;

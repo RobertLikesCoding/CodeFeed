@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import CommentsList from "../components/Comments/CommentsList";
 import { parseBodyHTML } from "../helpers/helpers";
-import InfoBox from "../components/InfoBox/InfoBox";
+import PageInfo from "../components/PageInfo/PageInfo";
 
 const PostDetailsPage: React.FC = () => {
   const { subreddit, postId } = useParams();
@@ -56,7 +56,7 @@ const PostDetailsPage: React.FC = () => {
         ) : (
           <p>Couldn't find post data. Please reload the page.</p>
         )}
-        <InfoBox topic={subreddit} />
+        <PageInfo topic={subreddit} />
       </section>
     </>
   );

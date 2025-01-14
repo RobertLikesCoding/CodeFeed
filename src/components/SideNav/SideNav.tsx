@@ -1,11 +1,8 @@
 import { Link } from "react-router-dom";
 import SubredditsList from "../Subreddits/SubredditsList";
 import styles from "../SideNav/SideNav.module.scss";
-import { useParams } from "react-router-dom";
 
 const SideNav: React.FC = () => {
-  const { topic } = useParams<string>();
-
   return (
     <div className={styles.sidenav}>
       <h3>Topics</h3>
@@ -23,8 +20,8 @@ const SideNav: React.FC = () => {
           <Link to="/topics/fullstack">Fullstack</Link>
         </li>
       </ul>
-      <SubredditsList title="Popular" topic={topic ? topic : "development"} />
-      <SubredditsList title="Other" topic="game+development" />
+      <SubredditsList title="Popular" topic="programming development" />
+      <SubredditsList title="Other" topic="javascript typescript ruby" />
     </div>
   );
 };
