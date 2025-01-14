@@ -20,10 +20,10 @@ describe("Subreddit ", () => {
   });
 
   test("should render color from props", () => {
-    render(<SubredditIcon small={false} color="#FFF" />);
+    render(<SubredditIcon small={false} color="#776464" />);
 
     const icon = screen.getByText("r/");
 
-    expect(icon).toHaveStyle("backgroundColor: #FFF")
+    expect(icon).toHaveStyle("backgroundColor: #776464")
   });
 });
