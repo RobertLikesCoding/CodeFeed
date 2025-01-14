@@ -9,4 +9,13 @@
   font-family: var.$secondary-font;
   font-size: 0.75rem;
   color: var.$secondary-clr;
+
+  a {
+    color: var.$secondary-clr;
+  }
+
+  a:hover {
+    color: white;
+    text-decoration: underline;
+  }
 }

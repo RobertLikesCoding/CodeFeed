@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./UserInfo.module.scss";
 import SubredditIcon from "../UI/SubredditIcon";
 import { parseTimestamp } from "../../helpers/helpers";
@@ -9,20 +10,30 @@ interface UserInfoProps {
   color: string;
 }
 
-const UserInfo: React.FC<UserInfoProps> = ({author, created, subreddit, color}) => {
+const UserInfo: React.FC<UserInfoProps> = ({
+  author,
+  created,
+  subreddit,
+  color,
+}) => {
   const timestamp = parseTimestamp(created);
+  console.log(subreddit);
 
   return (
     <div className={styles.userInfo}>
       {subreddit ? (
-        <p className="flex flex-center gap"><SubredditIcon color={color} small={true}/> {subreddit}</p>
+        <>
+          <SubredditIcon color={color} small={true} />
+          <Link to={`/r/${subreddit}`} className="flex flex-center gap">
+            {subreddit}
+          </Link>
+        </>
       ) : (
         <p>{author}</p>
       )}
-      •
-      <p>{timestamp}</p>
+      •<p>{timestamp}</p>
     </div>
-  )
-}
+  );
+};
 
 export default UserInfo;

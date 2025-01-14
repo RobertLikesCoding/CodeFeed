@@ -8,6 +8,10 @@
   min-height: 6rem;
   position: relative;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   .imgContainer {
     width: 8rem;
     height: 4.5rem;

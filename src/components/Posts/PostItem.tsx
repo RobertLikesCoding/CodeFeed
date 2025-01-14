@@ -25,7 +25,6 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
       <div className="gradientBorderLine"></div>
       <div
         data-testid="post"
-        onClick={handleClickPost}
         className={`${styles.postContainer}`}
       >
         {post.thumbnail === "self" ? null : (
@@ -35,7 +34,7 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
         )}
         <div className={styles.contentContainer}>
           <UserInfo subreddit={post.subreddit} created={post.created} color={post.link_flair_background_color} />
-          <div className={`${styles.content}`}>
+          <div className={`${styles.content}`} onClick={handleClickPost}>
             <h4>{post.title}</h4>
             <div className="flex gap-1">
               <span className="upvote">
