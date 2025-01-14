@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import UserInfo from "../UserInfo/UserInfo";
+import InfoHeader from "../InfoHeader/InfoHeader";
 import { Post } from "../services/api/redditAPI";
 import styles from "./PostItem.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,7 +33,7 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
           </div>
         )}
         <div className={styles.contentContainer}>
-          <UserInfo subreddit={post.subreddit} created={post.created} color={post.link_flair_background_color} />
+          <InfoHeader subreddit={post.subreddit} created={post.created} color={post.link_flair_background_color} />
           <div className={`${styles.content}`} onClick={handleClickPost}>
             <h4>{post.title}</h4>
             <div className="flex gap-1">
