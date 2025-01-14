@@ -6,6 +6,7 @@ import {
   fetchSubredditInfo,
 } from "../services/api/redditAPI";
 import styles from "../SideNav/SideNav.module.scss"
+import SubredditsList from "../Subreddits/SubredditsList";
 
 interface Props {
   topic?: string | undefined;
@@ -13,16 +14,12 @@ interface Props {
 }
 
 const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
-  const [popularSubreddits, setPopularSubreddits] = useState<Subreddit[]>([]);
   const [aboutSubreddit, setAboutSubreddit] = useState<SubredditAbout | null>(null);
 
   useEffect(() => {
     const fetchPageInfo = async () => {
       try {
-        if (topic) {
-          const data = await fetchSubreddits(topic);
-          setPopularSubreddits(data);
-        } else if (subreddit) {
+        if (subreddit) {
           const data = await fetchSubredditInfo(subreddit);
           setAboutSubreddit(data);
         } else {
@@ -52,18 +49,10 @@ const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
       <aside className={styles.sidenav}>
         <h3>Communities</h3>
         <p>Most popular related subreddits:</p>
-        {popularSubreddits.length === 0 ? (
-          <p>No subreddits found for this topic.</p>
+        {!topic ? (
+          <i>No subreddits found for this topic.</i>
         ) : (
-          <ul>
-            {popularSubreddits.map((subreddit) => (
-              <li key={subreddit.data.id}>
-                <a href={`https://reddit.com/r/${subreddit.data.display_name}`}>
-                  r/{subreddit.data.display_name}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <SubredditsList title="" topic={topic} />
         )}
       </aside>
     );
