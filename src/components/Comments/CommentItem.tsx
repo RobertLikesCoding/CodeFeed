@@ -1,7 +1,7 @@
 import { Comment } from "../services/api/redditAPI";
 import CommentsList from "./CommentsList";
-import UserInfo from "../UserInfo/UserInfo";
-import { parseBodyHTML } from "../../helpers/parseHtml";
+import InfoHeader from "../InfoHeader/InfoHeader";
+import { parseBodyHTML } from "../../helpers/helpers";
 
 interface Props {
   comment: Comment;
@@ -12,7 +12,7 @@ const CommentItem = ({ comment }: Props) => {
 
   return (
     <div className="comment" data-testid="comment" >
-      <UserInfo author={comment.data.author} created={comment.data.created} />
+      <InfoHeader author={comment.data.author} created={comment.data.created} color=""/>
       <div
         className="comment-body"
         dangerouslySetInnerHTML={{ __html: parseBodyHTML(comment.data.body_html) }}

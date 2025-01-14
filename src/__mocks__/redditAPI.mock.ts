@@ -21,6 +21,7 @@ export const mockPosts: FetchResponse = {
           subreddit_name_prefixed: "r/test",
           subreddit: "test",
           public_description: "This is a test post description 1",
+          link_flair_background_color: "#FFF"
         },
       },
       {
@@ -35,6 +36,7 @@ export const mockPosts: FetchResponse = {
           subreddit_name_prefixed: "r/test2",
           subreddit: "test2",
           public_description: "This is a test post description 2",
+          link_flair_background_color: ""
         },
       },
     ],

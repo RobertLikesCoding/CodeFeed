@@ -1,12 +1,21 @@
 @use "../../assets/styles/variables.scss" as var;
 @use "../../assets/styles/mixins.scss" as mixin;
 
-.userInfo {
+.infoHeader {
   display: flex;
   align-items: center;
-  padding: 0.25rem 0;
+  padding: 0.5rem 0;
   gap: 0.5rem;
   font-family: var.$secondary-font;
   font-size: 0.75rem;
   color: var.$secondary-clr;
+
+  a {
+    color: var.$secondary-clr;
+  }
+
+  a:hover {
+    color: white;
+    text-decoration: underline;
+  }
 }

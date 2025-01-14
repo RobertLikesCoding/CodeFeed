@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import UserInfo from "../UserInfo/UserInfo";
+import InfoHeader from "../InfoHeader/InfoHeader";
 import { Post } from "../services/api/redditAPI";
 import styles from "./PostItem.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -25,7 +25,6 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
       <div className="gradientBorderLine"></div>
       <div
         data-testid="post"
-        onClick={handleClickPost}
         className={`${styles.postContainer}`}
       >
         {post.thumbnail === "self" ? null : (
@@ -34,8 +33,8 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
           </div>
         )}
         <div className={styles.contentContainer}>
-          <UserInfo author={post.author} created={post.created} />
-          <div className={`${styles.content}`}>
+          <InfoHeader subreddit={post.subreddit} created={post.created} color={post.link_flair_background_color} />
+          <div className={`${styles.content}`} onClick={handleClickPost}>
             <h4>{post.title}</h4>
             <div className="flex gap-1">
               <span className="upvote">

@@ -3,6 +3,7 @@ import { AppDispatch } from "../../redux/store";
 import { fetchSubredditPostsThunk } from "../../redux/querySearch/postsSlice";
 import { Subreddit } from "../services/api/redditAPI";
 import { useNavigate } from "react-router-dom";
+import SubredditIcon from "../UI/SubredditIcon";
 
 interface Props {
   item: Subreddit;
@@ -25,12 +26,7 @@ const SubredditItem = ({ item }: Props) => {
           alt={`subreddit icon of ${item.data.display_name}`}
         />
       ) : (
-        <span
-          className="flex-center"
-          style={{ backgroundColor: item.data.primary_color || "#FFF" }}
-        >
-          r/
-        </span>
+        <SubredditIcon color={item.data.primary_color} />
       )}
       <p>r/{item.data.display_name}</p>
     </li>
