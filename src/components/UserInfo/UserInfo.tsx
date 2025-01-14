@@ -1,5 +1,6 @@
 import styles from "./UserInfo.module.scss";
 import SubredditIcon from "../UI/SubredditIcon";
+import { parseTimestamp } from "../../helpers/helpers";
 
 interface UserInfoProps {
   author?: string;
@@ -9,6 +10,8 @@ interface UserInfoProps {
 }
 
 const UserInfo: React.FC<UserInfoProps> = ({author, created, subreddit, color}) => {
+  const timestamp = parseTimestamp(created);
+
   return (
     <div className={styles.userInfo}>
       {subreddit ? (
@@ -17,7 +20,7 @@ const UserInfo: React.FC<UserInfoProps> = ({author, created, subreddit, color}) 
         <p>{author}</p>
       )}
       •
-      <p>{created} ago</p>
+      <p>{timestamp}</p>
     </div>
   )
 }

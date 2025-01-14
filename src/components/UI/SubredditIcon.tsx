@@ -6,8 +6,6 @@ interface Props {
 }
 
 const SubredditIcon: React.FC<Props> = ({ color, small }) => {
-  console.log(color)
-
   return (
     <span
       className={`flex-center ${styles.icon} ${small && styles.small}`}
