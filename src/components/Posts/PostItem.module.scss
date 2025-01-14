@@ -9,6 +9,7 @@
   position: relative;
 
   &:hover {
+    background-color: rgba(var.$secondary-clr, 0.1);
     cursor: pointer;
   }
 
