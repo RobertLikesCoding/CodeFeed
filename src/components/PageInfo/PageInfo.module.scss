@@ -1,42 +1,15 @@
 @use "../../assets/styles/variables.scss" as var;
 @use "../../assets/styles/mixins.scss" as mixin;
+@use "../SideNav/SideNav.module.scss" as sidenav;
 
-.sidenav {
-  background-color: var.$primary-clr;
-  padding: 0 1rem;
-  border-radius: 5px;
-  box-shadow: var.$shadow-sm;
-  font-family: var.$secondary-font;
-  height: fit-content;
-  padding-bottom: 1rem;
+.communities {
+  @extend .sidenav;
+    width: 18rem;
+    max-height: 30rem;
+}
 
-  h3 {
-    font-family: var.$primary-font;
-    color: var.$secondary-clr;
-  }
-
-  ul {
-    li {
-      height: 1.75rem;
-      display: flex;
-      align-items: center;
-      padding: 0.5rem;
-      gap: 0.5rem;
-      border-radius: 5px;
-
-      &:hover {
-        background-color: rgba(var.$secondary-clr, 0.1);
-        cursor: pointer;
-      }
-
-      &:active {
-        background-color: rgba(var.$secondary-clr, 0.3);
-      }
-    }
-  }
-
-  img {
-    width: 2rem;
-    border-radius: 1rem;
-  }
+.about {
+  @extend .sidenav;
+  width: 20rem;
+  max-height: 40rem;
 }
