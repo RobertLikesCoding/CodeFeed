@@ -7,7 +7,14 @@
   box-shadow: var.$shadow-sm;
   font-family: var.$secondary-font;
   height: fit-content;
+  max-height: 51rem;
   padding-bottom: 1rem;
+  width: 16rem;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   h3 {
     font-family: var.$primary-font;
@@ -38,4 +45,11 @@
     width: 2rem;
     border-radius: 1rem;
   }
+
+}
+
+.communities {
+  @extend .sidenav;
+    width: 18rem;
+    max-height: 30rem;
 }

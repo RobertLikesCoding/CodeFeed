@@ -1,11 +1,6 @@
 import { useState, useEffect } from "react";
-import {
-  Subreddit,
-  SubredditAbout,
-  fetchSubreddits,
-  fetchSubredditInfo,
-} from "../services/api/redditAPI";
-import styles from "../SideNav/SideNav.module.scss"
+import { SubredditAbout, fetchSubredditInfo } from "../services/api/redditAPI";
+import styles from "../SideNav/SideNav.module.scss";
 import SubredditsList from "../Subreddits/SubredditsList";
 
 interface Props {
@@ -14,7 +9,9 @@ interface Props {
 }
 
 const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
-  const [aboutSubreddit, setAboutSubreddit] = useState<SubredditAbout | null>(null);
+  const [aboutSubreddit, setAboutSubreddit] = useState<SubredditAbout | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchPageInfo = async () => {
@@ -46,7 +43,7 @@ const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
 
   if (topic) {
     return (
-      <aside className={styles.sidenav}>
+      <aside className={`${styles.communities}`}>
         <h3>Communities</h3>
         <p>Most popular related subreddits:</p>
         {!topic ? (
