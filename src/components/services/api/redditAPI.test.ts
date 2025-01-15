@@ -63,9 +63,9 @@ describe("Reddit API Services", () => {
         Promise.reject("API failure")
       );
       const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
-      const posts = await fetchSubreddits("test");
+      const subreddits = await fetchSubreddits("test");
 
-      expect(posts).toEqual([]);
+      expect(subreddits).toBeNull();
       expect(consoleErrorSpy).toHaveBeenCalledWith(
         "Couldn't fetch Subreddits: ",
         "API failure"
@@ -101,9 +101,9 @@ describe("Reddit API Services", () => {
     describe("Fetch Subreddit Info", () => {
       test("should return an info object for a subreddit", async () => {
         mockFetch({ data: mockSubredditAbout });
-        const subreddit = await fetchSubredditInfo("test");
+        const info = await fetchSubredditInfo("test");
 
-        expect(subreddit).toEqual(mockSubredditAbout);
+        expect(info).toEqual(mockSubredditAbout);
         expect(fetch).toHaveBeenCalledTimes(1);
         expect(fetch).toHaveBeenCalledWith(
           "https://www.reddit.com/r/test/about.json",
@@ -118,9 +118,9 @@ describe("Reddit API Services", () => {
         const consoleErrorSpy = jest
           .spyOn(console, "error")
           .mockImplementation();
-        const subreddit = await fetchSubredditInfo("test");
+        const info = await fetchSubredditInfo("test");
 
-        expect(subreddit).toEqual(null);
+        expect(info).toEqual(null);
         expect(consoleErrorSpy).toHaveBeenCalledWith(
           "Couldn't fetch Subreddit Info: ",
           "API failure"

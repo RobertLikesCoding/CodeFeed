@@ -22,7 +22,7 @@ const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
           const data = await fetchSubredditInfo(subreddit);
           setAboutSubreddit(data);
         } else {
-          return;
+          return setAboutSubreddit(null);
         }
       } catch (error) {
         console.error("Error fetching info box: ", error);
@@ -61,11 +61,7 @@ const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
       <aside className={`${styles.communities}`}>
         <h3>Communities</h3>
         <p>Most popular related subreddits:</p>
-        {!topic ? (
-          <i>No subreddits found for this topic.</i>
-        ) : (
-          <SubredditsList title="" topic={topic} />
-        )}
+        <SubredditsList title="" topic={topic} />
       </aside>
     );
   }

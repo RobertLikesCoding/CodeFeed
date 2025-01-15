@@ -13,6 +13,10 @@ global.fetch = jest.fn(() =>
 ) as jest.Mock;
 
 describe("SubredditsList", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("should render list of subreddits with a title header", async () => {
     render(
       <Provider store={store}>
@@ -41,5 +45,22 @@ describe("SubredditsList", () => {
     const loadingMessage = await screen.findByText("Loading...");
 
     expect(loadingMessage).toBeInTheDocument();
+  });
+
+  test("should render error message when fetching data fails", async () => {
+    (fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.reject("API failure")
+    );
+
+    render(
+      <Provider store={store}>
+        <BrowserRouter>
+          <SubredditsList topic={"games"} title={"Popular"} />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    const errorMessage = await screen.findByText("Couldn't find related subreddits.");
+    expect(errorMessage).toBeInTheDocument();
   });
 });
