@@ -7,10 +7,12 @@
   box-shadow: var.$shadow-sm;
   font-family: var.$secondary-font;
   height: fit-content;
-  max-height: 51rem;
+  max-height: 52rem;
   padding-bottom: 1rem;
   width: 16rem;
   overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(128, 128, 128, 0.459) white;
 
   &::-webkit-scrollbar {
     display: none;
