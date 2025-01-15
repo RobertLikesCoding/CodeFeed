@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { SubredditAbout, fetchSubredditInfo } from "../services/api/redditAPI";
 import styles from "../PageInfo/PageInfo.module.scss";
 import SubredditsList from "../Subreddits/SubredditsList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   topic?: string | undefined;
@@ -35,13 +37,19 @@ const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
         <h3>r/{aboutSubreddit.display_name}</h3>
         <p>{aboutSubreddit.public_description}</p>
         <div className="flex gap-2">
-          <div className="flex-column flex-center">
-            <p>Members:</p>
-            <p>{aboutSubreddit.subscribers}</p>
+          <div className="flex-column">
+            <span>{aboutSubreddit.subscribers}</span>
+            <div className="flex flex-center gap">
+              <FontAwesomeIcon icon={faUserGroup} />
+              <p>Members</p>
+            </div>
           </div>
-          <div className="flex-column flex-center">
-        <p>Online:</p>
-        <p>{aboutSubreddit.active_user_count}</p>
+          <div className="flex-column">
+            <span>{aboutSubreddit.active_user_count}</span>
+            <div className="flex flex-center gap">
+              <div className={styles.online}></div>
+              <p>Online</p>
+            </div>
           </div>
         </div>
       </aside>

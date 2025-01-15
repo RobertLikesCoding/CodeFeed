@@ -6,10 +6,24 @@
   @extend .sidenav;
     width: 18rem;
     max-height: 30rem;
-}
 
-.about {
-  @extend .sidenav;
-  width: 20rem;
-  max-height: 40rem;
+  }
+
+  .about {
+    @extend .sidenav;
+    width: 20rem;
+    max-height: 40rem;
+
+    span {
+      font-family: var.$primary-font;
+      font-weight: bold;
+      font-size: 1.25rem;
+    }
+
+    .online {
+      height: 0.5rem;
+      width: 0.5rem;
+      background-color: greenyellow;
+      border-radius: 5px;
+    }
 }

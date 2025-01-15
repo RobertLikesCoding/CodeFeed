@@ -18,7 +18,7 @@ const SubredditPage: React.FC = () => {
   }, [dispatch, subreddit]);
 
   return (
-    <div className="flex">
+    <>
       <section>
         <h1>{subreddit}</h1>
         <p>Sort by</p>
@@ -33,7 +33,7 @@ const SubredditPage: React.FC = () => {
           )}
       </section>
       <PageInfo subreddit={subreddit} />
-    </div>
+    </>
   );
 }
 
