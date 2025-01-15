@@ -11,13 +11,13 @@ const SideNav: React.FC = () => {
           <Link to="/">Latest</Link>
         </li>
         <li>
-          <Link to="/topics/frontend">Frontend</Link>
+          <Link to="/topics/Frontend">Frontend</Link>
         </li>
         <li>
-          <Link to="/topics/backend">Backend</Link>
+          <Link to="/topics/Backend">Backend</Link>
         </li>
         <li>
-          <Link to="/topics/fullstack">Fullstack</Link>
+          <Link to="/topics/Fullstack">Fullstack</Link>
         </li>
       </ul>
       <SubredditsList title="Popular" topic="programming development" />

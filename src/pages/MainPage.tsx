@@ -9,7 +9,7 @@ import PageInfo from "../components/PageInfo/PageInfo";
 import { fetchPostsThunk } from "../redux/querySearch/postsSlice";
 
 // Validating topics to prevent injection
-const allowedTopics = ["frontend", "backend", "fullstack"];
+const allowedTopics = ["Frontend", "Backend", "Fullstack"];
 
 const MainPage = () => {
   const { topic } = useParams();
