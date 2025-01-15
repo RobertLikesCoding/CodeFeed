@@ -50,7 +50,7 @@ export interface Subreddit {
   };
 }
 
-export async function fetchSubreddits(query: string): Promise<Subreddit[]> {
+export async function fetchSubreddits(query: string): Promise<Subreddit[] | null> {
   try {
     if (query === null || query === "") {
       return [];
@@ -71,7 +71,7 @@ export async function fetchSubreddits(query: string): Promise<Subreddit[]> {
     }
   } catch (error) {
     console.error("Couldn't fetch Subreddits: ", error);
-    return [];
+    return null;
   }
 }
 

@@ -15,19 +15,18 @@ const SubredditsList: React.FC<Props> = ({ topic, title }) => {
 
   useEffect(() => {
     const fetchTopics = async () => {
-      try {
-        setError(false);
-        setIsLoading(true);
-        if (topic) {
-          const data = await fetchSubreddits(topic);
+      setError(false);
+      setIsLoading(true);
+
+      if (topic) {
+        const data = await fetchSubreddits(topic);
+        if (!data) {
+          setError(true);
+        } else {
           setContent(data);
         }
-      } catch (error) {
-        console.error("Failed to fetch topics: ", error);
-        setError(true);
-      } finally {
-        setIsLoading(false);
       }
+      setIsLoading(false);
     };
 
     fetchTopics();

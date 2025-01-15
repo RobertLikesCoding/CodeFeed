@@ -22,7 +22,7 @@
       - PostList (list of posts)
         - PostItem (individual post)
           - UserData (Name, and time since post)
-      - InfoBox (holds information about current page)
+      - PageInfo (holds information about current page)
 
     - SearchPage and SubredditPage will be similar to MainPage but need a seperate component structure
 
@@ -31,7 +31,7 @@
       - CommentsList
         - Comment
           - UserData (Name, and time since post)
-      - InfoBox
+      - PageInfo
 
     - NotFoundPage
       (handling routing or fetch errors)

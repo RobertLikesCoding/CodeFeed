@@ -32,7 +32,7 @@ describe("MainPage", () => {
   test("renders Frontend content when navigating to /topics/frontend", async () => {
     render(
       <Provider store={store}>
-        <MemoryRouter initialEntries={["/topics/frontend"]}>
+        <MemoryRouter initialEntries={["/topics/Frontend"]}>
           <Routes>
             <Route path="/topics/:topic" element={<MainPage />} />
           </Routes>
@@ -40,7 +40,7 @@ describe("MainPage", () => {
       </Provider>
     );
 
-    const heading = screen.getByRole("heading", { name: /frontend/i, level: 1 });
+    const heading = await screen.findByRole("heading", { name: /frontend/i, level: 1 });
     expect(heading).toBeInTheDocument();
 
     const posts = await screen.findAllByTestId("post");

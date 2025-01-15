@@ -23,13 +23,13 @@ const SearchPage = () => {
   }, [location.search]);
 
   return (
-    <div className="flex">
+    <>
       <section>
         <h1>Search: {searchTerm}</h1>
         <p>Sort by</p>
         {posts ? <PostsList /> : <p>No results found</p>}
       </section>
-    </div>
+    </>
   );
 };
 
