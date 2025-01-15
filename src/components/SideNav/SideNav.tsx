@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import SubredditsList from "../Subreddits/SubredditsList";
 import styles from "../SideNav/SideNav.module.scss";
+import { useMediaQuery } from "react-responsive";
 
 const SideNav: React.FC = () => {
+  const isMobile = useMediaQuery({ maxWidth: "768px" });
+
   return (
-    <div className={styles.sidenav}>
+    <div className={isMobile ? styles.sidenavMobile : styles.sidenav} hidden={isMobile}>
       <h3>Topics</h3>
       <ul>
         <li>

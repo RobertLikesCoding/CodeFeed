@@ -48,3 +48,7 @@
     border-radius: 1rem;
   }
 }
+
+.sidenavMobile {
+  @extend .sidenav;
+}

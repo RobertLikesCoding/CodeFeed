@@ -4,9 +4,11 @@
 
 .communities {
   @extend .sidenav;
-    width: 18rem;
-    max-height: 30rem;
+  width: 18rem;
+  max-height: 30rem;
 
+  @include mixin.media-query(var.$breakpoint-md) {
+    width: 15rem;
   }
 
   .about {
@@ -26,4 +28,5 @@
       background-color: greenyellow;
       border-radius: 5px;
     }
+  }
 }
