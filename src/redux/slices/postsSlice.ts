@@ -1,5 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Post, fetchSearchQuery, fetchSubredditPosts } from "../../components/services/api/redditAPI";
+import {
+  Post,
+  fetchSearchQuery,
+  fetchSubredditPosts,
+} from "../../components/services/api/redditAPI";
 
 interface postsState {
   posts: Post[];
@@ -52,7 +56,7 @@ const postsSlice = createSlice({
     },
     setHasError: (state, action: PayloadAction<boolean>) => {
       state.hasError = action.payload;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -67,7 +71,7 @@ const postsSlice = createSlice({
         state.isLoading = false;
         state.hasError = true;
       });
-      builder
+    builder
       .addCase(fetchSubredditPostsThunk.pending, (state) => {
         state.isLoading = true;
       })
@@ -79,7 +83,7 @@ const postsSlice = createSlice({
         state.isLoading = false;
         state.hasError = true;
       });
-  }
+  },
 });
 
 export default postsSlice.reducer;

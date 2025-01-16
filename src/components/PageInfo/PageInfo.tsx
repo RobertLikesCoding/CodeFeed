@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { SubredditAbout, fetchSubredditInfo } from "../services/api/redditAPI";
+import { SubredditDetails, fetchSubredditDetails } from "../services/api/redditAPI";
 import styles from "../PageInfo/PageInfo.module.scss";
 import SubredditsList from "../Subreddits/SubredditsList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,7 +11,7 @@ interface Props {
 }
 
 const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
-  const [aboutSubreddit, setAboutSubreddit] = useState<SubredditAbout | null>(
+  const [aboutSubreddit, setAboutSubreddit] = useState<SubredditDetails | null>(
     null
   );
 
@@ -19,7 +19,7 @@ const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
     const fetchPageInfo = async () => {
       try {
         if (subreddit) {
-          const data = await fetchSubredditInfo(subreddit);
+          const data = await fetchSubredditDetails(subreddit);
           setAboutSubreddit(data);
         } else {
           return setAboutSubreddit(null);
@@ -68,7 +68,7 @@ const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
 
   return (
     <aside>
-      <p>Please provide a topic or subreddit to fetch data.</p>
+      <p>No data found.</p>
     </aside>
   );
 };

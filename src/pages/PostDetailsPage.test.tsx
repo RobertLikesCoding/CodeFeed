@@ -4,7 +4,7 @@ import { MemoryRouter, Routes, Route } from "react-router-dom";
 import { store } from "../redux/store";
 import PostDetailsPage from "./PostDetailsPage";
 import { configureStore } from "@reduxjs/toolkit";
-import postDetailsReducer from "../redux/querySearch/postDetailsSlice";
+import postDetailsReducer from "../redux/slices/postDetailsSlice";
 import { mockPostDetails, mockComments } from "../__mocks__/redditAPI.mock";
 
 describe("PostDetailsPage", () => {

@@ -98,7 +98,7 @@ export async function fetchSubredditPosts(query: string): Promise<Post[]> {
   }
 }
 
-export interface SubredditAbout {
+export interface SubredditDetails {
   display_name: string;
   title: string;
   public_description: string;
@@ -106,9 +106,9 @@ export interface SubredditAbout {
   subscribers: number;
 }
 
-export async function fetchSubredditInfo(
+export async function fetchSubredditDetails(
   query: string
-): Promise<SubredditAbout | null> {
+): Promise<SubredditDetails | null> {
   try {
     if (query === null || query === "") {
       return null;
@@ -121,7 +121,7 @@ export async function fetchSubredditInfo(
     );
     if (response.ok) {
       const result = await response.json();
-      return result.data as SubredditAbout;
+      return result.data as SubredditDetails;
     } else {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

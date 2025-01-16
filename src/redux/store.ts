@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import querySearchReducer from "./querySearch/postsSlice";
-import postDetailsReducer from "./querySearch/postDetailsSlice";
+import querySearchReducer from "./slices/postsSlice";
+import postDetailsReducer from "./slices/postDetailsSlice";
 
 export const store = configureStore({
   reducer: {

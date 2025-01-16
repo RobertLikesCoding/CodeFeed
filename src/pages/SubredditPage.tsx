@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import PostsList from "../components/Posts/PostsList";
 import PageInfo from "../components/PageInfo/PageInfo";
-import { fetchSubredditPostsThunk } from "../redux/querySearch/postsSlice";
+import { fetchSubredditPostsThunk } from "../redux/slices/postsSlice";
 
 const SubredditPage: React.FC = () => {
   const { subreddit } = useParams();
