@@ -35,13 +35,13 @@ const MainPage = () => {
         </h1>
         <p>Sort by</p>
         {isLoading ? (
-          <p>Loading...</p>
+          <p style={{ textAlign: "center" }}>Loading...</p>
         ) : hasError ? (
           <p>Error loading posts. Please try again.</p>
-        ) : posts?.length !== 0 ? (
-          <PostsList />
+        ) : posts.length !== 0 ? (
+          <PostsList posts={posts} />
         ) : (
-          <p>No results found</p>
+          <p style={{ textAlign: "center" }}>No results found</p>
         )}
       </section>
       <PageInfo topic={topic ? topic : "web development"} />
