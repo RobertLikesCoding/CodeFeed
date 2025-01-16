@@ -48,7 +48,7 @@ const postsSlice = createSlice({
   name: "fetchPosts",
   initialState,
   reducers: {
-    setPosts: (state, action) => {
+    setPosts: (state, action: PayloadAction<Post[]>) => {
       state.posts = action.payload;
     },
     setIsLoading: (state, action: PayloadAction<boolean>) => {
