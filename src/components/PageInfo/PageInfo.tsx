@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
-import styles from "../PageInfo/PageInfo.module.scss";
+import styles from "./PageInfo.module.scss";
 import SubredditsList from "../Subreddits/SubredditsList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
@@ -26,7 +26,7 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
   }
 
   if (subredditDetails) {
-    const subredditDescription = parseBodyHTML(subredditDetails.description_html);
+    const subredditDescription = parseBodyHTML(subredditDetails.public_description_html);
 
     return (
       <aside className={`${styles.about} flex-column gap-1`}>
