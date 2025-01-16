@@ -12,7 +12,15 @@ interface Props {
 }
 
 const PageInfo: React.FC<Props> = ({ topic }) => {
-  const subredditDetails = useSelector((state: RootState) => state.subredditDetails.details)
+  const subredditDetails = useSelector(
+    (state: RootState) => state.subredditDetails.details
+  );
+  const isLoading = useSelector(
+    (state: RootState) => state.subredditDetails.isLoading
+  );
+  const hasError = useSelector(
+    (state: RootState) => state.subredditDetails.hasError
+  );
 
   if (topic) {
     return (
@@ -25,29 +33,45 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
   }
 
   if (subredditDetails) {
-    const subredditDescription = parseBodyHTML(subredditDetails.public_description_html);
+    const subredditDescription = parseBodyHTML(
+      subredditDetails.public_description_html
+    );
 
     return (
-      <aside className={`${styles.about} flex-column gap-1`}>
-        <h3>r/{subredditDetails.display_name}</h3>
-        <div dangerouslySetInnerHTML={{__html: subredditDescription}}></div>
-        <div className="flex gap-2">
-          <div className="flex-column">
-            <span>{subredditDetails.subscribers}</span>
-            <div className="flex flex-center gap">
-              <FontAwesomeIcon icon={faUserGroup} />
-              <p>Members</p>
+      <>
+        {isLoading ? (
+          <aside className={`${styles.about} flex-center gap-1`}>
+            <p>Loading </p>
+          </aside>
+        ) : hasError ? (
+          <aside className={`${styles.about} flex-center gap-1`}>
+            <p>Error loading subreddit details. Try reloading the page.</p>
+          </aside>
+        ) : (
+          <aside className={`${styles.about} flex-column gap-1`}>
+            <h3>r/{subredditDetails.display_name}</h3>
+            <div
+              dangerouslySetInnerHTML={{ __html: subredditDescription }}
+            ></div>
+            <div className="flex gap-2">
+              <div className="flex-column">
+                <span>{subredditDetails.subscribers}</span>
+                <div className="flex flex-center gap">
+                  <FontAwesomeIcon icon={faUserGroup} />
+                  <p>Members</p>
+                </div>
+              </div>
+              <div className="flex-column">
+                <span>{subredditDetails.active_user_count}</span>
+                <div className="flex flex-center gap">
+                  <div className={styles.online}></div>
+                  <p>Online</p>
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="flex-column">
-            <span>{subredditDetails.active_user_count}</span>
-            <div className="flex flex-center gap">
-              <div className={styles.online}></div>
-              <p>Online</p>
-            </div>
-          </div>
-        </div>
-      </aside>
+          </aside>
+        )}
+      </>
     );
   }
 

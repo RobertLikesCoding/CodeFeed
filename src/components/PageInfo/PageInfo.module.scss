@@ -15,6 +15,7 @@
 .about {
   @extend .sidenav;
   width: 20rem;
+  min-height: 8rem;
   max-height: 40rem;
   text-align: left;
 
