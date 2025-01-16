@@ -31,7 +31,7 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
     return (
       <aside className={`${styles.about} flex-column gap-1`}>
         <h3>r/{subredditDetails.display_name}</h3>
-        <div>{subredditDescription}</div>
+        <div dangerouslySetInnerHTML={{__html: subredditDescription}}></div>
         <div className="flex gap-2">
           <div className="flex-column">
             <span>{subredditDetails.subscribers}</span>
