@@ -104,6 +104,9 @@ export interface SubredditDetails {
   public_description_html: string;
   active_user_count: number;
   subscribers: number;
+  community_icon: string;
+  background_banner_image: string;
+
 }
 
 export async function fetchSubredditDetails(
