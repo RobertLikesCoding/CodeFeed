@@ -8,8 +8,7 @@ import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
 import { parseBodyHTML } from "../../helpers/helpers";
 
 interface Props {
-  topic?: string | undefined;
-  subreddit?: string | undefined;
+  topic?: string | null;
 }
 
 const PageInfo: React.FC<Props> = ({ topic }) => {

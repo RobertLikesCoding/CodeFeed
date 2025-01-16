@@ -116,7 +116,7 @@ export const mockComments = [
 export const mockSubredditDetails: SubredditDetails = {
   display_name: "test_subreddit",
   title: "Test Subreddit",
-  public_description: "This is a test subreddit for testing purposes.",
+  public_description_html: "This is a test subreddit for testing purposes.",
   active_user_count: 1234,
   subscribers: 5678,
 };

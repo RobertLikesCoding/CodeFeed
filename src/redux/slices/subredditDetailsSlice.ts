@@ -47,7 +47,11 @@ const subredditDetailsSlice = createSlice({
       })
       .addCase(fetchSubredditDetailsThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.details = action.payload ?? null;
+        if (action.payload) {
+          state.details = action.payload;
+        } else {
+          state.hasError = true;
+        }
       })
       .addCase(fetchSubredditDetailsThunk.rejected, (state) => {
         state.isLoading = false;

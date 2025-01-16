@@ -37,7 +37,7 @@ const SubredditPage: React.FC = () => {
             <p>No results found</p>
           )}
       </section>
-      <PageInfo subreddit={subreddit} />
+      <PageInfo />
     </>
   );
 }

@@ -2,8 +2,9 @@ import { screen, render, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
 import { store } from "../redux/store";
-import PostDetailsPage from "./PostDetailsPage";
 import { configureStore } from "@reduxjs/toolkit";
+
+import PostDetailsPage from "./PostDetailsPage";
 import postDetailsReducer from "../redux/slices/postDetailsSlice";
 import { mockPostDetails, mockComments } from "../__mocks__/redditAPI.mock";
 
