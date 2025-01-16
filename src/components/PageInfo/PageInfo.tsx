@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { SubredditDetails, fetchSubredditDetails } from "../services/api/redditAPI";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+
 import styles from "../PageInfo/PageInfo.module.scss";
 import SubredditsList from "../Subreddits/SubredditsList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,42 +11,24 @@ interface Props {
   subreddit?: string | undefined;
 }
 
-const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
-  const [aboutSubreddit, setAboutSubreddit] = useState<SubredditDetails | null>(
-    null
-  );
+const PageInfo: React.FC<Props> = ({ topic }) => {
+  const subredditDetails = useSelector((state: RootState) => state.subredditDetails.details)
 
-  useEffect(() => {
-    const fetchPageInfo = async () => {
-      try {
-        if (subreddit) {
-          const data = await fetchSubredditDetails(subreddit);
-          setAboutSubreddit(data);
-        } else {
-          return setAboutSubreddit(null);
-        }
-      } catch (error) {
-        console.error("Error fetching info box: ", error);
-      }
-    };
-    fetchPageInfo();
-  }, [topic, subreddit]);
-
-  if (aboutSubreddit) {
+  if (subredditDetails) {
     return (
       <aside className={`${styles.about} flex-column gap-1`}>
-        <h3>r/{aboutSubreddit.display_name}</h3>
-        <p>{aboutSubreddit.public_description}</p>
+        <h3>r/{subredditDetails.display_name}</h3>
+        <p>{subredditDetails.public_description}</p>
         <div className="flex gap-2">
           <div className="flex-column">
-            <span>{aboutSubreddit.subscribers}</span>
+            <span>{subredditDetails.subscribers}</span>
             <div className="flex flex-center gap">
               <FontAwesomeIcon icon={faUserGroup} />
               <p>Members</p>
             </div>
           </div>
           <div className="flex-column">
-            <span>{aboutSubreddit.active_user_count}</span>
+            <span>{subredditDetails.active_user_count}</span>
             <div className="flex flex-center gap">
               <div className={styles.online}></div>
               <p>Online</p>
