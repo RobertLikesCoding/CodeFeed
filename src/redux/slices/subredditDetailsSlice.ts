@@ -56,4 +56,4 @@ const subredditDetailsSlice = createSlice({
     }
 })
 
-export default subredditDetailsSlice;
+export default subredditDetailsSlice.reducer;
