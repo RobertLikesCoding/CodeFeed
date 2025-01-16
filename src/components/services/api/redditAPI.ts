@@ -101,7 +101,7 @@ export async function fetchSubredditPosts(query: string): Promise<Post[]> {
 export interface SubredditDetails {
   display_name: string;
   title: string;
-  public_description: string;
+  description_html: string;
   active_user_count: number;
   subscribers: number;
 }

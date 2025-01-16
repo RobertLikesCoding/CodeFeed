@@ -5,6 +5,7 @@ import styles from "../PageInfo/PageInfo.module.scss";
 import SubredditsList from "../Subreddits/SubredditsList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { parseBodyHTML } from "../../helpers/helpers";
 
 interface Props {
   topic?: string | undefined;
@@ -14,11 +15,23 @@ interface Props {
 const PageInfo: React.FC<Props> = ({ topic }) => {
   const subredditDetails = useSelector((state: RootState) => state.subredditDetails.details)
 
+  if (topic) {
+    return (
+      <aside className={`${styles.communities}`}>
+        <h3>Communities</h3>
+        <p>Most popular related subreddits:</p>
+        <SubredditsList title="" topic={topic} />
+      </aside>
+    );
+  }
+
   if (subredditDetails) {
+    const subredditDescription = parseBodyHTML(subredditDetails.description_html);
+
     return (
       <aside className={`${styles.about} flex-column gap-1`}>
         <h3>r/{subredditDetails.display_name}</h3>
-        <p>{subredditDetails.public_description}</p>
+        <div>{subredditDescription}</div>
         <div className="flex gap-2">
           <div className="flex-column">
             <span>{subredditDetails.subscribers}</span>
@@ -35,16 +48,6 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
             </div>
           </div>
         </div>
-      </aside>
-    );
-  }
-
-  if (topic) {
-    return (
-      <aside className={`${styles.communities}`}>
-        <h3>Communities</h3>
-        <p>Most popular related subreddits:</p>
-        <SubredditsList title="" topic={topic} />
       </aside>
     );
   }
