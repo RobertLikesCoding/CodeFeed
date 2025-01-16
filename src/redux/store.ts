@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import querySearchReducer from "./querySearch/postsSlice";
-import postDetailsReducer from "./querySearch/postDetailsSlice";
+import querySearchReducer from "./slices/postsSlice";
+import postDetailsReducer from "./slices/postDetailsSlice";
+import subredditDetilsReducer from "./slices/subredditDetailsSlice";
 
 export const store = configureStore({
   reducer: {
     fetchPosts: querySearchReducer,
     post: postDetailsReducer,
+    subredditDetails: subredditDetilsReducer,
   },
 });
 

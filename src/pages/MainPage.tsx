@@ -6,22 +6,22 @@ import { useParams } from "react-router-dom";
 
 import PostsList from "../components/Posts/PostsList";
 import PageInfo from "../components/PageInfo/PageInfo";
-import { fetchPostsThunk } from "../redux/querySearch/postsSlice";
+import { fetchPostsThunk } from "../redux/slices/postsSlice";
 
 // Validating topics to prevent injection
 const allowedTopics = ["Frontend", "Backend", "Fullstack"];
 
 const MainPage = () => {
   const { topic } = useParams();
-  // const isMobile = useMediaQuery({ maxWidth: "768px" });
+  const isValidTopic = topic && allowedTopics.includes(topic);
   const posts = useSelector((state: RootState) => state.fetchPosts.posts);
   const isLoading = useSelector(
     (state: RootState) => state.fetchPosts.isLoading
   );
   const hasError = useSelector((state: RootState) => state.fetchPosts.hasError);
   const dispatch = useDispatch<AppDispatch>();
+  // const isMobile = useMediaQuery({ maxWidth: "768px" });
 
-  const isValidTopic = topic && allowedTopics.includes(topic);
 
   useEffect(() => {
     dispatch(fetchPostsThunk(topic));

@@ -2,9 +2,11 @@ import { useEffect } from "react";
 import { AppDispatch, RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+
 import PostsList from "../components/Posts/PostsList";
 import PageInfo from "../components/PageInfo/PageInfo";
-import { fetchSubredditPostsThunk } from "../redux/querySearch/postsSlice";
+import { fetchSubredditPostsThunk } from "../redux/slices/postsSlice";
+import { fetchSubredditDetailsThunk } from "../redux/slices/subredditDetailsSlice";
 
 const SubredditPage: React.FC = () => {
   const { subreddit } = useParams();
@@ -14,7 +16,10 @@ const SubredditPage: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    dispatch(fetchSubredditPostsThunk(subreddit));
+    if (subreddit) {
+      dispatch(fetchSubredditPostsThunk(subreddit));
+      dispatch(fetchSubredditDetailsThunk(subreddit));
+    }
   }, [dispatch, subreddit]);
 
   return (
@@ -32,7 +37,7 @@ const SubredditPage: React.FC = () => {
             <p>No results found</p>
           )}
       </section>
-      <PageInfo subreddit={subreddit} />
+      <PageInfo />
     </>
   );
 }

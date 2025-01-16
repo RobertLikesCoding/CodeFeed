@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../redux/store";
-import { fetchPostDetailsThunk } from "../redux/querySearch/postDetailsSlice";
+import { fetchPostDetailsThunk } from "../redux/slices/postDetailsSlice";
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+
 import CommentsList from "../components/Comments/CommentsList";
 import { parseBodyHTML } from "../helpers/helpers";
-import PageInfo from "../components/PageInfo/PageInfo";
 
 const PostDetailsPage: React.FC = () => {
   const { subreddit, postId } = useParams();
@@ -56,7 +56,6 @@ const PostDetailsPage: React.FC = () => {
         ) : (
           <p>Couldn't find post data. Please reload the page.</p>
         )}
-        <PageInfo topic={subreddit} />
       </section>
     </>
   );

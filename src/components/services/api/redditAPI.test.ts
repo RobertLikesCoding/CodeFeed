@@ -2,12 +2,12 @@ import {
   fetchSearchQuery,
   fetchSubreddits,
   fetchSubredditPosts,
-  fetchSubredditInfo,
+  fetchSubredditDetails,
 } from "./redditAPI";
 import {
   mockPosts,
   mockSubreddits,
-  mockSubredditAbout,
+  mockSubredditDetails,
 } from "../../../__mocks__/redditAPI.mock";
 
 const mockFetch = (mockElement: unknown) => {
@@ -100,10 +100,10 @@ describe("Reddit API Services", () => {
 
     describe("Fetch Subreddit Info", () => {
       test("should return an info object for a subreddit", async () => {
-        mockFetch({ data: mockSubredditAbout });
-        const info = await fetchSubredditInfo("test");
+        mockFetch({ data: mockSubredditDetails });
+        const info = await fetchSubredditDetails("test");
 
-        expect(info).toEqual(mockSubredditAbout);
+        expect(info).toEqual(mockSubredditDetails);
         expect(fetch).toHaveBeenCalledTimes(1);
         expect(fetch).toHaveBeenCalledWith(
           "https://www.reddit.com/r/test/about.json",
@@ -118,7 +118,7 @@ describe("Reddit API Services", () => {
         const consoleErrorSpy = jest
           .spyOn(console, "error")
           .mockImplementation();
-        const info = await fetchSubredditInfo("test");
+        const info = await fetchSubredditDetails("test");
 
         expect(info).toEqual(null);
         expect(consoleErrorSpy).toHaveBeenCalledWith(

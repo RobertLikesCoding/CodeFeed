@@ -27,7 +27,7 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
         data-testid="post"
         className={`${styles.postContainer}`}
       >
-        {post.thumbnail === "self" ? null : (
+        {post.thumbnail === "self" || post.thumbnail === "" ? null : (
           <div className={styles.imgContainer}>
             <img src={post.thumbnail} alt="thumbnail of post." />
           </div>

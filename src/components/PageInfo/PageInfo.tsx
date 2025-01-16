@@ -1,60 +1,26 @@
-import { useState, useEffect } from "react";
-import { SubredditAbout, fetchSubredditInfo } from "../services/api/redditAPI";
-import styles from "../PageInfo/PageInfo.module.scss";
+import { useSelector } from "react-redux";
+import { RootState } from "../../redux/store";
+
+import styles from "./PageInfo.module.scss";
 import SubredditsList from "../Subreddits/SubredditsList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { parseBodyHTML } from "../../helpers/helpers";
 
 interface Props {
-  topic?: string | undefined;
-  subreddit?: string | undefined;
+  topic?: string | null;
 }
 
-const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
-  const [aboutSubreddit, setAboutSubreddit] = useState<SubredditAbout | null>(
-    null
+const PageInfo: React.FC<Props> = ({ topic }) => {
+  const subredditDetails = useSelector(
+    (state: RootState) => state.subredditDetails.details
   );
-
-  useEffect(() => {
-    const fetchPageInfo = async () => {
-      try {
-        if (subreddit) {
-          const data = await fetchSubredditInfo(subreddit);
-          setAboutSubreddit(data);
-        } else {
-          return setAboutSubreddit(null);
-        }
-      } catch (error) {
-        console.error("Error fetching info box: ", error);
-      }
-    };
-    fetchPageInfo();
-  }, [topic, subreddit]);
-
-  if (aboutSubreddit) {
-    return (
-      <aside className={`${styles.about} flex-column gap-1`}>
-        <h3>r/{aboutSubreddit.display_name}</h3>
-        <p>{aboutSubreddit.public_description}</p>
-        <div className="flex gap-2">
-          <div className="flex-column">
-            <span>{aboutSubreddit.subscribers}</span>
-            <div className="flex flex-center gap">
-              <FontAwesomeIcon icon={faUserGroup} />
-              <p>Members</p>
-            </div>
-          </div>
-          <div className="flex-column">
-            <span>{aboutSubreddit.active_user_count}</span>
-            <div className="flex flex-center gap">
-              <div className={styles.online}></div>
-              <p>Online</p>
-            </div>
-          </div>
-        </div>
-      </aside>
-    );
-  }
+  const isLoading = useSelector(
+    (state: RootState) => state.subredditDetails.isLoading
+  );
+  const hasError = useSelector(
+    (state: RootState) => state.subredditDetails.hasError
+  );
 
   if (topic) {
     return (
@@ -66,9 +32,52 @@ const PageInfo: React.FC<Props> = ({ topic, subreddit }) => {
     );
   }
 
+  if (subredditDetails) {
+    const subredditDescription = parseBodyHTML(
+      subredditDetails.public_description_html
+    );
+
+    return (
+      <>
+        {isLoading ? (
+          <aside className={`${styles.about} flex-center gap-1`}>
+            <p>Loading </p>
+          </aside>
+        ) : hasError ? (
+          <aside className={`${styles.about} flex-center gap-1`}>
+            <p>Error loading subreddit details. Try reloading the page.</p>
+          </aside>
+        ) : (
+          <aside className={`${styles.about} flex-column gap-1`}>
+            <h3>r/{subredditDetails.display_name}</h3>
+            <div
+              dangerouslySetInnerHTML={{ __html: subredditDescription }}
+            ></div>
+            <div className="flex gap-2">
+              <div className="flex-column">
+                <span>{subredditDetails.subscribers}</span>
+                <div className="flex flex-center gap">
+                  <FontAwesomeIcon icon={faUserGroup} />
+                  <p>Members</p>
+                </div>
+              </div>
+              <div className="flex-column">
+                <span>{subredditDetails.active_user_count}</span>
+                <div className="flex flex-center gap">
+                  <div className={styles.online}></div>
+                  <p>Online</p>
+                </div>
+              </div>
+            </div>
+          </aside>
+        )}
+      </>
+    );
+  }
+
   return (
     <aside>
-      <p>Please provide a topic or subreddit to fetch data.</p>
+      <p>No data found.</p>
     </aside>
   );
 };

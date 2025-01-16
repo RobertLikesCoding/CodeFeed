@@ -7,6 +7,7 @@
   box-shadow: var.$shadow-sm;
   font-family: var.$secondary-font;
   height: fit-content;
+  min-height: 8rem;
   max-height: 52rem;
   padding-bottom: 1rem;
   width: 16rem;
@@ -47,4 +48,8 @@
     width: 2rem;
     border-radius: 1rem;
   }
+}
+
+.sidenavMobile {
+  @extend .sidenav;
 }

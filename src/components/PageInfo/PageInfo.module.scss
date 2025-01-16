@@ -4,26 +4,30 @@
 
 .communities {
   @extend .sidenav;
-    width: 18rem;
-    max-height: 30rem;
+  width: 18rem;
+  max-height: 30rem;
 
+  @include mixin.media-query(var.$breakpoint-md) {
+    width: 15rem;
+  }
+}
+
+.about {
+  @extend .sidenav;
+  width: 20rem;
+  max-height: 40rem;
+  text-align: left;
+
+  span {
+    font-family: var.$primary-font;
+    font-weight: bold;
+    font-size: 1.25rem;
   }
 
-  .about {
-    @extend .sidenav;
-    width: 20rem;
-    max-height: 40rem;
-
-    span {
-      font-family: var.$primary-font;
-      font-weight: bold;
-      font-size: 1.25rem;
-    }
-
-    .online {
-      height: 0.5rem;
-      width: 0.5rem;
-      background-color: greenyellow;
-      border-radius: 5px;
-    }
+  .online {
+    height: 0.5rem;
+    width: 0.5rem;
+    background-color: greenyellow;
+    border-radius: 5px;
+  }
 }

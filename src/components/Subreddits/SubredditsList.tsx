@@ -11,17 +11,17 @@ interface Props {
 const SubredditsList: React.FC<Props> = ({ topic, title }) => {
   const [content, setContent] = useState<Subreddit[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchTopics = async () => {
-      setError(false);
+      setHasError(false);
       setIsLoading(true);
 
       if (topic) {
         const data = await fetchSubreddits(topic);
         if (!data) {
-          setError(true);
+          setHasError(true);
         } else {
           setContent(data);
         }
@@ -32,15 +32,13 @@ const SubredditsList: React.FC<Props> = ({ topic, title }) => {
     fetchTopics();
   }, [topic]);
 
-  if (isLoading) {
-    return <p>Loading...</p>;
-  }
-
   return (
     <>
       <h3>{title}</h3>
-      {error ? (
-        <p>Couldn't find related subreddits.</p>
+      {isLoading ? (
+        <div className="flex-center">Loading...</div>
+      ) : hasError ? (
+        <div className="flex-center">Couldn't find related subreddits.</div>
       ) : (
         <ul>
           {content?.map((item, index) => {
