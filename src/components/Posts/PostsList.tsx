@@ -1,10 +1,11 @@
 import PostItem from "./PostItem";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
+import { Post } from "../services/api/redditAPI";
 
-const PostsList: React.FC= () => {
-  const posts = useSelector((state: RootState) => state.fetchPosts.posts)
+interface Props {
+  posts: Post[];
+}
 
+const PostsList: React.FC<Props> = ({posts}) => {
   return (
     <>
       {posts?.map((post, index) => {
