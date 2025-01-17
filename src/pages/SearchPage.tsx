@@ -1,33 +1,39 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../redux/store";
+
 import PostsList from "../components/Posts/PostsList";
-import { fetchSearchQuery, Post } from "../components/services/api/redditAPI";
+import { fetchPostsThunk } from "../redux/slices/postsSlice";
 
 const SearchPage = () => {
-  const [posts, setPosts] = useState<Post[] | null>(null);
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("query");
+  const posts = useSelector((state: RootState) => state.fetchPosts.posts);
+  const isLoading = useSelector((state: RootState) => state.fetchPosts.isLoading);
+  const hasError = useSelector((state: RootState) => state.fetchPosts.hasError);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    const queryParams = new URLSearchParams(location.search);
-    const query = queryParams.get("query");
-
     if (query) {
-      setSearchTerm(query);
-      const fetchPosts = async () => {
-        const data = await fetchSearchQuery(query);
-        setPosts(data);
-      };
-      fetchPosts();
+      dispatch(fetchPostsThunk(query));
     }
-  }, [location.search]);
+  }, [dispatch, query]);
 
   return (
     <>
       <section>
-        <h1>Search: {searchTerm}</h1>
+        <h1>Results for: {query}</h1>
         <p>Sort by</p>
-        {posts ? <PostsList posts={posts} /> : <p>No results found</p>}
+        {isLoading ? (
+          <p style={{ textAlign: "center" }}>Loading...</p>
+        ) : hasError ? (
+          <p>Error loading posts. Please try again.</p>
+        ) : posts.length !== 0 ? (
+          <PostsList posts={posts} />
+        ) : (
+          <p style={{ textAlign: "center" }}>No results found</p>
+        )}
       </section>
     </>
   );
