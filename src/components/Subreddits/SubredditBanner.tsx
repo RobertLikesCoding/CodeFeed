@@ -22,23 +22,23 @@ const SubredditBanner: React.FC = () => {
       ) : hasError ? (
         <p>An Error occured</p>
       ) : (
-        <div className={`flex gap-1 ${styles.subredditBanner}`}>
-          <div className={`flex-center ${styles.subredditIcon}`}>
+        <div className={`flex align-center gap-1 ${styles.subredditBanner}`}>
             {subredditDetails?.icon_img ? (
+          <div className={`${styles.subredditIcon}`}>
               <img src={subredditDetails?.icon_img} alt="subreddit icon." />
+              </div>
             ) : (
               <SubredditIcon
                 color={subredditDetails?.primary_color || ""}
-                small={false}
+                size="large"
               />
             )}
-          </div>
-          <div className="flex-column">
+          <div className="flex-column gap">
             <h1>r/{subredditDetails?.display_name}</h1>
-            <div className={`flex gap-1 ${styles.mobileNav}`}>
-              <p>Posts</p>
-              <p>About</p>
-            </div>
+            <ul className={`${styles.mobileNav}`} aria-roledescription="navigation">
+              <li>Posts</li>
+              <li>About</li>
+            </ul>
           </div>
         </div>
       )}
