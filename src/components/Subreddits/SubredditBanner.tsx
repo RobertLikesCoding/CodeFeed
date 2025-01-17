@@ -33,9 +33,9 @@ const SubredditBanner: React.FC = () => {
               />
             )}
           </div>
-          <div className="flex-column gap-1">
+          <div className="flex-column">
             <h1>r/{subredditDetails?.display_name}</h1>
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               <p>Posts</p>
               <p>About</p>
             </div>
