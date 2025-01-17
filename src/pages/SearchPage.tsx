@@ -27,7 +27,7 @@ const SearchPage = () => {
       <section>
         <h1>Search: {searchTerm}</h1>
         <p>Sort by</p>
-        {posts ? <PostsList /> : <p>No results found</p>}
+        {posts ? <PostsList posts={posts} /> : <p>No results found</p>}
       </section>
     </>
   );
