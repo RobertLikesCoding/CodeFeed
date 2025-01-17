@@ -119,6 +119,8 @@ export const mockSubredditDetails: SubredditDetails = {
   public_description_html: "This is a test subreddit for testing purposes.",
   active_user_count: 1234,
   subscribers: 5678,
+  icon_img: "https://www.example.com/icon.png",
+  primary_color: "#FF4500"
 };
 
 export const mockPostDetails: PostDetails = {
