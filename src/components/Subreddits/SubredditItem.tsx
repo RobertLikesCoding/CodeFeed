@@ -22,7 +22,7 @@ const SubredditItem = ({ item }: Props) => {
           alt={`subreddit icon of ${item.data.display_name}`}
         />
       ) : (
-        <SubredditIcon color={item.data.primary_color} />
+        <SubredditIcon color={item.data.primary_color} size="medium"/>
       )}
       <p>r/{item.data.display_name}</p>
     </li>
