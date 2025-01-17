@@ -38,7 +38,7 @@
     cursor: pointer;
   }
 
-  @include mixin.media-query(var.$breakpoint-md) {
+  @include mixin.media-query(var.$breakpoint-xl) {
     display: block;
   }
 }

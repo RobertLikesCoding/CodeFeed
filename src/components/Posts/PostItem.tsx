@@ -23,17 +23,18 @@ const PostItem: React.FC<PostProps> = ({ post }) => {
   return (
     <>
       <div className="gradientBorderLine"></div>
-      <div
-        data-testid="post"
-        className={`${styles.postContainer}`}
-      >
+      <div data-testid="post" className={`${styles.postContainer}`}>
         {post.thumbnail === "self" || post.thumbnail === "" ? null : (
           <div className={styles.imgContainer}>
             <img src={post.thumbnail} alt="thumbnail of post." />
           </div>
         )}
         <div className={styles.contentContainer}>
-          <InfoHeader subreddit={post.subreddit} created={post.created} color={post.link_flair_background_color} />
+          <InfoHeader
+            subreddit={post.subreddit}
+            created={post.created}
+            color={post.link_flair_background_color}
+          />
           <div className={`${styles.content}`} onClick={handleClickPost}>
             <h4>{post.title}</h4>
             <div className="flex gap-1">

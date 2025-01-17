@@ -1,4 +1,5 @@
 @use "../../assets/styles/variables.scss" as var;
+@use "../../assets/styles/mixins.scss" as mixin;
 
 .subredditBanner {
   padding: 2rem 0;
@@ -12,6 +13,14 @@
       object-fit: cover;
       height: 100%;
       border: 3px solid var.$primary-clr;
+    }
+  }
+
+  .mobileNav {
+    display: none;
+
+    @include mixin.media-query(var.$breakpoint-md) {
+      display: flex;
     }
   }
 }
