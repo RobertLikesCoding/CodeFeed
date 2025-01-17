@@ -1,0 +1,55 @@
+@use "../../assets/styles/variables.scss" as var;
+@use "../../assets/styles/mixins.scss" as mixin;
+
+.subredditBanner {
+  padding: 2rem 0;
+
+  h1 {
+    margin: 0;
+
+  }
+
+  .subredditIcon {
+    aspect-ratio: 1/1;
+    width: 6rem;
+    height: 6rem;
+
+    img {
+      border: 3px solid var.$primary-clr;
+      border-radius: 50%;
+      box-sizing: border-box;
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+
+  .mobileNav {
+    display: flex;
+
+
+    @include mixin.media-query(var.$breakpoint-md) {
+      display: flex;
+    }
+
+    li {
+      height: 1.75rem;
+      display: flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-family: var.$secondary-font;
+      text-underline-offset: 0.1em;
+      transition: transform all 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgba(var.$secondary-clr, 0.1);
+        cursor: pointer;
+      }
+
+      &:active {
+        background-color: rgba(var.$secondary-clr, 0.3);
+      }
+    }
+  }
+}

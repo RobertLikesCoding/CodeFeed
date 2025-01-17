@@ -22,7 +22,7 @@ const InfoHeader: React.FC<InfoHeaderProps> = ({
     <div className={styles.infoHeader}>
       {subreddit ? (
         <>
-          <SubredditIcon color={color} small={true} />
+          <SubredditIcon color={color} size="small" />
           <Link to={`/r/${subreddit}`} className="flex flex-center gap">
             {subreddit}
           </Link>

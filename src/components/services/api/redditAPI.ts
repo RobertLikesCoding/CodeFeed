@@ -104,6 +104,8 @@ export interface SubredditDetails {
   public_description_html: string;
   active_user_count: number;
   subscribers: number;
+  icon_img: string;
+  primary_color: string;
 }
 
 export async function fetchSubredditDetails(

@@ -1,8 +1,6 @@
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/store";
-import { fetchSubredditPostsThunk } from "../../redux/slices/postsSlice";
-import { Subreddit } from "../services/api/redditAPI";
 import { useNavigate } from "react-router-dom";
+
+import { Subreddit } from "../services/api/redditAPI";
 import SubredditIcon from "../UI/SubredditIcon";
 
 interface Props {
@@ -10,11 +8,9 @@ interface Props {
 }
 
 const SubredditItem = ({ item }: Props) => {
-  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   async function handleClickSubreddit() {
-    await dispatch(fetchSubredditPostsThunk(item.data.display_name));
     navigate(`/r/${item.data.display_name}`);
   }
 
@@ -26,7 +22,7 @@ const SubredditItem = ({ item }: Props) => {
           alt={`subreddit icon of ${item.data.display_name}`}
         />
       ) : (
-        <SubredditIcon color={item.data.primary_color} />
+        <SubredditIcon color={item.data.primary_color} size="medium"/>
       )}
       <p>r/{item.data.display_name}</p>
     </li>

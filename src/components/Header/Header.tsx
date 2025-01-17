@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useMediaQuery } from "react-responsive";
+
 import styles from "./Header.module.scss";
 import SearchBar from "./SearchBar/SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,12 +17,16 @@ const Header = () => {
   return (
     <>
       <nav className={`${styles.header}`}>
-        {inputIsVisible && <span className={`${styles.logo} ${styles.fade}`}>CodeFeed</span>}
-        <SearchBar
-          inputIsVisible={inputIsVisible}
-          setInputIsVisible={setInputIsVisible}
-          isMobile={isMobile}
-        />
+        <div className="flex-center">
+          {inputIsVisible && (
+            <span className={`${styles.logo} ${styles.fade}`}>CodeFeed</span>
+          )}
+          <SearchBar
+            inputIsVisible={inputIsVisible}
+            setInputIsVisible={setInputIsVisible}
+            isMobile={isMobile}
+          />
+        </div>
         <FontAwesomeIcon
           icon={faBars}
           className={styles.burgerIcon}
