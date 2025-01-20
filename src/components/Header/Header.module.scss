@@ -41,4 +41,18 @@
   @include mixin.media-query(var.$breakpoint-xl) {
     display: block;
   }
+
+}
+
+.mobileSearchIcon {
+  display: none;
+  font-size: 1.5rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @include mixin.media-query(var.$breakpoint-xl) {
+    display: block;
+  }
 }

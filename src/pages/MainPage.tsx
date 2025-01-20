@@ -22,7 +22,6 @@ const MainPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   // const isMobile = useMediaQuery({ maxWidth: "768px" });
 
-
   useEffect(() => {
     dispatch(fetchPostsThunk(topic));
   }, [dispatch, topic]);

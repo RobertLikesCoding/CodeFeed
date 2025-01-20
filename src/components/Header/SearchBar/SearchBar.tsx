@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SearchBar.module.scss";
 
 interface PropsType {
@@ -13,8 +13,8 @@ interface PropsType {
 
 const SearchBar: React.FC<PropsType> = ({
   inputIsVisible,
-  setInputIsVisible,
-  isMobile,
+  // setInputIsVisible,
+  // isMobile,
 }) => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const navigate = useNavigate();
@@ -30,11 +30,35 @@ const SearchBar: React.FC<PropsType> = ({
     }
   };
 
-  const toggleInputVisibility = () => {
-    setInputIsVisible(!inputIsVisible);
-  };
+  // const toggleInputVisibility = () => {
+  //   setInputIsVisible(!inputIsVisible);
+  // };
 
   return (
+    <div className={`${styles.searchBar} flex-center`}>
+          {!inputIsVisible && (
+            <div className={`${styles.inputContainer} ${!inputIsVisible && styles.fade}`}>
+              <label htmlFor="query" hidden />
+              <input
+                type="text"
+                name="query"
+                id="query"
+                placeholder="e.g. 'React'"
+                aria-label="search query"
+                value={searchQuery}
+                onChange={handleChange}
+                onKeyUp={handleKeyUp}
+              />
+              <FontAwesomeIcon
+                icon={faMagnifyingGlass}
+                className={styles.searchIcon}
+              />
+            </div>
+          )}
+        </div>
+  )
+
+  /* return (
     <>
       {isMobile ? (
         <div className={`${styles.searchBar} flex-center`}>
@@ -57,20 +81,6 @@ const SearchBar: React.FC<PropsType> = ({
               />
             </div>
           )}
-          {/* Toggle icon for mobile view */}
-          {inputIsVisible ? (
-            <FontAwesomeIcon
-              icon={faMagnifyingGlass}
-              className={`${styles.mobileSearchIcon} ${styles.fade}`}
-              onClick={toggleInputVisibility}
-            />
-          ) : (
-            <FontAwesomeIcon
-              icon={faXmark}
-              className={`${styles.mobileSearchIcon} ${styles.fade}`}
-              onClick={toggleInputVisibility}
-            />
-          )}
         </div>
       ) : (
         <div className={`${styles.searchBar} flex-center`}>
@@ -92,7 +102,6 @@ const SearchBar: React.FC<PropsType> = ({
             />
           </div>
 
-          {/* Toggle icon for mobile view */}
           {inputIsVisible ? (
             <FontAwesomeIcon
               icon={faMagnifyingGlass}
@@ -110,7 +119,7 @@ const SearchBar: React.FC<PropsType> = ({
         </div>
       )}
     </>
-  );
+  ); */
 };
 
 export default SearchBar;
