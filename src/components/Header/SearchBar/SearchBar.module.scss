@@ -1,5 +1,5 @@
-@use "../../../assets/styles/variables" as *;
-@use "../../../assets/styles/mixins" as *;
+@use "../../../assets/styles/variables" as var;
+@use "../../../assets/styles/mixins" as mixin;
 @use "../../../assets/styles/animations";
 
 .searchBar {
@@ -8,7 +8,7 @@
   position: relative;
   justify-content: end;
 
-  @include media-query($breakpoint-md) {
+  @include mixin.media-query(var.$breakpoint-xl) {
     width: 100%;
     gap: 1rem;
   }
@@ -31,33 +31,24 @@
       width: 100%;
       padding: 0 1rem 0 2.5rem;
       background-color: transparent;
-      color: $font-clr;
-      border: 2px solid $font-clr;
+      color: var.$font-clr;
+      border: 2px solid var.$font-clr;
 
       &:focus {
         outline: none;
-        border-color: $secondary-clr;
+        border-color: var.$secondary-clr;
       }
     }
 
     .searchIcon {
       position: absolute;
       left: 1rem;
-      color: $font-clr;
+      color: var.$font-clr;
       font-size: 1.5rem;
     }
   }
 
-  .mobileSearchIcon {
+  .invisible {
     display: none;
-    font-size: 1.5rem;
-
-    &:hover {
-      cursor: pointer;
-    }
-
-    @include media-query($breakpoint-md) {
-      display: block;
-    }
   }
 }

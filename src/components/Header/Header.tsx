@@ -4,36 +4,50 @@ import { useMediaQuery } from "react-responsive";
 import styles from "./Header.module.scss";
 import SearchBar from "./SearchBar/SearchBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faMagnifyingGlass,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
-  const isMobile = useMediaQuery({ maxWidth: "768px" });
-  const [inputIsVisible, setInputIsVisible] = useState<boolean>(isMobile);
+  const isTabletOrMobile = useMediaQuery({ maxWidth: "1280px" });
+  const [showMobileSearchbar, setShowMobileSearchbar] = useState<boolean>(!isTabletOrMobile);
 
   useEffect(() => {
-    setInputIsVisible(true);
-  }, [isMobile]);
+    setShowMobileSearchbar(!isTabletOrMobile);
+  }, [isTabletOrMobile]);
+
+  const toggleInputVisibility = () => {
+    setShowMobileSearchbar(!showMobileSearchbar);
+  };
 
   return (
-    <>
-      <nav className={`${styles.header}`}>
-        <div className="flex-center">
-          {inputIsVisible && (
-            <span className={`${styles.logo} ${styles.fade}`}>CodeFeed</span>
-          )}
-          <SearchBar
-            inputIsVisible={inputIsVisible}
-            setInputIsVisible={setInputIsVisible}
-            isMobile={isMobile}
+    <nav className={`${styles.header}`}>
+      {(!isTabletOrMobile || !showMobileSearchbar) && (
+        <span className={`${styles.logo} ${styles.fade}`}>CodeFeed</span>
+      )}
+
+      {(!isTabletOrMobile || showMobileSearchbar) && (
+        <SearchBar />
+      )}
+      
+      {isTabletOrMobile && (
+        <div className="flex-center gap-1">
+          <FontAwesomeIcon
+            icon={showMobileSearchbar ? faXmark : faMagnifyingGlass}
+            className={styles.mobileIcons}
+            onClick={toggleInputVisibility}
+            data-testid="mobile-search-toggle"
+          />
+          <FontAwesomeIcon
+            icon={faBars}
+            className={styles.mobileIcons}
+            // onClick={handleBurgerMenu} NEEDS TO BE PASSED FROM MAINPAGE COMPONENT
           />
         </div>
-        <FontAwesomeIcon
-          icon={faBars}
-          className={styles.burgerIcon}
-          // onClick={handleBurgerMenu} NEEDS TO BE PASSED FROM MAINPAGE COMPONENT
-        />
-      </nav>
-    </>
+      )}
+    </nav>
   );
 };
 

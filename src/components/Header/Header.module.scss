@@ -1,15 +1,14 @@
 @use "../../assets/styles/variables" as var;
 @use "../../assets/styles/mixins" as mixin;
 @use "../../assets/styles/animations";
+@use "../../assets/styles/layout";
 
 .header {
-  display: grid;
+  @extend .three-col-grid;
   height: 6rem;
-  grid-template-columns: 3fr 6fr 3fr;
   align-items: center;
-  gap: 1rem;
 
-  @include mixin.media-query(var.$breakpoint-md) {
+  @include mixin.media-query(var.$breakpoint-xl) {
     display: flex;
     justify-content: space-between;
   }
@@ -30,14 +29,14 @@
   }
 }
 
-.burgerIcon {
+.mobileIcons {
   display: none;
   font-size: 1.5rem;
 
   &:hover {
     cursor: pointer;
   }
-
+  
   @include mixin.media-query(var.$breakpoint-xl) {
     display: block;
   }
