@@ -1,13 +1,12 @@
 @use "../../assets/styles/variables" as var;
 @use "../../assets/styles/mixins" as mixin;
 @use "../../assets/styles/animations";
+@use "../../assets/styles/layout";
 
 .header {
-  display: grid;
+  @extend .three-col-grid;
   height: 6rem;
-  grid-template-columns: 3fr 6fr 3fr;
   align-items: center;
-  gap: 1rem;
 
   @include mixin.media-query(var.$breakpoint-xl) {
     display: flex;

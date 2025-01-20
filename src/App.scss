@@ -1,10 +1,9 @@
 @use "./assets/styles/variables" as var;
 @use "./assets/styles/mixins.scss" as mixin;
+@use "./assets/styles/layout.scss";
 
 main {
-  display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
-  gap: 3rem;
+  @extend .three-col-grid;
 
   @include mixin.media-query(var.$breakpoint-xl) {
     grid-template-columns: 4fr 1fr;
