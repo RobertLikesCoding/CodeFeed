@@ -11,7 +11,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = () => {
-  const isMobile = useMediaQuery({ maxWidth: "768px" });
   const isTabletOrMobile = useMediaQuery({ maxWidth: "1280px" });
   const [showMobileSearchbar, setShowMobileSearchbar] = useState<boolean>(!isTabletOrMobile);
 
@@ -28,12 +27,11 @@ const Header = () => {
       {(!isTabletOrMobile || !showMobileSearchbar) && (
         <span className={`${styles.logo} ${styles.fade}`}>CodeFeed</span>
       )}
+
       {(!isTabletOrMobile || showMobileSearchbar) && (
-        <SearchBar
-          showMobileSearchbar={showMobileSearchbar}
-          isMobile={isMobile}
-        />
+        <SearchBar />
       )}
+      
       {isTabletOrMobile && (
         <div className="flex-center gap-1">
           <FontAwesomeIcon

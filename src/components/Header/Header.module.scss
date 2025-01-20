@@ -36,7 +36,7 @@
   &:hover {
     cursor: pointer;
   }
-
+  
   @include mixin.media-query(var.$breakpoint-xl) {
     display: block;
   }
