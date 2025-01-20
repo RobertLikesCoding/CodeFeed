@@ -9,7 +9,7 @@
   align-items: center;
   gap: 1rem;
 
-  @include mixin.media-query(var.$breakpoint-md) {
+  @include mixin.media-query(var.$breakpoint-xl) {
     display: flex;
     justify-content: space-between;
   }
@@ -30,21 +30,7 @@
   }
 }
 
-.burgerIcon {
-  display: none;
-  font-size: 1.5rem;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  @include mixin.media-query(var.$breakpoint-xl) {
-    display: block;
-  }
-
-}
-
-.mobileSearchIcon {
+.mobileIcons {
   display: none;
   font-size: 1.5rem;
 

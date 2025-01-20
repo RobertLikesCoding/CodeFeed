@@ -6,13 +6,13 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styles from "./SearchBar.module.scss";
 
 interface PropsType {
-  inputIsVisible: boolean;
-  setInputIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  showMobileSearchbar: boolean;
+  // setInputIsVisible: React.Dispatch<React.SetStateAction<boolean>>;
   isMobile: boolean;
 }
 
 const SearchBar: React.FC<PropsType> = ({
-  inputIsVisible,
+  showMobileSearchbar,
   // setInputIsVisible,
   // isMobile,
 }) => {
@@ -31,32 +31,34 @@ const SearchBar: React.FC<PropsType> = ({
   };
 
   // const toggleInputVisibility = () => {
-  //   setInputIsVisible(!inputIsVisible);
+  //   setInputIsVisible(!showMobileSearchbar);
   // };
 
   return (
     <div className={`${styles.searchBar} flex-center`}>
-          {!inputIsVisible && (
-            <div className={`${styles.inputContainer} ${!inputIsVisible && styles.fade}`}>
-              <label htmlFor="query" hidden />
-              <input
-                type="text"
-                name="query"
-                id="query"
-                placeholder="e.g. 'React'"
-                aria-label="search query"
-                value={searchQuery}
-                onChange={handleChange}
-                onKeyUp={handleKeyUp}
-              />
-              <FontAwesomeIcon
-                icon={faMagnifyingGlass}
-                className={styles.searchIcon}
-              />
-            </div>
-          )}
+      {showMobileSearchbar && (
+        <div
+          className={`${styles.inputContainer} ${!showMobileSearchbar && styles.fade}`}
+        >
+          <label htmlFor="query" hidden />
+          <input
+            type="text"
+            name="query"
+            id="query"
+            placeholder="e.g. 'React'"
+            aria-label="search query"
+            value={searchQuery}
+            onChange={handleChange}
+            onKeyUp={handleKeyUp}
+          />
+          <FontAwesomeIcon
+            icon={faMagnifyingGlass}
+            className={styles.searchIcon}
+          />
         </div>
-  )
+      )}
+    </div>
+  );
 
   /* return (
     <>

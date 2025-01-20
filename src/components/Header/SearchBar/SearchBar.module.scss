@@ -8,7 +8,7 @@
   position: relative;
   justify-content: end;
 
-  @include mixin.media-query(var.$breakpoint-md) {
+  @include mixin.media-query(var.$breakpoint-xl) {
     width: 100%;
     gap: 1rem;
   }
@@ -46,5 +46,9 @@
       color: var.$font-clr;
       font-size: 1.5rem;
     }
+  }
+
+  .invisible {
+    display: none;
   }
 }

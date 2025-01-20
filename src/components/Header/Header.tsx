@@ -12,50 +12,44 @@ import {
 
 const Header = () => {
   const isMobile = useMediaQuery({ maxWidth: "768px" });
-  const [inputIsVisible, setInputIsVisible] = useState<boolean>(isMobile);
+  const isTabletOrMobile = useMediaQuery({ maxWidth: "1280px" });
+  const [showMobileSearchbar, setShowMobileSearchbar] = useState<boolean>(!isTabletOrMobile);
 
   useEffect(() => {
-    setInputIsVisible(true);
-  }, [isMobile]);
+    setShowMobileSearchbar(!isTabletOrMobile);
+  }, [isTabletOrMobile]);
 
   const toggleInputVisibility = () => {
-    setInputIsVisible(!inputIsVisible);
+    setShowMobileSearchbar(!showMobileSearchbar);
   };
 
   return (
-    <>
-      <nav className={`${styles.header}`}>
-        {inputIsVisible && (
-          <span className={`${styles.logo} ${styles.fade}`}>CodeFeed</span>
-        )}
+    <nav className={`${styles.header}`}>
+      {(!isTabletOrMobile || !showMobileSearchbar) && (
+        <span className={`${styles.logo} ${styles.fade}`}>CodeFeed</span>
+      )}
+      {(!isTabletOrMobile || showMobileSearchbar) && (
         <SearchBar
-          inputIsVisible={inputIsVisible}
-          setInputIsVisible={setInputIsVisible}
+          showMobileSearchbar={showMobileSearchbar}
           isMobile={isMobile}
         />
+      )}
+      {isTabletOrMobile && (
         <div className="flex-center gap-1">
-          {inputIsVisible ? (
-            <FontAwesomeIcon
-              icon={faMagnifyingGlass}
-              className={styles.mobileSearchIcon}
-              onClick={toggleInputVisibility}
-              data-testid="mobile-search-toggle"
-            />
-          ) : (
-            <FontAwesomeIcon
-              icon={faXmark}
-              className={styles.mobileSearchIcon}
-              onClick={toggleInputVisibility}
-            />
-          )}
+          <FontAwesomeIcon
+            icon={showMobileSearchbar ? faXmark : faMagnifyingGlass}
+            className={styles.mobileIcons}
+            onClick={toggleInputVisibility}
+            data-testid="mobile-search-toggle"
+          />
           <FontAwesomeIcon
             icon={faBars}
-            className={styles.burgerIcon}
+            className={styles.mobileIcons}
             // onClick={handleBurgerMenu} NEEDS TO BE PASSED FROM MAINPAGE COMPONENT
           />
         </div>
-      </nav>
-    </>
+      )}
+    </nav>
   );
 };
 
