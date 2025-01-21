@@ -12,7 +12,9 @@ import {
 
 const Header = () => {
   const isTabletOrMobile = useMediaQuery({ maxWidth: "1280px" });
-  const [showMobileSearchbar, setShowMobileSearchbar] = useState<boolean>(!isTabletOrMobile);
+  const [showMobileSearchbar, setShowMobileSearchbar] = useState<boolean>(
+    !isTabletOrMobile
+  );
 
   useEffect(() => {
     setShowMobileSearchbar(!isTabletOrMobile);
@@ -24,14 +26,17 @@ const Header = () => {
 
   return (
     <nav className={`${styles.header}`}>
-      {(!isTabletOrMobile || !showMobileSearchbar) && (
-        <span className={`${styles.logo} ${styles.fade}`}>CodeFeed</span>
-      )}
+      {/* hide logo when mobile searchbar is shown */}
+      <span
+        className={`${styles.logo} ${styles.fade} ${
+          isTabletOrMobile && showMobileSearchbar ? "hide" : ""
+        }`}
+      >
+        CodeFeed
+      </span>
+      {/* enable toggling and rendering searchbar only in mobile mode */}
+      {(!isTabletOrMobile || showMobileSearchbar) && <SearchBar />}
 
-      {(!isTabletOrMobile || showMobileSearchbar) && (
-        <SearchBar />
-      )}
-      
       {isTabletOrMobile && (
         <div className="flex-center gap-1">
           <FontAwesomeIcon

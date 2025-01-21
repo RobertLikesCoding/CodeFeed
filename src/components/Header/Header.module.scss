@@ -21,7 +21,7 @@
   background: var.$highlight-clr;
   background-clip: text;
   color: transparent;
-  display: inline-block;
+  // display: inline-block;
   transition: opacity 0.5s ease-in;
 
   &.fade {
@@ -36,7 +36,7 @@
   &:hover {
     cursor: pointer;
   }
-  
+
   @include mixin.media-query(var.$breakpoint-xl) {
     display: block;
   }
