@@ -38,7 +38,7 @@ const Header = () => {
       {(!isTabletOrMobile || showMobileSearchbar) && <SearchBar />}
 
       {isTabletOrMobile && (
-        <div className="flex-center gap-1">
+        <div className="flex-center gap-1" data-testid="mobile-icons">
           <FontAwesomeIcon
             icon={showMobileSearchbar ? faXmark : faMagnifyingGlass}
             className={styles.mobileIcons}
