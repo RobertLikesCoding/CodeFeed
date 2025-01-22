@@ -9,9 +9,10 @@ import { parseBodyHTML } from "../../helpers/helpers";
 
 interface Props {
   topic?: string | null;
+  isTablet?: boolean;
 }
 
-const PageInfo: React.FC<Props> = ({ topic }) => {
+const PageInfo: React.FC<Props> = ({ topic, isTablet }) => {
   const subredditDetails = useSelector(
     (state: RootState) => state.subredditDetails.details
   );
@@ -24,7 +25,7 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
 
   if (topic) {
     return (
-      <aside className={`${styles.communities}`}>
+      <aside className={`${styles.communities} ${isTablet && "hide"}`}>
         <h3>Communities</h3>
         <p>Most popular related subreddits:</p>
         <SubredditsList title="" topic={topic} />
@@ -38,38 +39,36 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
     );
 
     return (
-      <>
-        <aside className={`${styles.about} flex-center gap-1`}>
-          {isLoading ? (
-            <p>Loading </p>
-          ) : hasError ? (
-            <p>Error loading subreddit details. Try reloading the page.</p>
-          ) : (
-            <>
-              <h3>r/{subredditDetails.display_name}</h3>
-              <div
-                dangerouslySetInnerHTML={{ __html: subredditDescription }}
-              ></div>
-              <div className="flex gap-2">
-                <div className="flex-column">
-                  <span>{subredditDetails.subscribers}</span>
-                  <div className="flex flex-center gap">
-                    <FontAwesomeIcon icon={faUserGroup} />
-                    <p>Members</p>
-                  </div>
-                </div>
-                <div className="flex-column">
-                  <span>{subredditDetails.active_user_count}</span>
-                  <div className="flex flex-center gap">
-                    <div className={styles.online}></div>
-                    <p>Online</p>
-                  </div>
+      <aside className={`${styles.about} flex-center gap-1`}>
+        {isLoading ? (
+          <p>Loading </p>
+        ) : hasError ? (
+          <p>Error loading subreddit details. Try reloading the page.</p>
+        ) : (
+          <>
+            <h3>r/{subredditDetails.display_name}</h3>
+            <div
+              dangerouslySetInnerHTML={{ __html: subredditDescription }}
+            ></div>
+            <div className="flex gap-2">
+              <div className="flex-column">
+                <span>{subredditDetails.subscribers}</span>
+                <div className="flex flex-center gap">
+                  <FontAwesomeIcon icon={faUserGroup} />
+                  <p>Members</p>
                 </div>
               </div>
-            </>
-          )}
-        </aside>
-      </>
+              <div className="flex-column">
+                <span>{subredditDetails.active_user_count}</span>
+                <div className="flex flex-center gap">
+                  <div className={styles.online}></div>
+                  <p>Online</p>
+                </div>
+              </div>
+            </div>
+          </>
+        )}
+      </aside>
     );
   }
 

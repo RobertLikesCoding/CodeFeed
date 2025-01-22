@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { AppDispatch, RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-// import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "react-responsive";
 
 import PostsList from "../components/Posts/PostsList";
 import PageInfo from "../components/PageInfo/PageInfo";
@@ -20,7 +20,7 @@ const MainPage = () => {
   );
   const hasError = useSelector((state: RootState) => state.fetchPosts.hasError);
   const dispatch = useDispatch<AppDispatch>();
-  // const isMobile = useMediaQuery({ maxWidth: "768px" });
+  const isTablet = useMediaQuery({ maxWidth: "875px" });
 
   useEffect(() => {
     dispatch(fetchPostsThunk(topic));
@@ -43,7 +43,7 @@ const MainPage = () => {
           <p style={{ textAlign: "center" }}>No results found</p>
         )}
       </section>
-      <PageInfo topic={topic ? topic : "web development"} />
+      <PageInfo topic={topic ? topic : "web development"} isTablet={isTablet} />
     </div>
   );
 };

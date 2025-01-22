@@ -6,13 +6,9 @@ main {
   @extend .two-col-grid;
 
   @include mixin.media-query(var.$breakpoint-xl) {
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 1fr;
   }
 
-  @include mixin.media-query(var.$breakpoint-md) {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
 
   .mainSection {
     height: calc(100vh - 5rem);
@@ -22,6 +18,12 @@ main {
 
     section {
       overflow: scroll;
+      scrollbar-width: none;
+    }
+
+    @include mixin.media-query(var.$breakpoint-md) {
+      grid-template-columns: 1fr;
+      height: calc(100vh - 3rem);
     }
   }
 }
