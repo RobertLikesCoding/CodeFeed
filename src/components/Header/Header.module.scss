@@ -5,23 +5,27 @@
 
 .header {
   @extend .three-col-grid;
-  height: 6rem;
+  height: 5rem;
   align-items: center;
 
   @include mixin.media-query(var.$breakpoint-xl) {
     display: flex;
     justify-content: space-between;
+    height: 4rem;
+  }
+
+  @include mixin.media-query(var.$breakpoint-sm) {
+    height: 3.5rem;
   }
 }
 
 .logo {
-  font-size: 2.75rem;
+  font-size: clamp(1.75rem, 1.109rem + 2.0513vw, 2.75rem);
   font-weight: bolder;
   font-family: Poppins, sans-serif;
   background: var.$highlight-clr;
   background-clip: text;
   color: transparent;
-  display: inline-block;
   transition: opacity 0.5s ease-in;
 
   &.fade {
@@ -36,7 +40,7 @@
   &:hover {
     cursor: pointer;
   }
-  
+
   @include mixin.media-query(var.$breakpoint-xl) {
     display: block;
   }
