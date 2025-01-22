@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { AppDispatch, RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 import SubredditBanner from "../components/UI/SectionBanner";
 import PostsList from "../components/Posts/PostsList";
@@ -17,6 +18,7 @@ const SubredditPage: React.FC = () => {
   );
   const hasError = useSelector((state: RootState) => state.fetchPosts.hasError);
   const dispatch = useDispatch<AppDispatch>();
+  const isTablet = useMediaQuery({ maxWidth: "875px" });
 
   useEffect(() => {
     if (subreddit) {
@@ -26,7 +28,7 @@ const SubredditPage: React.FC = () => {
   }, [dispatch, subreddit]);
 
   return (
-    <>
+    <div className="mainSection">
       <section>
         <SubredditBanner />
         <p>Sort by</p>
@@ -42,8 +44,8 @@ const SubredditPage: React.FC = () => {
           <p>No results found</p>
         )}
       </section>
-      <PageInfo />
-    </>
+      <PageInfo isTablet={isTablet}/>
+    </div>
   );
 };
 

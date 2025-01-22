@@ -21,7 +21,7 @@ const SearchPage = () => {
   }, [dispatch, query]);
 
   return (
-    <>
+    <div className="mainSection">
       <section>
         <h1>Results for: {query}</h1>
         <p>Sort by</p>
@@ -35,7 +35,7 @@ const SearchPage = () => {
           <p style={{ textAlign: "center" }}>No results found</p>
         )}
       </section>
-    </>
+    </div>
   );
 };
 

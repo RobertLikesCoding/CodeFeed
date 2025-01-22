@@ -39,11 +39,11 @@ const PageInfo: React.FC<Props> = ({ topic, isTablet }) => {
     );
 
     return (
-      <aside className={`${styles.about} flex-center gap-1`}>
+      <aside className={`${styles.about} ${isTablet && "hide"} flex-column gap-1`}>
         {isLoading ? (
-          <p>Loading </p>
+          <p className="flex-center">Loading </p>
         ) : hasError ? (
-          <p>Error loading subreddit details. Try reloading the page.</p>
+          <p className="flex-center">Error loading subreddit details. Try reloading the page.</p>
         ) : (
           <>
             <h3>r/{subredditDetails.display_name}</h3>
