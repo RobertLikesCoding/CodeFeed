@@ -9,9 +9,10 @@ import { parseBodyHTML } from "../../helpers/helpers";
 
 interface Props {
   topic?: string | null;
+  isTablet?: boolean;
 }
 
-const PageInfo: React.FC<Props> = ({ topic }) => {
+const PageInfo: React.FC<Props> = ({ topic, isTablet }) => {
   const subredditDetails = useSelector(
     (state: RootState) => state.subredditDetails.details
   );
@@ -24,7 +25,7 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
 
   if (topic) {
     return (
-      <aside className={`${styles.communities}`}>
+      <aside className={`${styles.communities} ${isTablet && "hide"}`}>
         <h3>Communities</h3>
         <p>Most popular related subreddits:</p>
         <SubredditsList title="" topic={topic} />
@@ -38,17 +39,13 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
     );
 
     return (
-      <>
+      <aside className={`${styles.about} ${isTablet && "hide"} flex-column gap-1`}>
         {isLoading ? (
-          <aside className={`${styles.about} flex-center gap-1`}>
-            <p>Loading </p>
-          </aside>
+          <p className="flex-center">Loading </p>
         ) : hasError ? (
-          <aside className={`${styles.about} flex-center gap-1`}>
-            <p>Error loading subreddit details. Try reloading the page.</p>
-          </aside>
+          <p className="flex-center">Error loading subreddit details. Try reloading the page.</p>
         ) : (
-          <aside className={`${styles.about} flex-column gap-1`}>
+          <>
             <h3>r/{subredditDetails.display_name}</h3>
             <div
               dangerouslySetInnerHTML={{ __html: subredditDescription }}
@@ -69,9 +66,9 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
                 </div>
               </div>
             </div>
-          </aside>
+          </>
         )}
-      </>
+      </aside>
     );
   }
 
