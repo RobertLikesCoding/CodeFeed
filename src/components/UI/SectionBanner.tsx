@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 
-import styles from "./SubredditBanner.module.scss";
-import SubredditIcon from "../UI/SubredditIcon";
+import styles from "./SectionBanner.module.scss";
+import SubredditIcon from "./SubredditIcon";
 
 const SubredditBanner: React.FC = () => {
   const subredditDetails = useSelector(

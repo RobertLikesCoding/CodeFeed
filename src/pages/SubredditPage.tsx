@@ -3,7 +3,7 @@ import { AppDispatch, RootState } from "../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import SubredditBanner from "../components/Subreddits/SubredditBanner";
+import SubredditBanner from "../components/UI/SectionBanner";
 import PostsList from "../components/Posts/PostsList";
 import PageInfo from "../components/PageInfo/PageInfo";
 import { fetchSubredditPostsThunk } from "../redux/slices/postsSlice";
