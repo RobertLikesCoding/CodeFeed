@@ -1,8 +1,8 @@
 @use "./variables.scss" as var;
 
-.three-col-grid {
+.two-col-grid {
   display: grid;
-  grid-template-columns: 18rem 4fr 1fr;
+  grid-template-columns: 18rem 1fr;
   gap: 2rem;
 }
 

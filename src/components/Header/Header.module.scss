@@ -4,7 +4,7 @@
 @use "../../assets/styles/layout";
 
 .header {
-  @extend .three-col-grid;
+  @extend .two-col-grid;
   height: 5rem;
   align-items: center;
 

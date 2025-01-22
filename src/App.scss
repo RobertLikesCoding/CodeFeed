@@ -3,7 +3,7 @@
 @use "./assets/styles/layout.scss";
 
 main {
-  @extend .three-col-grid;
+  @extend .two-col-grid;
 
   @include mixin.media-query(var.$breakpoint-xl) {
     grid-template-columns: 4fr 1fr;
@@ -13,4 +13,16 @@ main {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
+  .mainSection {
+    height: calc(100vh - 5rem);
+    display: grid;
+    grid-template-columns: 10fr 1fr;
+    gap: 2rem;
+
+    section {
+      overflow: scroll;
+    }
+  }
 }
+

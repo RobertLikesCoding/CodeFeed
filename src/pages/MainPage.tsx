@@ -27,7 +27,7 @@ const MainPage = () => {
   }, [dispatch, topic]);
 
   return (
-    <>
+    <div className="mainSection">
       <section>
         <h1>
           {isValidTopic ? topic : "Latest"}
@@ -44,7 +44,7 @@ const MainPage = () => {
         )}
       </section>
       <PageInfo topic={topic ? topic : "web development"} />
-    </>
+    </div>
   );
 };
 
