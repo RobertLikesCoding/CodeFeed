@@ -39,38 +39,36 @@ const PageInfo: React.FC<Props> = ({ topic }) => {
 
     return (
       <>
-        {isLoading ? (
-          <aside className={`${styles.about} flex-center gap-1`}>
+        <aside className={`${styles.about} flex-center gap-1`}>
+          {isLoading ? (
             <p>Loading </p>
-          </aside>
-        ) : hasError ? (
-          <aside className={`${styles.about} flex-center gap-1`}>
+          ) : hasError ? (
             <p>Error loading subreddit details. Try reloading the page.</p>
-          </aside>
-        ) : (
-          <aside className={`${styles.about} flex-column gap-1`}>
-            <h3>r/{subredditDetails.display_name}</h3>
-            <div
-              dangerouslySetInnerHTML={{ __html: subredditDescription }}
-            ></div>
-            <div className="flex gap-2">
-              <div className="flex-column">
-                <span>{subredditDetails.subscribers}</span>
-                <div className="flex flex-center gap">
-                  <FontAwesomeIcon icon={faUserGroup} />
-                  <p>Members</p>
+          ) : (
+            <>
+              <h3>r/{subredditDetails.display_name}</h3>
+              <div
+                dangerouslySetInnerHTML={{ __html: subredditDescription }}
+              ></div>
+              <div className="flex gap-2">
+                <div className="flex-column">
+                  <span>{subredditDetails.subscribers}</span>
+                  <div className="flex flex-center gap">
+                    <FontAwesomeIcon icon={faUserGroup} />
+                    <p>Members</p>
+                  </div>
+                </div>
+                <div className="flex-column">
+                  <span>{subredditDetails.active_user_count}</span>
+                  <div className="flex flex-center gap">
+                    <div className={styles.online}></div>
+                    <p>Online</p>
+                  </div>
                 </div>
               </div>
-              <div className="flex-column">
-                <span>{subredditDetails.active_user_count}</span>
-                <div className="flex flex-center gap">
-                  <div className={styles.online}></div>
-                  <p>Online</p>
-                </div>
-              </div>
-            </div>
-          </aside>
-        )}
+            </>
+          )}
+        </aside>
       </>
     );
   }
